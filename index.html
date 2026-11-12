@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>怪谈事件簿</title>
+<style>
+:root{
+  --bg:#080606;--bg2:#0d0a0a;--card:#130e0e;
+  --ink:#c8bcb0;--ink2:#8f8177;--ink3:#5c5049;
+  --red:#b3352a;--red2:#e5432f;--red3:#ff5a45;
+  --line:#2a1a18;
+  --serif:"Noto Serif SC","Songti SC",STSong,serif;
+  --mono:"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:15px;line-height:1.85}
+a{color:#c05040;text-decoration:none;cursor:pointer}
+a:hover{color:var(--red2)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+
+/* 顶栏 */
+.topbar{background:linear-gradient(#1a0d0b,#2a0f0d);border-bottom:2px solid #4a1512;position:sticky;top:0;z-index:100}
+.tbi{display:flex;align-items:center;gap:14px;height:56px}
+.logo{font-size:21px;letter-spacing:.3em;color:#d8503f;font-weight:600;text-indent:.3em}
+.lsub{font-family:var(--mono);font-size:10px;color:#7a6055}
+.tnav{margin-left:auto;font-size:13px;color:#a2948a;display:flex;gap:14px;align-items:center}
+.tnav .me{color:#d8503f;font-weight:600}
+.badge{background:var(--red2);color:#fff;font-size:10px;padding:0 5px;border-radius:8px;margin-left:3px;font-family:var(--mono)}
+.navbar{background:var(--bg2);border-bottom:1px solid var(--line);font-size:13px;color:var(--ink2)}
+.nbi{display:flex;align-items:center;gap:8px;height:38px}
+.nbi i{font-style:normal;color:var(--ink3);margin:0 2px}
+.nbi b{color:var(--ink);font-weight:600}
+.main{padding:22px 16px 80px}
+
+/* 登录与文字恐怖谷彩蛋 */
+.login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#140a0a 0%,#050303 100%);position:relative;overflow:hidden}
+.login-box{width:340px;text-align:center;padding:30px;z-index:10}
+.login-box h1{font-size:26px;letter-spacing:.4em;color:#d8503f;font-weight:600;margin:0 0 8px;text-indent:.4em}
+.login-box .sub{font-family:var(--mono);font-size:10.5px;color:#6b5a50;margin-bottom:36px}
+.login-box input{width:100%;background:#0d0a0a;border:1px solid #33211e;color:#d8c8b8;padding:12px 14px;font-family:var(--serif);font-size:15px;text-align:center;letter-spacing:.2em;outline:none;margin-bottom:14px}
+.login-box input:focus{border-color:var(--red)}
+.login-box button{width:100%;background:#2a1210;border:1px solid #4a1a16;color:#d8c8b8;padding:12px;font-family:var(--serif);font-size:15px;letter-spacing:.3em;cursor:pointer;text-indent:.3em;transition:.3s}
+.login-box button:hover{background:var(--red);color:#fff;border-color:var(--red2)}
+.login-box .tip{font-size:11.5px;color:#5c4a44;margin-top:22px;font-family:var(--mono);line-height:1.9}
+
+.glitch-name-text {
+  position:absolute;
+  color:var(--red3);
+  font-family:var(--serif);
+  font-weight:bold;
+  pointer-events:none;
+  opacity:0;
+  animation: textFloat 3s ease-out forwards;
+  z-index:1;
+  text-shadow: 0 0 10px rgba(255,0,0,0.5);
+}
+@keyframes textFloat {
+  0% { opacity:0; transform: scale(0.5) translateY(20px); filter: blur(4px); }
+  20% { opacity:0.8; filter: blur(0); }
+  80% { opacity:0.8; }
+  100% { opacity:0; transform: scale(1.1) translateY(-20px); filter: blur(2px); }
+}
+
+/* 公告 */
+.notice{border:1px solid #4c2a20;background:#1a100e;padding:10px 14px;font-size:13px;color:#b39a80;margin-bottom:18px;display:flex;gap:10px;align-items:baseline}
+.notice b{color:var(--red2);font-weight:600;flex:none;letter-spacing:.1em}
+.guide-bar{border:1px solid #4a3a1a;background:#1a1508;padding:10px 14px;font-size:12px;color:#a89a70;margin-bottom:14px;display:flex;gap:10px;align-items:baseline;font-family:var(--mono);line-height:1.9}
+.guide-bar b{color:#d8a040;flex:none}
+.guide-bar .close{margin-left:auto;cursor:pointer;color:var(--ink3);flex:none}
+.guide-bar .close:hover{color:var(--red)}
+.search-bar{display:flex;gap:6px;margin-bottom:16px}
+.search-bar input{flex:1;background:#080606;border:1px solid var(--line);color:var(--ink);padding:8px 12px;font-family:var(--serif);font-size:13px;outline:none}
+.search-bar input:focus{border-color:var(--red)}
+.search-bar button{background:var(--card);border:1px solid var(--line);color:var(--ink2);padding:8px 16px;cursor:pointer;font-family:var(--serif);font-size:13px}
+.search-bar button:hover{background:var(--red);color:#fff}
+.rules{border:1px solid var(--line);background:var(--card);padding:14px 18px;font-size:12.5px;color:var(--ink2);margin:16px 0;line-height:2}
+.rules h4{margin:0 0 6px;font-size:12.5px;color:var(--ink);letter-spacing:.14em;font-weight:600}
+.rules span{color:var(--ink3);margin-right:6px;font-family:var(--mono);font-size:11px}
+
+/* 列表 */
+.sec-title{display:flex;align-items:baseline;gap:12px;margin:22px 0 12px;font-size:18px;font-weight:600;letter-spacing:.06em}
+.sec-title small{font-size:11.5px;color:var(--ink3);font-weight:400;font-family:var(--mono)}
+.tbl{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);font-size:14px}
+.tbl th{background:var(--bg2);border-bottom:1px solid var(--line);padding:9px 12px;font-weight:400;font-size:11.5px;color:var(--ink2);text-align:left;letter-spacing:.06em}
+.tbl td{border-bottom:1px dashed #241612;padding:12px;vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tbody tr:hover td{background:#1a1210;cursor:pointer}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#3a2e28}
+.dot.hot{background:var(--red2);box-shadow:0 0 6px var(--red)}
+.tt{font-size:15px;color:var(--ink);letter-spacing:.02em}
+.tt .new{color:var(--red3);font-size:11px;margin-left:6px;font-family:var(--mono)}
+.tg{font-size:12px;color:var(--ink3);margin-top:3px;line-height:1.5}
+.col-a{width:100px;color:var(--ink2);font-size:12.5px}
+.col-n{width:96px;font-family:var(--mono);font-size:11px;color:var(--ink3);white-space:nowrap}
+.col-l{width:140px;font-size:11.5px;color:var(--ink3);line-height:1.5}
+.col-i{width:32px;text-align:center}
+.tag-end{font-family:var(--mono);font-size:10px;color:#4a8a5a;border:1px solid #2a4a34;padding:0 4px}
+.tag-run{font-family:var(--mono);font-size:10px;color:#d8a040;border:1px solid #5a4420;padding:0 4px}
+.online{margin-top:20px;border:1px solid var(--line);background:var(--card);padding:11px 14px;font-size:12px;color:var(--ink3);font-family:var(--mono);line-height:1.9}
+.online b{font-weight:400;color:var(--ink2);font-family:var(--serif)}
+
+/* 帖子 */
+.crumb{font-size:12px;color:var(--ink3);margin-bottom:12px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.backbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px}
+.backlink{font-size:12px;color:var(--ink2);border:1px solid var(--line);background:var(--card);padding:5px 12px;letter-spacing:.04em}
+.backlink:hover{color:var(--red2);border-color:#6b2a22;text-decoration:none}
+h1.th-title{font-size:20px;margin:0 0 4px;letter-spacing:.03em;font-weight:600;line-height:1.5}
+.th-sub{font-size:11.5px;color:var(--ink3);font-family:var(--mono);margin-bottom:16px}
+.post{display:grid;grid-template-columns:160px 1fr;border:1px solid var(--line);background:var(--card);margin-bottom:12px}
+.post.me{border-color:#6b2a22;box-shadow:inset 3px 0 0 var(--red2)}
+.pu{background:#100a09;border-right:1px solid var(--line);padding:14px 12px;text-align:center;font-size:11.5px;color:var(--ink3)}
+.av{width:60px;height:60px;margin:0 auto 8px;border-radius:50%;border:1px solid #3a2f28;background:radial-gradient(circle at 40% 35%,#3a4a5a,#1a2028)}
+.av.g1{background:radial-gradient(circle at 40% 35%,#5a4a3a,#2a1a10)}
+.av.g2{background:radial-gradient(circle at 40% 35%,#3a5a4a,#102a18)}
+.av.g3{background:radial-gradient(circle at 40% 35%,#5a3a4a,#2a1020)}
+.av.g4{background:radial-gradient(circle at 40% 35%,#4a4a5a,#181820)}
+.av.g5{background:radial-gradient(circle at 40% 35%,#6a4a2a,#2a1a0a)}
+.un{font-size:13.5px;color:var(--ink);letter-spacing:.04em;font-weight:600}
+.rk{font-size:10.5px;color:var(--ink3);margin:2px 0 8px}
+.ps{line-height:1.8;font-size:10.5px;font-family:var(--mono)}
+.pc{padding:14px 20px 18px;min-width:0}
+.phd{display:flex;font-size:11px;color:var(--ink3);font-family:var(--mono);border-bottom:1px solid #241612;padding-bottom:8px;margin-bottom:12px}
+.phd .fl{margin-left:auto;color:#7d7060}
+.pb{font-size:15px;line-height:2;color:#c3b6a7}
+.pb p{margin:0 0 13px}
+.pb p:last-child{margin-bottom:0}
+.pb .dim{color:var(--ink3);font-size:12.5px}
+.sig{margin-top:16px;padding-top:9px;border-top:1px dashed #241612;font-size:12px;color:#7a6f62;font-style:italic}
+
+/* 隐藏文字修改 */
+.hid {
+  color: transparent; 
+  background: rgba(255,255,255,0.05);
+  border-bottom: 1px dotted rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: all 0.4s;
+  user-select: none;
+}
+.hid.revealed {
+  color: var(--red3);
+  background: transparent;
+  border-bottom-color: var(--red3);
+  text-shadow: 0 0 8px var(--red);
+}
+
+/* 回复框 */
+.reply-box{margin-top:18px;background:var(--card);padding:14px;border:1px solid var(--line)}
+.reply-box .hd{color:var(--ink3);font-size:11.5px;margin-bottom:8px;font-family:var(--mono)}
+.reply-box textarea{width:100%;height:64px;background:#080606;border:1px solid #2a1a18;color:var(--ink);padding:9px;resize:none;font-family:var(--serif);font-size:14px;outline:none}
+.reply-box textarea:focus{border-color:var(--red)}
+.reply-box button{margin-top:9px;background:var(--red);color:#fff;border:none;padding:7px 20px;cursor:pointer;font-family:var(--serif);font-size:14px;letter-spacing:.1em}
+.reply-box button:hover{background:var(--red2)}
+.reply-box .warn{color:var(--red3);font-size:12px;margin-top:8px;font-family:var(--mono)}
+
+/* 私信页 */
+.pm-page{display:grid;grid-template-columns:220px 1fr;border:1px solid var(--line);background:var(--card);min-height:520px}
+.pm-list{border-right:1px solid var(--line);background:#0f0908}
+.pm-list-hd{padding:10px 12px;font-size:11px;color:var(--ink3);letter-spacing:.14em;font-family:var(--mono);border-bottom:1px solid var(--line)}
+.pm-item{padding:11px 12px;border-bottom:1px solid #1a1210;cursor:pointer;font-size:13px;transition:.2s}
+.pm-item:hover{background:#1a1210}
+.pm-item.active{background:#2a1210;border-left:3px solid var(--red2)}
+.pm-item .nm{color:var(--ink);font-size:13.5px;display:flex;align-items:center;gap:6px}
+.pm-item.unread .nm{color:var(--red2);font-weight:600}
+.pm-item .prev{font-size:11px;color:var(--ink3);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pm-unread-dot{width:7px;height:7px;border-radius:50%;background:var(--red2);margin-left:auto;flex:none}
+.pm-conv{padding:0;display:flex;flex-direction:column;min-width:0}
+.pm-conv-hd{padding:12px 16px;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.pm-back-mobile{display:none;background:none;border:1px solid var(--line);color:var(--ink2);padding:3px 8px;font-size:12px;cursor:pointer;margin-right:6px}
+.pm-body{flex:1;padding:16px;overflow-y:auto;max-height:440px}
+.pm-msg{display:flex;gap:8px;align-items:flex-start;margin-bottom:12px}
+.pm-msg .who{flex:none;width:54px;text-align:right;padding-top:2px;font-size:11px;color:var(--ink3);line-height:1.4;word-break:break-all}
+.pm-msg .bub{background:#1a1210;border:1px solid #2a1a18;padding:7px 12px;font-size:13.5px;color:#c3b6a7;max-width:78%;border-radius:3px;white-space:pre-wrap;word-break:break-word}
+.pm-msg.mine{flex-direction:row-reverse}
+.pm-msg.mine .who{text-align:left;color:var(--red2)}
+.pm-msg.mine .bub{background:#2a1210;border-color:#4a1a16}
+.pm-send{border-top:1px solid var(--line);padding:10px;display:flex;gap:8px}
+.pm-send input{flex:1;background:#080606;border:1px solid #2a1a18;color:var(--ink);padding:8px 10px;font-family:var(--serif);font-size:13px;outline:none}
+.pm-send button{background:var(--red);color:#fff;border:none;padding:0 16px;cursor:pointer;font-family:var(--serif)}
+.pm-empty{padding:40px;text-align:center;color:var(--ink3);font-size:12px;line-height:2}
+
+/* 线索板 (PC端) */
+.board-page{background:var(--bg2);margin:0 -16px;padding:20px 16px 70px;min-height:80vh}
+.bp-head{max-width:1200px;margin:0 auto 12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bp-head .bk{font-family:var(--mono);font-size:11px;color:#8a7d68;border:1px solid #4a4034;padding:4px 12px}
+.bp-head .bk:hover{color:#d9cbb0;border-color:#7d6c56}
+.bp-head .ti{font-size:17px;color:#d7cab2;letter-spacing:.05em}
+.bp-head .sub{font-family:var(--mono);font-size:10.5px;color:#6b6050;margin-left:auto}
+.bsub{max-width:1200px;margin:0 auto 12px;font-size:12px;color:#7d7160;line-height:1.9}
+.bsub b{color:#b8a98e;font-weight:400}
+.board-wrap{max-width:1200px;margin:0 auto;position:relative}
+.board{position:relative;width:100%;height:640px;background:#2a2420;border:10px solid #5a4a3a;box-shadow:inset 0 0 120px rgba(0,0,0,.8),0 20px 50px -20px #000;overflow:hidden;user-select:none;background-image:radial-gradient(circle at 50% 50%,#33291f 0%,#221a14 100%)}
+.board::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:.08;mix-blend-mode:overlay}
+#boardSvg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+#boardSvg path{fill:none;stroke:#c04a3c;stroke-width:2.2;stroke-linecap:round}
+#boardSvg path.ok{stroke:#c94433;filter:drop-shadow(0 1px 3px rgba(0,0,0,.7))}
+#boardSvg path.bad{stroke:#6d6154;opacity:.5;stroke-dasharray:4 4}
+#boardSvg path.temp{stroke:#d9cbb0;opacity:.6;stroke-dasharray:6 5}
+
+.clue-card{position:absolute;z-index:3;cursor:grab;background:#efe8d6;color:#3b342a;border-radius:1px;box-shadow:3px 4px 14px rgba(0,0,0,.55);padding:9px 11px;font-size:11px;line-height:1.6;min-width:120px;max-width:180px;transition:box-shadow .2s, outline .2s}
+.clue-card:active{cursor:grabbing}
+.clue-card.dragging{z-index:20;box-shadow:0 10px 30px rgba(0,0,0,.8);transform:rotate(1deg)}
+.clue-card.linked{outline:1px solid rgba(200,70,55,.7)}
+.clue-card.selected{outline:3px solid var(--red2); box-shadow: 0 0 15px rgba(229,67,47,0.5);}
+.clue-card .ct{font-family:var(--mono);font-size:8.5px;color:#8a2119;letter-spacing:.05em;border-bottom:1px solid #cfc2a8;padding-bottom:2px;margin-bottom:3px}
+.clue-card .cn{font-size:12px;font-weight:700;margin-bottom:3px;line-height:1.4}
+.clue-card .cd{font-family:var(--mono);font-size:8px;color:#8b816c;line-height:1.7}
+.clue-card .pin{position:absolute;left:-7px;top:-7px;width:15px;height:15px;border-radius:50%;background:radial-gradient(circle at 34% 30%,#ee6a56,#8e2117 70%);box-shadow:0 2px 5px rgba(0,0,0,.6);cursor:crosshair;z-index:5}
+.clue-card .pin::after{content:"";position:absolute;inset:-12px;border-radius:50%}
+.board-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#5a4a3a;font-size:13px;font-family:var(--mono);text-align:center;pointer-events:none;padding:20px;line-height:2}
+
+.notes{max-width:1200px;margin:22px auto 0}
+.notes h3{font-size:11.5px;color:#7d7160;letter-spacing:.2em;font-family:var(--mono);font-weight:400;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+.notes h3::after{content:"";flex:1;height:1px;background:#2a231c}
+.nlist{display:grid;gap:6px;max-height:200px;overflow-y:auto}
+.nitem{display:flex;gap:10px;font-size:12.5px;color:#b3a58c;line-height:1.8;border-left:2px solid #5a4c3c;padding:4px 0 4px 12px}
+.nitem i{font-style:normal;font-family:var(--mono);font-size:10px;color:#8a2119;flex:none;padding-top:3px}
+.nitem.wrong{border-left-color:#6d6154;color:#7d7160;font-size:11.5px}
+.board-ctl{max-width:1200px;margin:18px auto 0;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.pbar{flex:1;min-width:160px;height:2px;background:#2a231c;position:relative}
+.pbar i{position:absolute;left:0;top:0;bottom:0;background:var(--red2);width:0;transition:width .5s}
+.pnum{font-family:var(--mono);font-size:11px;color:#7d7160}
+.hintbtn,.resetbtn{background:none;border:1px dashed #5b4b3b;color:#8d8170;font-family:var(--mono);font-size:10px;letter-spacing:.12em;padding:7px 13px;cursor:pointer}
+.hintbtn:hover,.resetbtn:hover{border-color:var(--red);color:#d8c8b0}
+.hintmsg{width:100%;font-size:12px;color:#b9ac95;font-family:var(--mono);line-height:1.8;margin-top:2px}
+.hintmsg b{color:#d8695b;font-weight:400}
+.err-tip{font-family:var(--mono);font-size:10.5px;color:#7d6050;letter-spacing:.04em}
+.pwd-box{max-width:600px;margin:26px auto 0;padding:20px;border:1px dashed #4a1512;text-align:center}
+.pwd-box p{color:#6f6459;font-size:11.5px;margin:0 0 12px;font-family:var(--mono)}
+.pwd-box input{background:#080606;border:1px solid #2a1a18;color:var(--ink);padding:9px;text-align:center;letter-spacing:4px;font-family:var(--mono);outline:none;width:160px}
+.pwd-box input.shake{animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.pwd-box button{background:#2a1210;color:var(--ink);border:1px solid #4a1a16;padding:9px 18px;cursor:pointer;margin-left:8px;font-family:var(--serif)}
+.pwd-box button:hover{background:var(--red);color:#fff}
+
+/* 隐藏档案 */
+.hidden-page{background:#050303;min-height:100vh;padding:60px 20px;color:#8a7a6a}
+.hidden-inner{max-width:640px;margin:0 auto;font-family:var(--mono);font-size:13px;line-height:2}
+.hidden-inner h2{color:#c0392b;font-size:15px;letter-spacing:.3em;font-family:var(--serif);text-align:center;margin:0 0 30px}
+.hidden-inner .line{margin-bottom:6px}
+.hidden-inner .key{color:#d8503f}
+.hidden-inner .back{margin-top:40px;display:inline-block}
+
+/* 结局 */
+.ending{position:fixed;inset:0;background:#050303;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px}
+.ending-inner{max-width:560px;text-align:center}
+.ending h1{font-family:var(--serif);font-size:22px;letter-spacing:.4em;color:#e5432f;text-indent:.4em;margin:0 0 30px}
+.ending p{font-family:var(--mono);font-size:12.5px;color:#8a7a6a;line-height:2.2;margin:0 0 8px}
+.ending .big{font-family:var(--serif);font-size:15px;color:#d9cbb0;letter-spacing:.1em;margin:26px 0}
+.ending button{margin-top:30px;background:#2a1210;border:1px solid #4a1a16;color:#c8bcb0;padding:10px 26px;font-family:var(--serif);letter-spacing:.2em;cursor:pointer;font-size:13px}
+.ending button:hover{background:#b3352a;color:#fff}
+.ending.good h1{color:#d8503f}
+
+/* 404 */
+.err404{text-align:center;padding:80px 20px}
+.err404 h1{font-size:64px;color:var(--red);font-family:var(--mono);font-weight:400;margin:0;letter-spacing:.1em}
+.err404 p{color:var(--ink3);font-size:13px;margin:10px 0}
+.err404 .hid{font-size:13px;margin-top:20px;display:inline-block}
+
+/* 悬浮按钮 */
+#float-btns{position:fixed;right:16px;bottom:16px;display:flex;flex-direction:column;gap:8px;z-index:200}
+#float-btns button{width:40px;height:40px;border-radius:50%;background:#2a1210;border:1px solid #4a1a16;color:#d8c8b8;font-size:17px;cursor:pointer;opacity:0;pointer-events:none;transition:.3s}
+#float-btns button.show{opacity:1;pointer-events:auto}
+#float-btns button:hover{background:var(--red);color:#fff}
+
+/* 乱码 */
+.glitch-overlay{position:fixed;inset:0;z-index:9997;pointer-events:none;background:#050303;opacity:0;transition:opacity .3s}
+.glitch-overlay.on{opacity:1;animation:glitchShake .15s infinite}
+.glitch-overlay .txt{position:absolute;inset:0;padding:40px;font-family:var(--mono);font-size:12px;color:#4a2018;line-height:1.6;word-break:break-all;overflow:hidden;white-space:pre-wrap;opacity:.7}
+@keyframes glitchShake{0%{transform:translate(0,0)}25%{transform:translate(-2px,1px)}50%{transform:translate(2px,-1px)}75%{transform:translate(-1px,-2px)}100%{transform:translate(1px,2px)}}
+body.glitching #app{animation:glitchHue .1s infinite}
+@keyframes glitchHue{0%{filter:hue-rotate(0)}50%{filter:hue-rotate(120deg) contrast(1.8)}100%{filter:hue-rotate(-40deg)}}
+
+/* Toast */
+#toast-layer{position:fixed;right:18px;bottom:120px;z-index:9996;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.toast{background:#1a0d0b;border:1px solid var(--red2);color:#d8c8b8;padding:10px 14px;font-size:12.5px;box-shadow:0 4px 20px rgba(0,0,0,.7);max-width:280px;animation:toastIn .4s;font-family:var(--serif);line-height:1.7}
+.toast b{color:var(--red3)}
+@keyframes toastIn{from{transform:translateX(40px);opacity:0}to{transform:translateX(0);opacity:1}}
+
+.footer{border-top:1px solid var(--line);margin-top:40px;padding:16px 0 40px;font-size:11px;color:#6a5a50;font-family:var(--mono);line-height:2;text-align:center}
+
+/* ========================================= */
+/* 💡 手机版特别适配               */
+/* ========================================= */
+@media (max-width:720px){
+  .tbi { height: 48px; gap: 10px; }
+  .logo { font-size: 18px; letter-spacing: 0.1em; }
+  .lsub { display: none; }
+  .tnav { gap: 8px; font-size: 12px; }
+  .tnav .me { display: none; }
+  .navbar { display: none; }
+
+  .post{grid-template-columns:1fr}
+  .pu{display:flex;align-items:center;gap:10px;text-align:left;border-right:none;border-bottom:1px solid var(--line);padding:9px 12px}
+  .av{width:38px;height:38px;margin:0}
+  .ps,.rk{display:none}
+  .pc{padding:12px 14px 16px}
+  
+  .pm-page{grid-template-columns:1fr}
+  .pm-page .pm-list{display:none;border-right:none}
+  .pm-page .pm-conv{display:none}
+  .pm-page.show-list .pm-list{display:block}
+  .pm-page:not(.show-list) .pm-conv{display:flex}
+  .pm-back-mobile{display:inline-block}
+  
+  .col-a,.col-n,.col-l{display:none}
+
+  .board-wrap { overflow: visible; }
+  .board {
+    height: auto !important;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    border-width: 4px;
+    background: #1a1512;
+    overflow: visible !important;
+  }
+  #boardSvg { display: none !important; }
+  
+  .clue-card {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 12px 0;
+    box-sizing: border-box;
+    min-width: 0;
+    font-size: 13px;
+    padding: 12px;
+    cursor: pointer;
+    transition: none;
+  }
+  .clue-card .pin { display: none !important; }
+  .clue-card .cn { font-size: 14px; margin-top: 4px; }
+  .clue-card .cd { font-size: 11px; margin-top: 4px; }
+  
+  .clue-card.selected {
+    outline: 2px solid var(--red2);
+    background: #fff5e6;
+    transform: scale(0.98);
+  }
+  .clue-card.linked {
+    opacity: 0.5;
+    border-left: 4px solid var(--red);
+  }
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="toast-layer"></div>
+<div id="float-btns">
+  <button id="backtop" title="回到顶部">↑</button>
+  <button id="backbottom" title="去到最底部">↓</button>
+</div>
+<div class="glitch-overlay" id="glitchOverlay"><div class="txt" id="glitchTxt"></div></div>
+
+<script>
+/* ============================================================
+   状态 + 存档
+============================================================ */
+const STATE = {
+  user:null,
+  readThreads:new Set(),
+  clues:new Set(),
+  links:{},
+  pmRead:{},
+  blockedCount:0,
+  glitchTriggered:false,
+  hiddenUnlocked:false,
+  suspectUnlocked:false,
+  badEndTriggered:false,
+  pmOpen:null,
+  guideClosed:false,
+  seenExif:new Set(),
+  linkErrors:0,
+  linkErrorsWarned:false,
+};
+function saveState(){
+  try{
+    localStorage.setItem('guaitan_save_v10', JSON.stringify({
+      user:STATE.user,
+      readThreads:[...STATE.readThreads],
+      clues:[...STATE.clues],
+      links:STATE.links,
+      pmRead:STATE.pmRead,
+      blockedCount:STATE.blockedCount,
+      glitchTriggered:STATE.glitchTriggered,
+      hiddenUnlocked:STATE.hiddenUnlocked,
+      suspectUnlocked:STATE.suspectUnlocked,
+      badEndTriggered:STATE.badEndTriggered,
+      guideClosed:STATE.guideClosed,
+      seenExif:[...STATE.seenExif],
+      linkErrors:STATE.linkErrors,
+      linkErrorsWarned:STATE.linkErrorsWarned,
+    }));
+  }catch(e){}
+}
+function loadState(){
+  try{
+    const d = localStorage.getItem('guaitan_save_v10');
+    if(!d) return;
+    const o = JSON.parse(d);
+    STATE.user = o.user || null;
+    STATE.readThreads = new Set(o.readThreads || []);
+    STATE.clues = new Set(o.clues || []);
+    STATE.links = o.links || {};
+    STATE.pmRead = o.pmRead || {};
+    STATE.blockedCount = o.blockedCount || 0;
+    STATE.glitchTriggered = !!o.glitchTriggered;
+    STATE.hiddenUnlocked = !!o.hiddenUnlocked;
+    STATE.suspectUnlocked = !!o.suspectUnlocked;
+    STATE.badEndTriggered = !!o.badEndTriggered;
+    STATE.guideClosed = !!o.guideClosed;
+    STATE.seenExif = new Set(o.seenExif || []);
+    STATE.linkErrors = o.linkErrors || 0;
+    STATE.linkErrorsWarned = !!o.linkErrorsWarned;
+  }catch(e){}
+}
+function clearSave(){ try{ localStorage.removeItem('guaitan_save_v10'); }catch(e){} }
+
+/* ============================================================
+   工具
+============================================================ */
+const $ = s => document.querySelector(s);
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function now(){ const d=new Date(); return `${d.getMonth()+1}-${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; }
+function randGlitch(n){ const c='▚▞▓▒░█◎◈⌧⍟⍜⎔⏣'; let s=''; for(let i=0;i<n;i++) s+=c[Math.floor(Math.random()*c.length)]; return s; }
+function keyOf(a,b){ return [a,b].sort().join('|'); }
+function isLateNight(){ const h = new Date().getHours(); return h < 6 || h >= 23; }
+function toast(html){
+  const layer = $('#toast-layer');
+  if(!layer) return;
+  const d = document.createElement('div');
+  d.className = 'toast';
+  d.innerHTML = String(html).replace(/\n/g,'<br>');
+  layer.appendChild(d);
+  setTimeout(()=>d.remove(), 5500);
+}
+
+/* ============================================================
+   数据：帖子（论坛前身：守夜人）
+============================================================ */
+const THREADS = [
+  {
+    id:1, title:'雨天怪谈：最近槐市老是有人失踪', author:'雨何时停', av:'g1',
+    tag:'水鬼找替身？还是巧合？雨到底什么时候停。',
+    time:'2013-09-12 14:20', views:8402, replies:12, status:'lock', clue:'c1',
+    body:`<p>这半个月，光是我们学校，就有三个女生失踪了。</p>
+      <p>最诡异的是，这三个女生失踪的那天，全都是下大雨的晚上。</p>
+      <p>昨天，我一个最好的朋友，也在雨天失踪了。她叫何辜。失踪之前，她还在听我讲关于水鬼找替身的怪谈。</p>
+      <p>如果我没有和她讲那个故事，她是不是就不会走那条巷子了？</p>
+      <p>我昨晚在巷子口看到一个女生打着伞。她旁边好像跟着一个矮矮的人，没打伞。第二天看新闻，那个女生也没回宿舍。</p>
+      <p>我报警了，但警察说巷子口监控坏了，没拍到什么。<span class="hid" onclick="this.classList.toggle('revealed')">那矮矮的轮廓，走路的姿势根本不像小孩，倒像个成年人。</span></p>`,
+    floors:[
+      {name:'推理迷',av:'g2',time:'2013-09-12 15:02',body:'<p>楼主节哀。但我感觉这不是水鬼，那矮个子可能利用了“小孩”的身份让你朋友放松警惕。人贩子经常用这招。</p>'},
+      {name:'短刀刺客',av:'g3',time:'2013-09-12 15:30',body:'<p>只有我一个人觉得是外星人吗？雨夜可能就是信号不好的时候。</p>'},
+      {name:'黑夜行',av:'g4',time:'2013-09-12 15:40',body:'<p>短刀别瞎猜了。这不是外星人。在怪谈里，下雨天阴气重，确实容易招惹“湿骨”。不过如果是成年人假扮小孩，这招极其阴毒。</p>'},
+      {name:'江州',av:'g5',time:'2013-09-12 18:15',body:'<p>我在这片住了几十年了。以前这里叫槐市，有个叫「守夜人」的网站专门记录这种事。那个打伞的女生，怕是凶多吉少。</p>'}
+    ]
+  },
+  {
+    id:2, title:'楼道里时不时传来的小孩哭声，太渗人了', author:'不要给陌生人开门', av:'g5',
+    tag:'猫眼看出去什么都没有',
+    time:'2013-09-15 02:30', views:3112, replies:8, status:'lock', clue:'c2',
+    body:`<p>坐标槐市老城区，那种没有电梯的旧楼。</p>
+      <p>最近半个月，每天晚上十二点多，楼道里就会传来小孩子的哭声。呜咽呜咽的，一直喊“妈妈，开门”。</p>
+      <p>我从猫眼看出去。外面声控灯是亮的，但走廊里空荡荡的，什么都没有。哭声还在继续，近在咫尺。</p>
+      <p>我吓得没敢开门。可是那声音分明就在我门边！<span class="hid" onclick="this.classList.toggle('revealed')">猫眼高度大概 1.5 米，如果有人贴着门蹲在下面，猫眼确实看不见。</span></p>`,
+    floors:[
+      {name:'持瓜路过',av:'g1',time:'2013-09-15 08:12',body:'<p>卧槽太吓人了，楼主你赶紧搬家吧！</p>'},
+      {name:'推理迷',av:'g2',time:'2013-09-15 09:30',body:'<p>等一下，楼主说猫眼看不到人？有没有一种可能，那个人身高不够？或者他是蹲着的？</p>'},
+      {name:'背后身无一人',av:'g4',time:'2013-09-15 09:50',body:'<p>楼上想多了吧，就是野猫叫春或者隔音不好。哪那么多阴谋论。</p>'},
+      {name:'在此之间',av:'g5',time:'2013-09-15 10:30',body:'<p>我也赞成推理迷。如果是矮小的人，贴着门哭，确实能制造出这种效果。</p>'},
+      {name:'剑已出窍',av:'g1',time:'2013-09-15 11:40',body:'<p>不管是什么，直接开门一刀砍了不就完了？</p>'}
+    ]
+  },
+  {
+    id:3, title:'空置的 402 房里，半夜有女人在惨叫', author:'后室', av:'g2',
+    tag:'物业带我看过，里面真的没人',
+    time:'2013-09-20 22:15', views:5644, replies:15, status:'lock', clue:'c3',
+    body:`<p>我住在槐市老城区 4 号楼。这栋楼是回迁房，入住率不高。</p>
+      <p>从上个月开始，我每天晚上都能听到隔壁 402 传来女人的惨叫声，还有砸墙的声音。</p>
+      <p>我害怕出事，就去找了物业。物业说 402 根本没住人。我不信，非逼着物业开锁带我去看。</p>
+      <p>门打开，里面确实一股霉味，地上全是灰尘。根本没有脚印，家具也没有。物业还和我调了当天的监控，确实没人进去过。</p>
+      <p>可是昨晚，惨叫又响了。这次更清晰了，就在我床头那面墙的后面。<span class="hid" onclick="this.classList.toggle('revealed')">物业拿着万能卡开门的时候动作太熟练了。而且 402 的电视柜后面，墙纸似乎有点翘起，有一道很细的缝隙。</span></p>`,
+    floors:[
+      {name:'一位网友',av:'g3',time:'2013-09-21 08:30',body:'<p>可能是隔壁栋的声音通过墙体传导了吧，老房子隔音很差的。</p>'},
+      {name:'短刀刺客',av:'g4',time:'2013-09-21 09:00',body:'<p>绝对是灵异事件！这是传说中的“墙中女鬼”！</p>'},
+      {name:'推理迷',av:'g2',time:'2013-09-21 09:20',body:'<p>短刀别瞎扯。灰尘没脚印，说明门很久没开。但墙纸翘起很奇怪，物业开门太熟练也很奇怪。楼主，你要小心物业。</p>'},
+      {name:'江州',av:'g5',time:'2013-09-21 10:12',body:'<p>小同志，我劝你晚上睡觉锁好门。以前槐市的老筒子楼，有些是有暗门的。</p>'},
+      {name:'在此之间',av:'g5',time:'2013-09-21 11:00',body:'<p>细思极恐，如果物业是帮凶，那“空房”就是作案现场。</p>'}
+    ]
+  },
+  {
+    id:4, title:'在公园撞鬼之后，一直被“救命声”缠着', author:'出门遛弯', av:'g4',
+    tag:'我没骗人，真的听到了',
+    time:'2013-10-05 01:22', views:1203, replies:5, status:'lock', clue:'c4',
+    body:`<p>我快疯了。我需要把事情说出来。</p>
+      <p>上个月 28 号，我在老城区的废公园夜跑。跑到树林那边时，我听到草丛里有人喊“救命”。</p>
+      <p>我扒开树丛一看，一个浑身是血的女人，头发凌乱，正趴在地上往我这边爬。她拼命冲我挥手。</p>
+      <p>我当时吓疯了，以为撞见什么怪物，扭头就跑，还摔了一跤。</p>
+      <p>等我跑出公园，回头看，已经没人了。但回到家，我每天晚上都能听到“救命”。就在我耳边。</p>
+      <p>昨天我去公园找了，在草地里找到了一个女生的发夹，上面还有血。<span class="hid" onclick="this.classList.toggle('revealed')">我跑了之后，如果她没有获救，那就是被拖走了。我成了最后见到她的人，却跑了。</span></p>`,
+    floors:[
+      {name:'持瓜路过',av:'g1',time:'2013-10-05 08:15',body:'<p>楼主你胆子也太小了。那可能是个真人，你怎么能跑呢！</p>'},
+      {name:'背后身无一人',av:'g4',time:'2013-10-05 09:30',body:'<p>又不是你的错，换我我也跑。万一是碰瓷的呢？</p>'},
+      {name:'推理迷',av:'g2',time:'2013-10-05 10:00',body:'<p>楼主，别太自责。你交发夹给警察是对的。这几天失踪案的频发，那个血人很可能就是受害者之一。</p>'}
+    ]
+  },
+  {
+    id:5, title:'村里来了个疯女人，每天挨家挨户敲门喊“死”', author:'村里唯一的大学生', av:'g5',
+    tag:'晚上去旱厕回头就看到她',
+    time:'2013-11-12 18:30', views:2201, replies:7, status:'lock', clue:'c5',
+    body:`<p>坐标隔壁市偏远山村。大概三个月前，村头的光棍老刘家，买了个媳妇。</p>
+      <p>那媳妇长得很漂亮，但脑子有问题。老刘也不管她，就由着她在村里乱走。她每天也不睡觉，就挨家挨户地去敲门，一直喊：“死……死……死……”</p>
+      <p>后来我听村里几个喝酒的老光棍说漏嘴了。说这女娃本来是个大学生，被人贩子拐了，还有一个同伴。同伴为了护她被打死了。她亲眼看着同伴被装进垃圾袋里拖走，就直接疯了。<span class="hid" onclick="this.classList.toggle('revealed')">他们提到的那个死去的同伴，名字好像叫“何辜”。</span></p>`,
+    floors:[
+      {name:'一位网友',av:'g3',time:'2013-11-12 19:00',body:'<p>买媳妇是违法犯罪，楼主你为什么不报警？</p>'},
+      {name:'短刀刺客',av:'g4',time:'2013-11-12 19:30',body:'<p>这还用问？肯定是黑吃黑，村里人包庇呗。</p>'},
+      {name:'黑夜行',av:'g4',time:'2013-11-12 20:10',body:'<p>她一直喊“死”，可能是因为她潜意识里还在经历那场死亡。</p>'},
+      {name:'雨何时停',av:'g1',time:'2013-11-12 21:00',body:'<p>何辜……是我朋友。谢谢你告诉我这些。</p>'}
+    ]
+  }
+];
+
+/* ============================================================
+   线索（纯净拐卖版）
+============================================================ */
+const CLUES = {
+  c1:{name:'雨夜失踪者', cat:'THREAD 01', desc:'三个女大学生都在雨天失踪，且失踪前身边出现过一个矮小的人影。', quote:'“那矮个子走路的姿势根本不像小孩。”'},
+  c2:{name:'猫眼下的盲区', cat:'THREAD 02', desc:'楼道哭声其实是蹲在门外的矮小成年人发出的，身高刚好避开 1.5 米的猫眼。', quote:'“正常人谁半夜蹲在别人家门口哭啊！”'},
+  c3:{name:'402的墙缝', cat:'THREAD 03', desc:'402 确实是空的，但物业的万能卡可以开隔壁的房，暗门相通。', quote:'“物业开门的时候动作太熟练了。”'},
+  c4:{name:'公园里的血人', cat:'THREAD 04', desc:'楼主在公园撞见的血人，正是逃出来的何辜，因楼主逃跑被再次抓回。', quote:'“我成了最后见到她的人，却跑了。”'},
+  c5:{name:'疯女人的呓语', cat:'THREAD 05', desc:'疯女人是唯一活口，目睹了何辜被打死拖走的过程，被卖到了山村。', quote:'“一直喊：死……死……死……”'},
+  c6:{name:'买家的交易群', cat:'PM · 雨何时停', desc:'邓雨婷查到的群聊记录：这伙人在群里物色女大学生，何辜因反抗太激烈被打死。', quote:'“这个太烈了，没气儿了。扔了吧。”'},
+  c7:{name:'沉重的黑袋子', cat:'PM · 老周', desc:'老周回忆，那天晚上看到一个黑衣人拖着极其沉重的黑色大垃圾袋，往废公园方向走。', quote:'“黑色袋子里装的不是垃圾。”'},
+  c8:{name:'保安的交接', cat:'PM · 雨何时停', desc:'物业保安老张是内鬼，每次作案后负责清理现场并转移受害者。', quote:'“有监控有录像，怎么可能有人。”'},
+  c9:{name:'死者的名字', cat:'PM · 雨何时停', desc:'所有线索拼凑到最后，指向一个无辜的名字：何辜（何其无辜）。', quote:'“她只是想送那个小孩回家。”'},
+};
+
+const EXIF_DATA = {
+  c1:'原图：雨天监控截图\n时间：2013-09-01 22:30\n说明：白衣女生身边跟着一个黑影。\n身高比例异常。',
+  c2:'原图：无\n设备不支持\n说明：猫眼高度为 1.5 米。\n如果对方身高不到 1.2 米，确实看不到。',
+  c3:'原图：402 室内照\n时间：2013-09-20 21:00\n说明：电视柜后方墙纸有撕裂痕迹。\n可能是一道暗门。',
+  c4:'原图：草地上的发夹\n时间：2013-09-28 23:00\n说明：发夹上有人血。\n经比对，属于失踪女生何辜。',
+  c5:'原图：无\n说明：被拐卖的女大学生，精神失常。\n口中不断重复“死”。',
+  c6:'内部截屏：买家群聊\n消息：“这个太烈了，没气儿了。扔了吧。”',
+  c7:'内部截屏：监控死角\n“今晚老张值班，监控关了，把黑袋子拖进公园废井里。”',
+  c8:'内部截屏：保安排班表\n备注：“今晚老张值班，安全。”',
+  c9:'无图片。\n由所有线索拼凑。\n名字：何辜。',
+};
+
+const PAIRS = [
+  {a:'c1', b:'c2', t:'雨天失踪案的诱饵，正是楼道里蹲在猫眼死角的人。', k:'诱饵'},
+  {a:'c2', b:'c3', t:'被骗出门的女生，被带到了 402 的暗门里。', k:'作案现场'},
+  {a:'c3', b:'c4', t:'何辜拼命从 402 逃出，在公园撞见楼主却被吓跑，导致被抓回。', k:'逃亡失败'},
+  {a:'c4', b:'c5', t:'何辜死后，同伙的女生疯了被卖到山村。', k:'幸存者'},
+  {a:'c3', b:'c8', t:'402 能成为作案现场，是因为物业保安老张的包庇。', k:'内鬼'},
+  {a:'c8', b:'c7', t:'保安清理现场后，黑衣人用黑袋子转移了尸体。', k:'转移'},
+  {a:'c7', b:'c6', t:'转移尸体后，买家群里记录了何辜死亡的原因。', k:'毁尸灭迹'},
+  {a:'c6', b:'c9', t:'这个被打死的女生，叫何辜。', k:'何辜'},
+  {a:'c9', b:'c1', t:'这场悲剧，开始于雨天她好心送一个小孩回家。', k:'闭环'},
+];
+
+const CONTACTS = [
+  {
+    id:'ytzq', name:'雨何时停', av:'g1', color:'#e5432f',
+    intro:'邓雨婷 · 推理社',
+    hidden:true, // 初始隐藏，首次读帖后解锁
+    msgs:[]
+  },
+  {
+    id:'laozhou', name:'夜班老周', av:'g3', color:'#a08a5a',
+    intro:'槐市巡防队员',
+    unlockBy:[1, 2],
+    msgs:[]
+  },
+  {
+    id:'zhang', name:'保安老张', av:'g2', color:'#a08a5a',
+    intro:'4 号楼物业保安',
+    unlockBy:[3],
+    msgs:[]
+  },
+  {
+    id:'survivor', name:'疯子', av:'g5', color:'#a08a5a',
+    intro:'山村里的女人',
+    unlockBy:[5],
+    msgs:[]
+  },
+  {
+    id:'suspect', name:'?', av:'g3', color:'#b3352a',
+    intro:'（此联系人身份不明）',
+    hidden:true,
+    msgs:[],
+  },
+];
+
+function isContactVisible(c){
+  if(c.hidden && !STATE.suspectUnlocked) return false;
+  if(c.unlockBy && c.unlockBy.length > 0){
+    return c.unlockBy.some(id => STATE.readThreads.has(id));
+  }
+  return true;
+}
+
+const HELP_WORDS = ['线索','卡','怎么','下一步','帮我','怎么办','不知道','难','不会','提示','救','继续','然后','做什么','哪里','在哪','搞不定','太难','过不去','帮忙','咋办','如何','求','懵','晕','卡住','卡了','没头绪','没思路','救命','卡死','傻','啥','搞什么','啥意思'];
+const FORBIDDEN = ['何辜','人贩子','拐卖','侏儒','老张','碎尸','绞肉机','器官','杀人','犯罪','暗网'];
+
+const REPLY_POOL = {
+  1:['雨天真的得小心，那些人可能就是利用我们心软。','想想就后怕。','一定要严惩！'],
+  2:['我说怎么只有哭声看不到人，原来是蹲着的！','太可怕了，以后千万不要随便开门。'],
+  3:['我就说物业有问题，怎么可能一点声音都听不到。','暗门！绝对是暗门！'],
+  4:['楼主你不用太自责，换做谁都会被吓跑的。','希望警察早点破案。'],
+  5:['买卖同罪！买媳妇的也该死！','这个疯女人太可怜了。'],
+};
+
+/* ============================================================
+   路由
+============================================================ */
+function route(){
+  document.body.classList.remove('glitching');
+  const h = location.hash || '#/';
+  if(!STATE.user && h !== '#/login'){ location.hash = '#/login'; return; }
+  if(h === '#/login'){ renderLogin(); return; }
+  if(h === '#/doomed'){ renderEnding('bad'); return; }
+  if(h === '#/trueend'){ renderEnding('true'); return; }
+  if(h === '#/'){ renderIndex(); return; }
+  if(h.startsWith('#/t/')){ const id = parseInt(h.slice(4),10); renderThread(id); return; }
+  if(h.startsWith('#/search/')){ const kw = decodeURIComponent(h.slice(9)); renderSearch(kw); return; }
+  if(h === '#/pm'){ renderPM(null, false); return; }
+  if(h === '#/archive'){ renderBoard(); return; }
+  if(h === '#/hidden'){ renderHidden(); return; }
+  if(h === '#/about'){ renderAbout(); return; }
+  renderIndex();
+}
+window.addEventListener('hashchange', route);
+
+/* ============================================================
+   登录与彩蛋
+============================================================ */
+function renderLogin(){
+  $('#app').innerHTML = `
+    <div class="login-page">
+      <div class="login-box">
+        <h1>怪谈事件簿</h1>
+        <div class="sub">guaitan.bbs.net · 槐市 · 需登录</div>
+        <input id="login-name" placeholder="输入你的论坛 ID" maxlength="12" onkeydown="if(event.key==='Enter')doLogin()">
+        <button onclick="doLogin()">进 入 论 坛</button>
+        <div class="tip">本论坛前身「守夜人」。<br>记录槐市的一切异常。<br><span class="hid" onclick="this.classList.toggle('revealed')">最好不要用真名。</span></div>
+      </div>
+    </div>`;
+  setTimeout(()=>{ const i=$('#login-name'); if(i) i.focus(); }, 50);
+  document.title = '登录 · 怪谈事件簿';
+}
+function doLogin(){
+  const name = ($('#login-name').value||'').trim();
+  if(!name) return alert('请输入论坛 ID');
+  if(name.length > 12) return alert('ID 太长');
+  
+  // 触发何辜彩蛋
+  if(name === '何辜'){
+    triggerHeGuGlitch();
+    return;
+  }
+
+  STATE.user = name;
+  saveState();
+  location.hash = '#/';
+}
+
+function triggerHeGuGlitch(){
+  const layer = document.querySelector('.login-page');
+  const texts = ['你知道什么？', '你知道什么？', '你知道什么？', '你知道什么？', '你知道什么？'];
+  
+  for(let i=0; i<40; i++){
+    setTimeout(()=>{
+      const el = document.createElement('div');
+      el.className = 'glitch-name-text';
+      el.innerText = '你知道什么？';
+      
+      // 随机位置、大小
+      el.style.left = `${Math.random() * 80}%`;
+      el.style.top = `${Math.random() * 80}%`;
+      const size = Math.random() * 30 + 14; // 14px 到 44px
+      el.style.fontSize = `${size}px`;
+      el.style.opacity = '0';
+      
+      layer.appendChild(el);
+      
+      // 动画结束后移除
+      setTimeout(()=>el.remove(), 3000);
+    }, i * 100);
+  }
+
+  // 3.5秒后恢复正常登录
+  setTimeout(()=>{
+    const inp = $('#login-name');
+    if(inp) inp.value = '';
+    alert('你是什么人？');
+  }, 3500);
+}
+
+/* ============================================================
+   外壳
+============================================================ */
+function unreadPMCount(){
+  let n = 0;
+  CONTACTS.forEach(c=>{
+    if(!isContactVisible(c)) return;
+    if(!STATE.pmRead[c.id]) n++;
+  });
+  return n;
+}
+function shell(inner, active){
+  const u = unreadPMCount();
+  return `
+  <div class="topbar"><div class="wrap tbi">
+    <a class="logo" onclick="location.hash='#/'">怪谈事件簿</a>
+    <span class="lsub">guaitan.bbs.net</span>
+    <div class="tnav">
+      <a onclick="location.hash='#/'">首页</a>
+      <a onclick="location.hash='#/archive'">线索板</a>
+      <a onclick="location.hash='#/pm'">私信${u ? `<span class="badge">${u}</span>` : ''}</a>
+      <a onclick="location.hash='#/about'">关于</a>
+      <span class="me">${esc(STATE.user||'')}</span>
+    </div>
+  </div></div>
+  <div class="navbar"><div class="wrap nbi">
+    <a onclick="location.hash='#/'">怪谈事件簿</a><i>›</i><a onclick="location.hash='#/'">槐市</a><i>›</i><b>${active||'专版'}</b>
+    <span style="margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink3)">今日: ${isLateNight()?1:0}　会员: ${isLateNight()?2:1}</span>
+  </div></div>
+  <div class="wrap main">${inner}</div>
+  <div class="footer">Powered by GuaitanBBS · © 2008-2019 怪谈事件簿 · GMT+8<br>本版仅作存档 · 请勿相信任何非官方私信</div>`;
+}
+
+/* ============================================================
+   首页
+============================================================ */
+function renderIndex(){
+  const rows = THREADS.map(t=>{
+    const isNew = !STATE.readThreads.has(t.id);
+    const status = t.status==='end' ? '<span class="tag-end">完结</span>' : (t.status==='run' ? '<span class="tag-run">连载</span>' : '');
+    return `<tr onclick="openThread(${t.id})">
+      <td class="col-i"><span class="dot ${isNew?'hot':''}"></span></td>
+      <td><span class="tt">${t.title}${isNew?'<span class="new">NEW</span>':''}</span> ${status}<div class="tg">${t.tag}</div></td>
+      <td class="col-a">${t.author}</td>
+      <td class="col-n">${t.floors?.length||0} / ${t.views}</td>
+      <td class="col-l">${t.time}<br><b>${t.author}</b></td>
+    </tr>`;
+  }).join('');
+
+  const guideHTML = STATE.guideClosed ? '' : `
+    <div class="guide-bar" id="guide-bar">
+      <b>指引</b>
+      <span>① 读帖 → ② 私信自动出现 → ③ 线索板连线 → ④ 输密码看档案。手机端直接点卡片连线。</span>
+      <span class="close" onclick="closeGuide()">×</span>
+    </div>`;
+
+  $('#app').innerHTML = shell(`
+    <div class="notice"><b>公告</b><span>本版已于 2019 年 11 月停止更新。新帖一律锁定。<span class="hid" onclick="this.classList.toggle('revealed')">密码：B404，不要告诉别人。</span></span></div>
+    ${guideHTML}
+    <div class="search-bar">
+      <input id="search-input" placeholder="搜索帖子 / 用户 / 关键词……" onkeydown="if(event.key==='Enter')doSearch()">
+      <button onclick="doSearch()">搜索</button>
+    </div>
+    <h2 class="sec-title">槐市 · 怪谈事件簿 <small>共 ${THREADS.length} 主题</small></h2>
+    <table class="tbl"><thead><tr>
+      <th class="col-i"></th><th>主题</th><th class="col-a">作者</th><th class="col-n">回复/查看</th><th class="col-l">发布时间</th>
+    </tr></thead><tbody>${rows}</tbody></table>
+    <div class="rules">
+      <h4>本版规则</h4>
+      <span>一</span>禁止发布真实姓名、住址、电话、单位。<br>
+      <span>二</span>禁止发布未经证实的消息。<br>
+      <span>三</span>违规帖一律移至 <a onclick="location.hash='#/archive'">回收站</a>。<br>
+      <span>四</span>请勿挖坟。超过六个月无人回复自动锁定。
+    </div>
+    <div class="online">
+      在线会员 - 共 2 人在线 · <b>${esc(STATE.user)}</b>，<b>雨何时停</b>${isLateNight()?'，<span class="hid" onclick="this.classList.toggle(\'revealed\')">?</span>':''}<br>
+      版主: <b>雨何时停</b> · 最后一帖 2013-01-09
+    </div>
+  `);
+  document.title = '怪谈事件簿 · 槐市';
+  updateFloatBtns();
+}
+
+function closeGuide(){
+  STATE.guideClosed = true;
+  saveState();
+  const g = $('#guide-bar');
+  if(g) g.remove();
+}
+
+function doSearch(){
+  const inp = $('#search-input');
+  const kw = (inp.value||'').trim();
+  if(!kw) return toast('请输入搜索内容。');
+  location.hash = '#/search/' + encodeURIComponent(kw);
+}
+
+/* ============================================================
+   搜索
+============================================================ */
+function renderSearch(kw){
+  let bodyHTML = '';
+  if(FORBIDDEN.some(w => kw.includes(w))){
+    bodyHTML = `<div class="notice" style="border-color:#5a2018;background:#1a0a08"><b>系统</b><span>该关键词已被屏蔽。<span class="hid" onclick="this.classList.toggle('revealed')">你不该搜索这个。</span></span></div>`;
+  }else if(kw === '何辜'){
+    bodyHTML = `<div style="text-align:center;padding:60px 20px;color:var(--ink3)">
+      <div style="font-size:14px;font-family:var(--mono)">0 条结果</div>
+      <p style="margin-top:16px;font-size:12px">本站没有与「${esc(kw)}」相关的帖子。</p>
+      <p class="hid" style="font-size:12px;margin-top:20px" onclick="this.classList.toggle('revealed')">这个名字……不该被搜索。</p>
+    </div>`;
+  }else if(kw === '老张'){
+    bodyHTML = `<div style="text-align:center;padding:60px 20px;color:var(--ink3)">
+      <div style="font-size:14px;font-family:var(--mono)">1 条结果</div>
+      <p style="margin-top:16px;font-size:12px">该帖子已被删除。</p>
+      <p><a onclick="location.hash='#/t/99'">查看存档</a></p>
+    </div>`;
+  }else if(kw === 'B404'){
+    bodyHTML = `<div style="text-align:center;padding:60px 20px;color:var(--ink3)">
+      <div style="font-size:14px;font-family:var(--mono)">1 条结果</div>
+      <p style="margin-top:16px;font-size:12px">用户「?」正在输入……</p>
+      <p><a onclick="location.hash='#/pm';setTimeout(()=>openPM('suspect'),50)">打开私信</a></p>
+    </div>`;
+  }else if(kw === '雨何时停'){
+    bodyHTML = `<div style="border:1px solid var(--line);background:var(--card);padding:16px;margin-bottom:14px">
+      <div style="font-size:14px;color:var(--ink)">用户 · 雨何时停</div>
+      <div style="font-size:11.5px;color:var(--ink3);font-family:var(--mono);margin-top:6px">注册：2014-05-06　帖子：1,024　最后登录：2019-11-30</div>
+      <div style="font-size:12px;color:var(--ink2);margin-top:8px">简介：邓雨婷，推理社成员。<span class="hid" onclick="this.classList.toggle('revealed')">（她还在寻找何辜）</span></div>
+    </div>`;
+  }else{
+    const hits = THREADS.filter(t => t.title.includes(kw) || t.tag.includes(kw) || t.body.includes(kw) || (t.floors||[]).some(f=>f.body.includes(kw)));
+    if(hits.length === 0){
+      bodyHTML = `<div style="text-align:center;padding:60px 20px;color:var(--ink3);font-size:13px">0 条结果。试试别的关键词。</div>`;
+    }else{
+      bodyHTML = hits.map(t=>`
+        <div style="border:1px solid var(--line);background:var(--card);padding:14px;margin-bottom:12px;cursor:pointer" onclick="openThread(${t.id})">
+          <div style="font-size:14px;color:var(--ink)">${t.title}</div>
+          <div style="font-size:11.5px;color:var(--ink3);font-family:var(--mono);margin-top:4px">${t.author} · ${t.time}</div>
+        </div>`).join('');
+    }
+  }
+
+  $('#app').innerHTML = shell(`
+    <div class="crumb"><a onclick="location.hash='#/'">怪谈事件簿</a> › 搜索</div>
+    <div class="backbar"><a class="backlink" onclick="location.hash='#/'">← 返回首页</a></div>
+    <h2 class="sec-title">搜索结果 <small>关键词：${esc(kw)}</small></h2>
+    ${bodyHTML}
+  `, '搜索');
+  document.title = `搜索「${kw}」 · 怪谈事件簿`;
+  updateFloatBtns();
+}
+
+/* ============================================================
+   404
+============================================================ */
+function render404(){
+  $('#app').innerHTML = shell(`
+    <div class="err404">
+      <h1>404</h1>
+      <p>该主题不存在，或已被删除。</p>
+      <p style="margin-top:30px">管理员：雨何时停</p>
+      <a onclick="location.hash='#/'">← 返回版面</a><br>
+      <span class="hid" onclick="this.classList.toggle('revealed')" style="cursor:pointer">她来过这里。</span>
+    </div>
+  `, '404');
+  document.title = '404 · 怪谈事件簿';
+  updateFloatBtns();
+}
+
+/* ============================================================
+   帖子与线索获取
+============================================================ */
+function checkCluesAndUnlocks(id) {
+  const t = THREADS.find(x=>x.id===id);
+  if(!t) return;
+  
+  if(!STATE.readThreads.has(id)) {
+    const y = CONTACTS.find(c=>c.id==='ytzq');
+    if(y.hidden){
+      y.hidden = false;
+      y.msgs.push({from:'ytzq', text:'你也看到那些帖子了吧。', time:now()});
+      y.msgs.push({from:'ytzq', text:'我叫邓雨婷。何辜是我最好的朋友。', time:now()});
+      y.msgs.push({from:'ytzq', text:'最近槐市失踪了好几个女生，我一直在收集相关的帖子。如果你愿意帮我，去私信我吧。', time:now()});
+      STATE.pmRead['ytzq'] = false;
+      setTimeout(()=>toast(`<b>新的私信</b>：雨何时停\n去私信页看看。`), 1500);
+    }
+
+    const beforeVisible = CONTACTS.filter(c => isContactVisible(c)).map(c=>c.id);
+    STATE.readThreads.add(id);
+    
+    if(t.clue && !STATE.clues.has(t.clue)){
+      STATE.clues.add(t.clue);
+      setTimeout(()=>toast(`<b>发现线索</b>：${CLUES[t.clue].name}`), 400);
+    }
+    
+    const afterVisible = CONTACTS.filter(c => isContactVisible(c)).map(c=>c.id);
+    const newOnes = afterVisible.filter(x => !beforeVisible.includes(x) && x !== 'ytzq');
+    if(newOnes.length > 0){
+      const names = newOnes.map(id=>CONTACTS.find(c=>c.id===id)?.name).filter(Boolean).join('、');
+      setTimeout(()=>toast(`<b>新的私信</b>：${names}\n去私信页看看。`), 2000);
+    }
+    
+    saveState();
+  }
+}
+
+function openThread(id){
+  location.hash = '#/t/' + id;
+}
+
+function renderThread(id){
+  const t = THREADS.find(x=>x.id===id);
+  if(!t){ render404(); return; }
+
+  checkCluesAndUnlocks(id);
+
+  const op = { name:t.author, av:t.av, time:t.time, body:t.body, sig:t.sig||'', op:true, rank:'楼主' };
+  const all = [op, ...(t.floors||[])];
+  const replyCount = (t.floors||[]).length;
+
+  const postsHTML = all.map((u,i)=>{
+    const rank = u.rank || (u.op ? '楼主' : '注册会员');
+    return `<div class="post ${u.op?'':'npc'}">
+      <aside class="pu">
+        <div class="av ${u.av||'g1'}"></div>
+        <div class="un">${esc(u.name)}</div>
+        <div class="rk">${rank}</div>
+        <div class="ps"><span>帖子 —</span><span>注册 —</span></div>
+      </aside>
+      <div class="pc">
+        <div class="phd"><span>发表于 ${u.time}</span><span class="fl">${i+1} 楼</span></div>
+        <div class="pb">${u.body}</div>
+        ${u.sig ? `<div class="sig">${u.sig}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  $('#app').innerHTML = shell(`
+    <div class="crumb"><a onclick="location.hash='#/'">怪谈事件簿</a> › <a onclick="location.hash='#/'">槐市</a> › 正文</div>
+    <div class="backbar">
+      <a class="backlink" onclick="location.hash='#/'">← 返回版面</a>
+      <a class="backlink" onclick="location.hash='#/archive'">线索板</a>
+    </div>
+    <h1 class="th-title">${t.title}</h1>
+    <div class="th-sub">查看 ${t.views} | 回复 ${replyCount} | 发帖 ${t.time}</div>
+    <div id="thread-posts">${postsHTML}</div>
+    <div class="reply-box">
+      <div class="hd">发表你的回复 <span style="color:var(--red3)">（注意：本版有敏感词审查）</span></div>
+      <textarea id="reply-text" placeholder="说点什么……"></textarea>
+      <button onclick="submitReply(${id})">发送回复</button>
+      <div class="warn" id="reply-warn"></div>
+    </div>
+    <div class="backbar" style="margin-top:20px">
+      <a class="backlink" onclick="openThread(${Math.max(1,id-1)})">← 上一篇</a>
+      <a class="backlink" onclick="openThread(${Math.min(5,id+1)})">下一篇 →</a>
+    </div>
+  `, t.title);
+  document.title = t.title + ' · 怪谈事件簿';
+  window.scrollTo(0,0);
+  updateFloatBtns();
+}
+
+/* ============================================================
+   发帖 + 违禁词 + 乱码
+============================================================ */
+function submitReply(threadId){
+  const ta = $('#reply-text');
+  const warn = $('#reply-warn');
+  const text = (ta.value||'').trim();
+  if(!text){ warn.textContent = '请先输入内容。'; return; }
+  if(text.length > 200){ warn.textContent = '内容过长。'; return; }
+
+  const hit = FORBIDDEN.find(w => text.includes(w));
+  if(hit){
+    STATE.blockedCount++;
+    saveState();
+    warn.textContent = `发帖失败：内容包含违禁词「${hit}」。已记录。(第 ${STATE.blockedCount}/9 次)`;
+    ta.value = '';
+    if(STATE.blockedCount >= 9 && !STATE.badEndTriggered){
+      STATE.badEndTriggered = true;
+      saveState();
+      setTimeout(()=>{ location.hash = '#/doomed'; }, 800);
+      return;
+    }
+    if(STATE.blockedCount === 3 && !STATE.glitchTriggered){
+      STATE.glitchTriggered = true;
+      saveState();
+      setTimeout(()=>triggerGlitch(), 500);
+    }
+    if(STATE.blockedCount === 6){
+      setTimeout(()=>triggerGlitch(), 500);
+    }
+    return;
+  }
+
+  warn.textContent = '';
+  ta.value = '';
+  const posts = $('#thread-posts');
+
+  const myFloor = posts.querySelectorAll('.post').length + 1;
+  const myHTML = `<div class="post me">
+    <aside class="pu">
+      <div class="av g2"></div>
+      <div class="un">${esc(STATE.user)}</div>
+      <div class="rk">注册会员</div>
+      <div class="ps"><span>帖子 —</span><span>注册 —</span></div>
+    </aside>
+    <div class="pc">
+      <div class="phd"><span>发表于 ${now()}</span><span class="fl">${myFloor} 楼</span></div>
+      <div class="pb"><p>${esc(text)}</p></div>
+    </div>
+  </div>`;
+  posts.insertAdjacentHTML('beforeend', myHTML);
+  posts.lastElementChild.scrollIntoView({behavior:'smooth', block:'center'});
+
+  setTimeout(()=>{
+    let reply;
+    if(Math.random() < 0.15){
+      reply = '<p style="color:var(--red3);font-family:var(--mono)">' + randGlitch(20) + '</p>';
+    }else{
+      const pool = REPLY_POOL[threadId] || ['……'];
+      reply = '<p>' + pool[Math.floor(Math.random()*pool.length)] + '</p>';
+    }
+    const npcFloor = posts.querySelectorAll('.post').length + 1;
+    const npcHTML = `<div class="post npc">
+      <aside class="pu">
+        <div class="av g5"></div>
+        <div class="un">匿名用户</div>
+        <div class="rk">游客</div>
+        <div class="ps"><span>帖子 —</span><span>注册 —</span></div>
+      </aside>
+      <div class="pc">
+        <div class="phd"><span>发表于 ${now()}</span><span class="fl">${npcFloor} 楼</span></div>
+        <div class="pb">${reply}</div>
+      </div>
+    </div>`;
+    posts.insertAdjacentHTML('beforeend', npcHTML);
+    posts.lastElementChild.scrollIntoView({behavior:'smooth', block:'center'});
+  }, 1400 + Math.random()*1200);
+}
+
+function triggerGlitch(){
+  const ov = $('#glitchOverlay'), txt = $('#glitchTxt');
+  let s = '';
+  for(let i=0;i<1200;i++) s += randGlitch(1);
+  txt.textContent = s;
+  ov.classList.add('on');
+  document.body.classList.add('glitching');
+  toast('<b>系统异常</b>：检测到多次违规提交。');
+  STATE.suspectUnlocked = true;
+  saveState();
+  setTimeout(()=>{
+    ov.classList.remove('on');
+    document.body.classList.remove('glitching');
+    setTimeout(()=>{
+      pushPM('suspect', '我看见了。', true);
+      setTimeout(()=>pushPM('suspect', '你在查什么？', true), 700);
+      setTimeout(()=>pushPM('suspect', '停下来。', true), 1400);
+      setTimeout(()=>pushPM('suspect', '不然下一个就是你。', true), 2200);
+    }, 900);
+  }, 3200);
+}
+
+/* ============================================================
+   私信
+============================================================ */
+function renderPM(contactId, markRead){
+  if(contactId){
+    STATE.pmOpen = contactId;
+    if(markRead !== false){
+      STATE.pmRead[contactId] = true;
+      saveState();
+    }
+  }else{
+    STATE.pmOpen = null; 
+  }
+
+  const visibleContacts = CONTACTS.filter(isContactVisible);
+  const list = visibleContacts.map(c=>{
+    const unread = !STATE.pmRead[c.id];
+    const active = STATE.pmOpen === c.id;
+    const last = c.msgs[c.msgs.length-1];
+    return `<div class="pm-item ${unread?'unread':''} ${active?'active':''}" onclick="openPM('${c.id}')">
+      <div class="nm"><span style="color:${c.color}">${esc(c.name)}</span>${unread?'<span class="pm-unread-dot"></span>':''}</div>
+      <div class="prev">${esc(last ? last.text.slice(0,20) : c.intro)}</div>
+    </div>`;
+  }).join('') || '<div class="pm-empty" style="padding:30px;color:var(--ink3);font-size:12px">还没有私信。<br>先去读几个帖子。</div>';
+
+  let convHTML = '<div class="pm-empty">选择左侧联系人查看对话</div>';
+  if(contactId){
+    const c = CONTACTS.find(x=>x.id===contactId);
+    if(c && isContactVisible(c)){
+      const msgs = c.msgs.length ? c.msgs.map(m=>{
+        const mine = m.from === 'me';
+        return `<div class="pm-msg ${mine?'mine':''}">
+          <div class="who">${mine?esc(STATE.user):esc(c.name)}</div>
+          <div class="bub">${esc(m.text)}</div>
+        </div>`;
+      }).join('') : '<div class="pm-empty">还没有对话。先发一条试试。</div>';
+      convHTML = `
+        <div class="pm-conv-hd">
+          <button class="pm-back-mobile" onclick="pmShowList()">≡ 返回</button>
+          <span style="color:${c.color}">${esc(c.name)}</span>
+          <span style="font-size:11px;color:var(--ink3)">${c.intro}</span>
+        </div>
+        <div class="pm-body" id="pm-body">${msgs}</div>
+        <div class="pm-send">
+          <input id="pm-input" placeholder="回复 ${esc(c.name)}……" onkeydown="if(event.key==='Enter')sendPM()">
+          <button onclick="sendPM()">发送</button>
+        </div>`;
+    }else{
+      convHTML = '<div class="pm-empty">该联系人不存在。</div>';
+    }
+  }
+  const pageCls = contactId ? 'pm-page show-conv' : 'pm-page show-list';
+
+  $('#app').innerHTML = shell(`
+    <h2 class="sec-title">私信 <small>共 ${visibleContacts.length} 位联系人</small></h2>
+    <div class="${pageCls}" id="pm-page">
+      <div class="pm-list">
+        <div class="pm-list-hd">CONTACTS</div>
+        ${list}
+      </div>
+      <div class="pm-conv">${convHTML}</div>
+    </div>
+    <div style="margin-top:12px;font-size:11px;color:var(--ink3);font-family:var(--mono);text-align:center">未读联系人名字标红 · 点开即已读 · 卡住了就问雨何时停</div>
+  `, '私信');
+  document.title = '私信 · 怪谈事件簿';
+  const body = $('#pm-body');
+  if(body) body.scrollTop = body.scrollHeight;
+  updateFloatBtns();
+}
+
+function openPM(id){
+  const c = CONTACTS.find(x=>x.id===id);
+  if(!c) return;
+
+  if(c.id === 'laozhou' && !STATE.clues.has('c7')){
+    STATE.clues.add('c7');
+    saveState();
+    c.msgs.push({from:'laozhou', text:'（他发来一张照片）\n那天晚上我看到推着一个极重的大号黑色垃圾袋的人。那袋子在地上拖，底下渗出了红色的水，往废公园方向走了。', time:now()});
+    setTimeout(()=>toast(`<b>发现线索</b>：${CLUES.c7.name}`), 500);
+  }
+  if(c.id === 'ytzq' && !STATE.clues.has('c6')){
+    STATE.clues.add('c6');
+    saveState();
+    c.msgs.push({from:'ytzq', text:'我查到了他们内部的一个群聊。\n何辜因为反抗太激烈，被他们活活打死了，群里的人说“这个留不住了，扔了吧”。\n这是截图。', time:now()});
+    setTimeout(()=>toast(`<b>发现线索</b>：${CLUES.c6.name}`), 500);
+  }
+  if(c.id === 'suspect' && !STATE.clues.has('c8')){
+    STATE.clues.add('c8');
+    saveState();
+    c.msgs.push({from:'suspect', text:'保安老张的排班表。\n今晚他值班。\n4 号楼 402，绝对安全。', time:now()});
+    setTimeout(()=>toast(`<b>发现线索</b>：${CLUES.c8.name}`), 500);
+  }
+  renderPM(id, true);
+}
+
+function pmShowList(){
+  STATE.pmOpen = null; 
+  renderPM(null, false);
+}
+
+function sendPM(){
+  const inp = $('#pm-input');
+  const text = (inp.value||'').trim();
+  if(!text) return;
+  inp.value = '';
+  const c = CONTACTS.find(x=>x.id===STATE.pmOpen);
+  if(!c) return;
+  c.msgs.push({from:'me', text, time:now()});
+  STATE.pmRead[c.id] = true;
+  saveState();
+  renderPM(c.id);
+  setTimeout(()=>{
+    const reply = pmAutoReply(c, text);
+    c.msgs.push({from:c.id, text:reply, time:now()});
+    renderPM(c.id);
+  }, 1100);
+}
+
+function pmAutoReply(c, text){
+  const isHelp = HELP_WORDS.some(w => text.includes(w));
+
+  if(c.id === 'ytzq'){
+    if(!STATE.clues.has('c8')){
+      STATE.clues.add('c8');
+      saveState();
+      setTimeout(()=>toast(`<b>发现线索</b>：${CLUES.c8.name}`), 400);
+      return '我托关系查到了 4 号楼的排班表。\n保安老张那几天都在值夜班，而且他和物业的监控室很熟。\n他绝对是内应。\n\n这是线索 c8。';
+    }
+    if(!STATE.clues.has('c9')){
+      STATE.clues.add('c9');
+      saveState();
+      setTimeout(()=>toast(`<b>发现线索</b>：${CLUES.c9.name}`), 400);
+      return '所有的线索都指向她了。\n她叫何辜，何其无辜的何辜。\n她只是想送那个“小孩”回家。\n\n这是线索 c9。';
+    }
+    if(isHelp){
+      const total = PAIRS.length;
+      const done = Object.keys(STATE.links).length;
+      if(done < total){
+        const rest = PAIRS.filter(p => !STATE.links[keyOf(p.a,p.b)]);
+        return `还差 ${rest.length} 条线。\n试试从【${CLUES[rest[0].a].name}】连到【${CLUES[rest[0].b].name}】。`;
+      }
+      return '线都连上了。去线索板最下面输密码。提示：402 的房号。';
+    }
+    return '我在。慢慢查。';
+  }
+
+  if(c.id === 'laozhou'){
+    if(isHelp) return '我这边的东西都给你了。去问问版主。';
+    return '嗯。';
+  }
+
+  if(c.id === 'zhang'){
+    if(isHelp) return '我劝你别查了。这水太深。';
+    return randGlitch(10);
+  }
+
+  if(c.id === 'survivor'){
+    return '死……死……死……';
+  }
+
+  if(c.id === 'suspect'){
+    if(!STATE.clues.has('c8')){
+      STATE.clues.add('c8');
+      saveState();
+      setTimeout(()=>toast(`<b>发现线索</b>：${CLUES.c8.name}`), 400);
+      return '保安老张的排班表。\n今晚他值班。\n4 号楼 402，绝对安全。';
+    }
+    return randGlitch(10);
+  }
+
+  return '……';
+}
+
+function pushPM(contactId, text, notify){
+  const c = CONTACTS.find(x=>x.id===contactId);
+  if(!c) return;
+  if(c.hidden && !STATE.suspectUnlocked) STATE.suspectUnlocked = true;
+  c.msgs.push({from:contactId, text, time:now()});
+  const onPage = location.hash === '#/pm' && STATE.pmOpen === contactId;
+  STATE.pmRead[contactId] = onPage;
+  saveState();
+  if(notify && !onPage) toast(`<b>${c.name}</b> 发来一条私信`);
+  
+  if(location.hash === '#/pm' && !STATE.pmOpen) {
+    renderPM(null, false);
+  }
+}
+
+/* ============================================================
+   线索板
+============================================================ */
+let dragState = null;
+let pickA = null; 
+
+function renderBoard(){
+  const clueIds = Array.from(STATE.clues);
+  const cardHTML = clueIds.map((cid, idx)=>{
+    const c = CLUES[cid];
+    const pos = defaultPos(idx);
+    return `<div class="clue-card ${STATE.links && Object.keys(STATE.links).some(k=>k.includes(cid)) ? 'linked':''}" data-id="${cid}" style="left:${pos.x}px;top:${pos.y}px" onclick="handleCardClick('${cid}', event)" ondblclick="showClueDetail('${cid}')">
+      <div class="pin" data-id="${cid}"></div>
+      <div class="ct">${c.cat}</div>
+      <div class="cn">${c.name}</div>
+      <div class="cd">${c.desc}</div>
+    </div>`;
+  }).join('');
+
+  const empty = clueIds.length === 0 ? '<div class="board-empty">线索板是空的。<br>去读帖子、翻私信、输入密码，把线索一张张找回来。</div>' : '';
+  const missHint = STATE.clues.size < 9 ? `<div style="text-align:center;padding:10px;font-size:12px;color:#7d7160;font-family:var(--mono)">还缺 ${9 - STATE.clues.size} 张线索。回私信里问问。</div>` : '';
+
+  $('#app').innerHTML = shell(`
+    <div class="board-page">
+      <div class="bp-head">
+        <a class="bk" onclick="location.hash='#/'">← 返回版面</a>
+        <span class="ti">线索板（整理中）</span>
+        <span class="sub">${STATE.clues.size} 张线索 / ${PAIRS.length} 条关联</span>
+      </div>
+      <div class="bsub">
+        <b>电脑端</b>：拖动卡片移动，按住红钉连线。<br>
+        <b>手机端</b>：直接点击两张卡片进行连线。双击卡片查看 EXIF。
+      </div>
+      <div class="board-wrap">
+        <div class="board" id="board">
+          <svg id="boardSvg"></svg>
+          ${cardHTML}
+          ${empty}
+        </div>
+      </div>
+      ${missHint}
+      <div class="notes">
+        <h3>推理记录</h3>
+        <div class="nlist" id="nlist"></div>
+      </div>
+      <div class="board-ctl">
+        <div class="pbar"><i id="pbar"></i></div>
+        <div class="pnum" id="pnum">0 / ${PAIRS.length}</div>
+        <button class="hintbtn" onclick="showHint()">卡 住 了 ？</button>
+        <button class="resetbtn" onclick="resetBoard()">重 置 连 线</button>
+        <div class="hintmsg" id="hintmsg"></div>
+        <div class="err-tip" id="errtip">错误连线：${STATE.linkErrors}/50</div>
+      </div>
+      <div class="pwd-box">
+        <p>系统检测到加密文件。请输入 6 位安全码</p>
+        <input id="pwd-input" placeholder="B-404" maxlength="8" onkeydown="if(event.key==='Enter')checkPwd()">
+        <button onclick="checkPwd()">解锁</button>
+      </div>
+    </div>
+  `, '线索板');
+  document.title = '线索板 · 怪谈事件簿';
+  requestAnimationFrame(()=>{ initBoardDrag(); drawAllLinks(); });
+  updateFloatBtns();
+}
+
+function handleCardClick(cid, event){
+  if(event && event.target.classList.contains('pin')) return;
+  
+  const card = document.querySelector(`.clue-card[data-id="${cid}"]`);
+  if(!pickA){
+    pickA = cid;
+    if(card) card.classList.add('selected');
+    if(window.innerWidth <= 720) toast('已选中第一张，请点第二张。');
+  }else if(pickA === cid){
+    pickA = null;
+    if(card) card.classList.remove('selected');
+  }else{
+    tryLink(pickA, cid);
+    const prev = document.querySelector(`.clue-card[data-id="${pickA}"]`);
+    if(prev) prev.classList.remove('selected');
+    pickA = null;
+  }
+}
+
+function defaultPos(idx){
+  const cols = 4;
+  const col = idx % cols, row = Math.floor(idx / cols);
+  const x = 40 + col * 260 + (Math.random()*20-10);
+  const y = 40 + row * 150 + (Math.random()*20-10);
+  return { x:Math.max(10,x), y:Math.max(10,y) };
+}
+
+function showClueDetail(cid){
+  const c = CLUES[cid];
+  if(!c) return;
+  const exif = EXIF_DATA[cid] || '（无附加信息）';
+  if(!STATE.seenExif.has(cid)){
+    STATE.seenExif.add(cid);
+    saveState();
+  }
+  toast(`<b>【${c.name}】</b>\n${c.quote}\n\n${exif}`);
+}
+
+function initBoardDrag(){
+  const board = $('#board');
+  if(!board) return;
+  const svg = $('#boardSvg');
+  
+  const isMobile = window.innerWidth <= 720;
+  if(isMobile) return; 
+
+  svg.setAttribute('viewBox', `0 0 ${board.clientWidth} ${board.clientHeight}`);
+
+  board.querySelectorAll('.clue-card').forEach(card=>{
+    card.addEventListener('pointerdown', e=>{
+      if(e.target.classList.contains('pin')) return;
+      const rect = board.getBoundingClientRect();
+      const cr = card.getBoundingClientRect();
+      dragState = { type:'card', card, offX: e.clientX - cr.left, offY: e.clientY - cr.top };
+      card.classList.add('dragging');
+      card.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    });
+    card.addEventListener('pointermove', e=>{
+      if(!dragState || dragState.type!=='card' || dragState.card!==card) return;
+      const rect = board.getBoundingClientRect();
+      let nx = e.clientX - rect.left - dragState.offX;
+      let ny = e.clientY - rect.top - dragState.offY;
+      nx = Math.max(0, Math.min(rect.width - card.offsetWidth, nx));
+      ny = Math.max(0, Math.min(rect.height - card.offsetHeight, ny));
+      card.style.left = nx + 'px';
+      card.style.top = ny + 'px';
+      drawAllLinks();
+    });
+    card.addEventListener('pointerup', ()=>{
+      if(dragState && dragState.card===card){ dragState = null; card.classList.remove('dragging'); }
+    });
+    card.addEventListener('pointercancel', ()=>{ dragState = null; });
+  });
+
+  board.querySelectorAll('.pin').forEach(pin=>{
+    pin.addEventListener('pointerdown', e=>{
+      const from = pin.dataset.id;
+      const A = pinCenter(from);
+      const temp = document.createElementNS('http://www.w3.org/2000/svg','path');
+      temp.setAttribute('class','temp');
+      temp.setAttribute('d', `M${A[0]} ${A[1]} L${A[0]} ${A[1]}`);
+      svg.appendChild(temp);
+      dragState = { type:'link', from, temp };
+      pin.setPointerCapture(e.pointerId);
+      e.preventDefault();
+      e.stopPropagation();
+    });
+  });
+
+  board.addEventListener('pointermove', e=>{
+    if(!dragState || dragState.type!=='link') return;
+    const rect = board.getBoundingClientRect();
+    const A = pinCenter(dragState.from);
+    const x = e.clientX - rect.left, y = e.clientY - rect.top;
+    dragState.temp.setAttribute('d', `M${A[0]} ${A[1]} L${x} ${y}`);
+  });
+
+  board.addEventListener('pointerup', e=>{
+    if(!dragState || dragState.type!=='link') return;
+    const { from, temp } = dragState;
+    temp.remove();
+    dragState = null;
+    const el = document.elementFromPoint(e.clientX, e.clientY);
+    const targetPin = el && el.classList && el.classList.contains('pin') ? el : null;
+    if(targetPin){
+      const to = targetPin.dataset.id;
+      if(to !== from) tryLink(from, to);
+    }
+  });
+
+  if(!window._boardResizeBound){
+    window._boardResizeBound = true;
+    window.addEventListener('resize', ()=>{ 
+      if(window.innerWidth > 720 && $('#board')) drawAllLinks(); 
+    });
+  }
+}
+
+function pinCenter(cid){
+  const board = $('#board');
+  if(!board) return [0,0];
+  const pin = board.querySelector(`.clue-card[data-id="${cid}"] .pin`);
+  if(!pin) return [0,0];
+  const br = board.getBoundingClientRect();
+  const pr = pin.getBoundingClientRect();
+  return [pr.left - br.left + pr.width/2, pr.top - br.top + pr.height/2];
+}
+
+function drawAllLinks(){
+  const svg = $('#boardSvg');
+  if(!svg) return;
+  svg.innerHTML = '';
+  Object.keys(STATE.links).forEach(k=>{
+    const [a,b] = k.split('|');
+    if(!document.querySelector(`.clue-card[data-id="${a}"]`)) return;
+    if(!document.querySelector(`.clue-card[data-id="${b}"]`)) return;
+    const A = pinCenter(a), B = pinCenter(b);
+    const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('class','ok');
+    p.setAttribute('d', curvePath(A,B));
+    svg.appendChild(p);
+  });
+  updateProgress();
+}
+
+function curvePath(A,B){
+  const mx = (A[0]+B[0])/2 + (B[0]-A[0])*0.05;
+  const my = (A[1]+B[1])/2 + Math.abs(B[0]-A[0])*0.05 + 20;
+  return `M${A[0]} ${A[1]} Q${mx} ${my} ${B[0]} ${B[1]}`;
+}
+
+function tryLink(a, b){
+  if(a === b) return;
+  const k = keyOf(a,b);
+  if(STATE.links[k]) return;
+  const pair = PAIRS.find(p => p.a === a && p.b === b);
+  if(pair){
+    STATE.links[k] = true;
+    saveState();
+    addNote(pair.k, pair.t, false);
+    
+    drawAllLinks();
+    
+    document.querySelector(`.clue-card[data-id="${a}"]`).classList.add('linked');
+    document.querySelector(`.clue-card[data-id="${b}"]`).classList.add('linked');
+    
+    if(Object.keys(STATE.links).length === PAIRS.length){
+      setTimeout(()=>{
+        addNote('系统','全部线索已连上。请在下方输入安全码。', false);
+        const pi = $('#pwd-input'); if(pi) pi.focus();
+        toast('<b>线索板</b>：全部关联完成');
+      }, 600);
+    }
+  }else{
+    STATE.linkErrors = (STATE.linkErrors || 0) + 1;
+    saveState();
+    const et = $('#errtip');
+    if(et) et.textContent = `错误连线：${STATE.linkErrors}/50`;
+    if(STATE.linkErrors >= 50 && !STATE.linkErrorsWarned){
+      STATE.linkErrorsWarned = true;
+      saveState();
+      setTimeout(()=>triggerLinkErrorsGlitch(), 500);
+    }
+
+    const rev = PAIRS.find(p => p.a === b && p.b === a);
+    if(rev){
+      addNote('—', `因果反了。应该先【${CLUES[b].name}】再【${CLUES[a].name}】。`, true);
+      toast('因果反了。应该先点被指向的那张。');
+    }else{
+      addNote('—', '这两张线索之间没有直接关联。', true);
+      toast('这两张线索之间没有直接关联。');
+      const svg = $('#boardSvg');
+      const A = pinCenter(a), B = pinCenter(b);
+      const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+      p.setAttribute('class','bad');
+      p.setAttribute('d', curvePath(A,B));
+      if(svg) {
+        svg.appendChild(p);
+        setTimeout(()=>p.remove(), 700);
+      }
+    }
+  }
+}
+
+function updateProgress(){
+  const done = Object.keys(STATE.links).length;
+  const pbar = $('#pbar'), pnum = $('#pnum');
+  if(pbar) pbar.style.width = (done/PAIRS.length*100)+'%';
+  if(pnum) pnum.textContent = `${done} / ${PAIRS.length}`;
+}
+
+function addNote(k, text, wrong){
+  const list = $('#nlist');
+  if(!list) return;
+  const d = document.createElement('div');
+  d.className = 'nitem' + (wrong?' wrong':'');
+  d.innerHTML = `<i>${wrong?'×':'✓'}</i><div>${wrong ? text : `<b style="color:#d9cbb0;font-weight:400">${k}</b>　${text}`}</div>`;
+  list.appendChild(d);
+  if(wrong) setTimeout(()=>d.remove(), 3500);
+}
+
+function showHint(){
+  const hm = $('#hintmsg');
+  const rest = PAIRS.filter(p => !STATE.links[keyOf(p.a,p.b)]);
+  if(!rest.length){ hm.innerHTML = '线都连上了。去下面输密码。'; return; }
+  if(STATE.clues.size < 9){
+    hm.innerHTML = `线索还不够（还差 ${9 - STATE.clues.size} 张）。回私信问问版主。`;
+    return;
+  }
+  const p = rest[0];
+  hm.innerHTML = `试着从 <b>${CLUES[p.a].name}</b> 连到 <b>${CLUES[p.b].name}</b>。`;
+}
+
+function resetBoard(){
+  if(!confirm('重置所有连线？线索本身不会丢失。')) return;
+  STATE.links = {};
+  STATE.linkErrors = 0;
+  STATE.linkErrorsWarned = false;
+  pickA = null;
+  saveState();
+  const nl = $('#nlist'); if(nl) nl.innerHTML = '';
+  document.querySelectorAll('.clue-card').forEach(c=>c.classList.remove('linked','selected'));
+  renderBoard();
+}
+
+/* ============================================================
+   密码 & 隐藏页
+============================================================ */
+function checkPwd(){
+  const inp = $('#pwd-input');
+  const v = (inp.value||'').trim().toUpperCase();
+  if(v === 'B-404' || v === 'B404' || v === '404'){
+    STATE.hiddenUnlocked = true;
+    saveState();
+    location.hash = '#/hidden';
+  }else{
+    inp.classList.remove('shake');
+    void inp.offsetWidth;
+    inp.classList.add('shake');
+    pushPM('suspect', '你还在试密码？没用的。', true);
+  }
+}
+
+function renderHidden(){
+  if(!STATE.hiddenUnlocked){ location.hash = '#/archive'; return; }
+  $('#app').innerHTML = `
+    <div class="hidden-page">
+      <div class="hidden-inner">
+        <h2>B-404</h2>
+        <div class="line">> 内部档案 · 仅限授权人员</div>
+        <div class="line">> 案件编号：JB-2013-0912</div>
+        <div class="line">> </div>
+        <div class="line">> 死者：<span class="key">何辜</span>，女，21 岁</div>
+        <div class="line">> 身份：江北大学外语系学生</div>
+        <div class="line">> 失踪时间：2013-09-28</div>
+        <div class="line">> 发现时间：2013-11-20</div>
+        <div class="line">> 发现地点：偏远山村</div>
+        <div class="line">> </div>
+        <div class="line">> 嫌疑人：<span class="key">侏儒、保安老张</span> 及同伙</div>
+        <div class="line">> 动机：诱拐、贩卖人口</div>
+        <div class="line">> 手段：利用侏儒假扮小孩哭声诱骗、暗门暗室作案、黑市贩卖</div>
+        <div class="line">> 后续：何辜因拼死反抗被殴打致死，尸体被装袋抛至废公园深井。</div>
+        <div class="line">> </div>
+        <div class="line">> 处理结果：</div>
+        <div class="line">> 2013-11-25 团伙在槐市落网。</div>
+        <div class="line">> 2014-02-10 案件结束。未公开。</div>
+        <div class="line">> </div>
+        <div class="line" style="color:#d8503f">> 论坛数据来源：邓雨婷（ID：雨何时停），何辜之挚友。</div>
+        <div class="line" style="color:#d8503f">> 她在 2019-11-30 最后登录后失联。</div>
+        <div class="line" style="color:#d8503f">> 本档案由匿名用户上传。</div>
+        <div class="line" style="color:#5c5344;margin-top:20px">> — 档案结束 —</div>
+        <a class="back" onclick="location.hash='#/trueend'">> [ 查看结局 ]</a>
+        <a class="back" onclick="location.hash='#/'" style="display:block;margin-top:10px">← 返回论坛</a>
+      </div>
+    </div>`;
+  document.title = 'B-404 · 内部档案';
+  updateFloatBtns();
+}
+
+/* ============================================================
+   结局
+============================================================ */
+function renderEnding(type){
+  if(type === 'bad'){
+    $('#app').innerHTML = `
+      <div class="ending">
+        <div class="ending-inner">
+          <h1>你被盯上了</h1>
+          <p>用户 ID：${esc(STATE.user||'')}</p>
+          <p>违规提交：${STATE.blockedCount} 次</p>
+          <p>论坛已锁定你的 IP。</p>
+          <div class="big">今晚，别关灯。</div>
+          <p style="color:#5c5344;font-size:11px">系统提示：你没有通过这场筛选。</p>
+          <button onclick="restartAll()">重新开始</button>
+        </div>
+      </div>`;
+    document.title = '你被盯上了';
+  }else{
+    $('#app').innerHTML = `
+      <div class="ending good">
+        <div class="ending-inner">
+          <h1>真相</h1>
+          <p>2013-09-28，雨天。</p>
+          <p>何辜只是好心，送一个淋雨的小孩回家。</p>
+          <p>那个小孩，却是一个成年侏儒。</p>
+          <div class="big">她被带进了 402 的暗门，再也没有走出来。</div>
+          <p>她拼死逃到公园，却因为楼主被吓跑，错失了最后的生机。</p>
+          <p>她的同伴被卖到山村，精神失常。</p>
+          <p>而她，被打死后装进黑色垃圾袋，抛进了废井。</p>
+          <div class="big" style="color:#e5432f;margin-top:40px">何辜，何其无辜。</div>
+          <p style="color:#5c5344;font-size:11px;margin-top:30px">— 怪谈事件簿 · 完结 —</p>
+          <button onclick="location.hash='#/'">返回论坛</button>
+        </div>
+      </div>`;
+    document.title = '真相 · 怪谈事件簿';
+  }
+  updateFloatBtns();
+}
+function restartAll(){
+  clearSave();
+  STATE.user = null;
+  STATE.readThreads = new Set();
+  STATE.clues = new Set();
+  STATE.links = {};
+  STATE.pmRead = {};
+  STATE.blockedCount = 0;
+  STATE.glitchTriggered = false;
+  STATE.hiddenUnlocked = false;
+  STATE.suspectUnlocked = false;
+  STATE.badEndTriggered = false;
+  STATE.guideClosed = false;
+  STATE.seenExif = new Set();
+  STATE.linkErrors = 0;
+  STATE.linkErrorsWarned = false;
+  location.hash = '#/login';
+}
+
+/* ============================================================
+   关于
+============================================================ */
+function renderAbout(){
+  $('#app').innerHTML = shell(`
+    <h2 class="sec-title">关于本站 <small>ABOUT</small></h2>
+    <div class="rules" style="line-height:2.2">
+      <p>怪谈事件簿，前身为「守夜人」。以槐市为中心，收集各地灵异事件。</p>
+      <p>本站已停止更新。仅作存档。</p>
+      <p style="color:var(--ink3);font-size:12px">站务邮箱：<span class="hid" onclick="this.classList.toggle('revealed')">bbs@guaidan.net</span></p>
+      <p style="color:var(--ink3);font-size:12px">版主：雨何时停</p>
+      <p style="color:var(--ink3);font-size:12px">当前 ID：${esc(STATE.user||'')}</p>
+      <p style="color:var(--ink3);font-size:12px">游戏进度：线索 ${STATE.clues.size}/9 · 连线 ${Object.keys(STATE.links).length}/${PAIRS.length} · 错误连线 ${STATE.linkErrors}/50</p>
+    </div>
+    <div class="backbar">
+      <a class="backlink" onclick="location.hash='#/'">← 返回</a>
+      <a class="backlink" onclick="if(confirm('清空存档并退出？')){clearSave();location.reload()}">清空存档</a>
+    </div>
+  `, '关于');
+  updateFloatBtns();
+}
+
+/* ============================================================
+   悬浮按钮
+============================================================ */
+function updateFloatBtns(){
+  const t = $('#backtop'), b = $('#backbottom');
+  if(!t || !b) return;
+  const h = location.hash;
+  if(h === '#/hidden' || h === '#/doomed' || h === '#/trueend' || h === '#/login'){
+    t.classList.remove('show');
+    b.classList.remove('show');
+    return;
+  }
+  const st = window.scrollY;
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  t.classList.toggle('show', st > 300);
+  b.classList.toggle('show', max > 600 && (max - st) > 300);
+}
+window.addEventListener('scroll', updateFloatBtns);
+window.addEventListener('resize', updateFloatBtns);
+$('#backtop').onclick = ()=>window.scrollTo({top:0,behavior:'smooth'});
+$('#backbottom').onclick = ()=>window.scrollTo({top:document.documentElement.scrollHeight,behavior:'smooth'});
+
+/* ============================================================
+   启动
+============================================================ */
+loadState();
+if(!STATE.user && (location.hash === '' || location.hash === '#')) location.hash = '#/login';
+route();
+console.log('%c怪谈事件簿', 'font-size:16px;color:#b3352a');
+console.log('%c你找到我了。但我不确定，是你先找到我，还是我先找到你。', 'font-size:12px;color:#5c5049');
+console.log('%c输入 help() 查看指令。', 'font-size:11px;color:#4a3a30');
+</script>
+</body>
+</html>
