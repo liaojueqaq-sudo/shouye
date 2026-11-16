@@ -34,7 +34,7 @@ a:hover{color:var(--red2)}
 .nbi b{color:var(--ink);font-weight:600}
 .main{padding:22px 16px 80px}
 
-/* 登录与文字恐怖谷彩蛋 */
+/* 登录与彩蛋 */
 .login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#140a0a 0%,#050303 100%);position:relative;overflow:hidden}
 .login-box{width:340px;text-align:center;padding:30px;z-index:10}
 .login-box h1{font-size:26px;letter-spacing:.4em;color:#d8503f;font-weight:600;margin:0 0 8px;text-indent:.4em}
@@ -46,15 +46,7 @@ a:hover{color:var(--red2)}
 .login-box .tip{font-size:11.5px;color:#5c4a44;margin-top:22px;font-family:var(--mono);line-height:1.9}
 
 .glitch-name-text {
-  position:absolute;
-  color:var(--red3);
-  font-family:var(--serif);
-  font-weight:bold;
-  pointer-events:none;
-  opacity:0;
-  animation: textFloat 3s ease-out forwards;
-  z-index:1;
-  text-shadow: 0 0 10px rgba(255,0,0,0.5);
+  position:absolute; color:var(--red3); font-family:var(--serif); font-weight:bold; pointer-events:none; opacity:0; animation: textFloat 3s ease-out forwards; z-index:1; text-shadow: 0 0 10px rgba(255,0,0,0.5);
 }
 @keyframes textFloat {
   0% { opacity:0; transform: scale(0.5) translateY(20px); filter: blur(4px); }
@@ -63,23 +55,9 @@ a:hover{color:var(--red2)}
   100% { opacity:0; transform: scale(1.1) translateY(-20px); filter: blur(2px); }
 }
 
-/* 公告 */
+/* 公告/列表 */
 .notice{border:1px solid #4c2a20;background:#1a100e;padding:10px 14px;font-size:13px;color:#b39a80;margin-bottom:18px;display:flex;gap:10px;align-items:baseline}
 .notice b{color:var(--red2);font-weight:600;flex:none;letter-spacing:.1em}
-.guide-bar{border:1px solid #4a3a1a;background:#1a1508;padding:10px 14px;font-size:12px;color:#a89a70;margin-bottom:14px;display:flex;gap:10px;align-items:baseline;font-family:var(--mono);line-height:1.9}
-.guide-bar b{color:#d8a040;flex:none}
-.guide-bar .close{margin-left:auto;cursor:pointer;color:var(--ink3);flex:none}
-.guide-bar .close:hover{color:var(--red)}
-.search-bar{display:flex;gap:6px;margin-bottom:16px}
-.search-bar input{flex:1;background:#080606;border:1px solid var(--line);color:var(--ink);padding:8px 12px;font-family:var(--serif);font-size:13px;outline:none}
-.search-bar input:focus{border-color:var(--red)}
-.search-bar button{background:var(--card);border:1px solid var(--line);color:var(--ink2);padding:8px 16px;cursor:pointer;font-family:var(--serif);font-size:13px}
-.search-bar button:hover{background:var(--red);color:#fff}
-.rules{border:1px solid var(--line);background:var(--card);padding:14px 18px;font-size:12.5px;color:var(--ink2);margin:16px 0;line-height:2}
-.rules h4{margin:0 0 6px;font-size:12.5px;color:var(--ink);letter-spacing:.14em;font-weight:600}
-.rules span{color:var(--ink3);margin-right:6px;font-family:var(--mono);font-size:11px}
-
-/* 列表 */
 .sec-title{display:flex;align-items:baseline;gap:12px;margin:22px 0 12px;font-size:18px;font-weight:600;letter-spacing:.06em}
 .sec-title small{font-size:11.5px;color:var(--ink3);font-weight:400;font-family:var(--mono)}
 .tbl{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);font-size:14px}
@@ -111,7 +89,8 @@ h1.th-title{font-size:20px;margin:0 0 4px;letter-spacing:.03em;font-weight:600;l
 .post{display:grid;grid-template-columns:160px 1fr;border:1px solid var(--line);background:var(--card);margin-bottom:12px}
 .post.me{border-color:#6b2a22;box-shadow:inset 3px 0 0 var(--red2)}
 .pu{background:#100a09;border-right:1px solid var(--line);padding:14px 12px;text-align:center;font-size:11.5px;color:var(--ink3)}
-.av{width:60px;height:60px;margin:0 auto 8px;border-radius:50%;border:1px solid #3a2f28;background:radial-gradient(circle at 40% 35%,#3a4a5a,#1a2028)}
+.av{width:60px;height:60px;margin:0 auto 8px;border-radius:50%;border:1px solid #3a2f28;background:radial-gradient(circle at 40% 35%,#3a4a5a,#1a2028);cursor:pointer;transition:border-color .2s}
+.av:hover{border-color:var(--red2)}
 .av.g1{background:radial-gradient(circle at 40% 35%,#5a4a3a,#2a1a10)}
 .av.g2{background:radial-gradient(circle at 40% 35%,#3a5a4a,#102a18)}
 .av.g3{background:radial-gradient(circle at 40% 35%,#5a3a4a,#2a1020)}
@@ -128,22 +107,16 @@ h1.th-title{font-size:20px;margin:0 0 4px;letter-spacing:.03em;font-weight:600;l
 .pb p:last-child{margin-bottom:0}
 .pb .dim{color:var(--ink3);font-size:12.5px}
 .sig{margin-top:16px;padding-top:9px;border-top:1px dashed #241612;font-size:12px;color:#7a6f62;font-style:italic}
+.reply-to{color:var(--ink3);font-size:13px}
 
-/* 隐藏文字修改 */
-.hid {
-  color: transparent; 
-  background: rgba(255,255,255,0.05);
-  border-bottom: 1px dotted rgba(255,255,255,0.2);
-  cursor: pointer;
-  transition: all 0.4s;
-  user-select: none;
-}
-.hid.revealed {
-  color: var(--red3);
-  background: transparent;
-  border-bottom-color: var(--red3);
-  text-shadow: 0 0 8px var(--red);
-}
+/* 隐藏文字 & 特殊点击 */
+.hid { color: transparent; background: rgba(255,255,255,0.05); border-bottom: 1px dotted rgba(255,255,255,0.2); cursor: pointer; transition: all 0.4s; user-select: none; }
+.hid.revealed { color: var(--red3); background: transparent; border-bottom-color: var(--red3); text-shadow: 0 0 8px var(--red); }
+.clickable-img { border: 1px solid var(--line); padding: 4px; margin: 10px 0; cursor: pointer; background: #000; max-width: 200px; display: inline-block; border-radius: 4px;}
+.clickable-img img { width: 100%; display: block; }
+.clickable-img:hover { border-color: var(--red2); }
+.clickable-text { color: var(--ink2); border-bottom: 1px dashed var(--ink2); cursor: pointer; }
+.clickable-text:hover { color: var(--red3); border-bottom-color: var(--red3); }
 
 /* 回复框 */
 .reply-box{margin-top:18px;background:var(--card);padding:14px;border:1px solid var(--line)}
@@ -180,7 +153,7 @@ h1.th-title{font-size:20px;margin:0 0 4px;letter-spacing:.03em;font-weight:600;l
 .pm-send button{background:var(--red);color:#fff;border:none;padding:0 16px;cursor:pointer;font-family:var(--serif)}
 .pm-empty{padding:40px;text-align:center;color:var(--ink3);font-size:12px;line-height:2}
 
-/* 线索板 (PC端) */
+/* 线索板 */
 .board-page{background:var(--bg2);margin:0 -16px;padding:20px 16px 70px;min-height:80vh}
 .bp-head{max-width:1200px;margin:0 auto 12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .bp-head .bk{font-family:var(--mono);font-size:11px;color:#8a7d68;border:1px solid #4a4034;padding:4px 12px}
@@ -226,13 +199,13 @@ h1.th-title{font-size:20px;margin:0 0 4px;letter-spacing:.03em;font-weight:600;l
 .hintmsg{width:100%;font-size:12px;color:#b9ac95;font-family:var(--mono);line-height:1.8;margin-top:2px}
 .hintmsg b{color:#d8695b;font-weight:400}
 .err-tip{font-family:var(--mono);font-size:10.5px;color:#7d6050;letter-spacing:.04em}
-.pwd-box{max-width:600px;margin:26px auto 0;padding:20px;border:1px dashed #4a1512;text-align:center}
-.pwd-box p{color:#6f6459;font-size:11.5px;margin:0 0 12px;font-family:var(--mono)}
-.pwd-box input{background:#080606;border:1px solid #2a1a18;color:var(--ink);padding:9px;text-align:center;letter-spacing:4px;font-family:var(--mono);outline:none;width:160px}
-.pwd-box input.shake{animation:shake .4s}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-.pwd-box button{background:#2a1210;color:var(--ink);border:1px solid #4a1a16;padding:9px 18px;cursor:pointer;margin-left:8px;font-family:var(--serif)}
-.pwd-box button:hover{background:var(--red);color:#fff}
+
+/* 解锁按钮区 */
+.pwd-box{max-width:600px;margin:26px auto 0;padding:20px;border:1px dashed #4a1512;text-align:center; transition: all 0.3s;}
+.pwd-box p{color:#6f6459;font-size:12px;margin:0 0 12px;font-family:var(--mono)}
+.unlock-btn{display:none; width:100%; background:var(--red); color:#fff; border:none; padding:15px; font-size:18px; font-weight:bold; font-family:var(--serif); letter-spacing:5px; cursor:pointer; box-shadow:0 0 20px rgba(229,67,47,0.5); animation: pulse 2s infinite;}
+.unlock-btn.show{display:block;}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
 
 /* 隐藏档案 */
 .hidden-page{background:#050303;min-height:100vh;padding:60px 20px;color:#8a7a6a}
@@ -277,6 +250,26 @@ body.glitching #app{animation:glitchHue .1s infinite}
 .toast{background:#1a0d0b;border:1px solid var(--red2);color:#d8c8b8;padding:10px 14px;font-size:12.5px;box-shadow:0 4px 20px rgba(0,0,0,.7);max-width:280px;animation:toastIn .4s;font-family:var(--serif);line-height:1.7}
 .toast b{color:var(--red3)}
 @keyframes toastIn{from{transform:translateX(40px);opacity:0}to{transform:translateX(0);opacity:1}}
+
+/* 个人资料弹窗 */
+.profile-modal{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.profile-modal.show{opacity:1;pointer-events:auto}
+.profile-card{background:#130e0e;border:1px solid var(--red2);width:300px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.9);position:relative}
+.profile-close{position:absolute;right:10px;top:5px;color:var(--ink3);cursor:pointer;font-size:18px}
+.profile-close:hover{color:var(--red3)}
+.profile-card .av{margin:0 auto 10px;width:80px;height:80px}
+.profile-card .un{font-size:18px;text-align:center;margin-bottom:5px}
+.profile-card .rk{text-align:center;margin-bottom:15px;color:var(--red3)}
+.profile-card .info{font-size:12px;color:var(--ink2);line-height:2;font-family:var(--mono)}
+.profile-card .bio{font-size:12.5px;color:var(--ink);margin-top:10px;border-top:1px dashed #2a1a18;padding-top:10px;font-style:italic}
+.profile-card .btn-pm{display:block;width:100%;text-align:center;background:#2a1210;border:1px solid #4a1a16;padding:8px;margin-top:15px;color:var(--ink);cursor:pointer;font-family:var(--serif);transition:.3s}
+.profile-card .btn-pm:hover{background:var(--red);color:#fff}
+
+/* 关于本站排版 */
+.about-page {line-height: 2.4;}
+.about-page p { margin-bottom: 15px; }
+.about-page a { text-decoration: underline; text-underline-offset: 4px; }
+.about-page .footer-info { margin-top: 40px; font-size: 13px; color: var(--ink3); font-family: var(--mono); line-height: 2.2; }
 
 .footer{border-top:1px solid var(--line);margin-top:40px;padding:16px 0 40px;font-size:11px;color:#6a5a50;font-family:var(--mono);line-height:2;text-align:center}
 
@@ -357,6 +350,21 @@ body.glitching #app{animation:glitchHue .1s infinite}
   <button id="backbottom" title="去到最底部">↓</button>
 </div>
 <div class="glitch-overlay" id="glitchOverlay"><div class="txt" id="glitchTxt"></div></div>
+<div class="profile-modal" id="profileModal">
+  <div class="profile-card">
+    <div class="profile-close" onclick="document.getElementById('profileModal').classList.remove('show')">×</div>
+    <div class="av" id="pf-av"></div>
+    <div class="un" id="pf-un">ID</div>
+    <div class="rk" id="pf-rk">注册会员</div>
+    <div class="info">
+      <div>帖子：<span id="pf-posts">—</span></div>
+      <div>注册：<span id="pf-reg">—</span></div>
+      <div>最后登录：<span id="pf-last">—</span></div>
+    </div>
+    <div class="bio" id="pf-bio">这个人很懒，什么都没留下。</div>
+    <div class="btn-pm" id="pf-pm-btn" onclick="startPMFromProfile()">发 私 信</div>
+  </div>
+</div>
 
 <script>
 /* ============================================================
@@ -378,10 +386,12 @@ const STATE = {
   seenExif:new Set(),
   linkErrors:0,
   linkErrorsWarned:false,
+  pmWaitReply:false, 
+  currentProfile:null,
 };
 function saveState(){
   try{
-    localStorage.setItem('guaitan_save_v10', JSON.stringify({
+    localStorage.setItem('guaitan_save_v16', JSON.stringify({
       user:STATE.user,
       readThreads:[...STATE.readThreads],
       clues:[...STATE.clues],
@@ -396,12 +406,13 @@ function saveState(){
       seenExif:[...STATE.seenExif],
       linkErrors:STATE.linkErrors,
       linkErrorsWarned:STATE.linkErrorsWarned,
+      pmWaitReply:STATE.pmWaitReply,
     }));
   }catch(e){}
 }
 function loadState(){
   try{
-    const d = localStorage.getItem('guaitan_save_v10');
+    const d = localStorage.getItem('guaitan_save_v16');
     if(!d) return;
     const o = JSON.parse(d);
     STATE.user = o.user || null;
@@ -418,9 +429,10 @@ function loadState(){
     STATE.seenExif = new Set(o.seenExif || []);
     STATE.linkErrors = o.linkErrors || 0;
     STATE.linkErrorsWarned = !!o.linkErrorsWarned;
+    STATE.pmWaitReply = !!o.pmWaitReply;
   }catch(e){}
 }
-function clearSave(){ try{ localStorage.removeItem('guaitan_save_v10'); }catch(e){} }
+function clearSave(){ try{ localStorage.removeItem('guaitan_save_v16'); }catch(e){} }
 
 /* ============================================================
    工具
@@ -441,154 +453,273 @@ function toast(html){
   setTimeout(()=>d.remove(), 5500);
 }
 
+/* 角色资料库 */
+const USERS = {
+  '雨何时停': { av:'g1', rk:'版主', posts:'24', reg:'2019-09-01', last:'2019-11-30', bio:'推理社社员。雨到底什么时候停？' },
+  '煎饼果子好吃！': { av:'g5', rk:'注册会员', posts:'142', reg:'2018-05-12', last:'2019-10-20', bio:'爱吃煎饼果子的女大学生。' },
+  '推理迷': { av:'g2', rk:'侦探', posts:'892', reg:'2015-03-11', last:'2019-11-29', bio:'真相往往隐藏在细节里。' },
+  '在此之间': { av:'g5', rk:'注册会员', posts:'63', reg:'2019-01-03', last:'2019-10-18', bio:'坚定的唯物主义者。' },
+  '持瓜路过': { av:'g1', rk:'吃瓜群众', posts:'1201', reg:'2016-08-08', last:'2019-11-30', bio:'前排出售瓜子花生矿泉水。' },
+  '短刀刺客': { av:'g4', rk:'注册会员', posts:'312', reg:'2017-11-22', last:'2019-10-19', bio:'我的刀呢？' },
+  '黑行者': { av:'g3', rk:'怪谈爱好者', posts:'456', reg:'2014-02-14', last:'2019-10-30', bio:'黑夜给了我黑色的眼睛，我却用它寻找怪谈。' },
+  '江州': { av:'g5', rk:'资深大佬', posts:'3210', reg:'2010-01-01', last:'2019-11-01', bio:'槐市本地人，经历过很多事。' },
+  '与期末作业不共戴天': { av:'g4', rk:'男大学生', posts:'55', reg:'2019-09-01', last:'2019-10-19', bio:'期末作业去死吧！' },
+  '背后身无一人': { av:'g3', rk:'注册会员', posts:'102', reg:'2018-10-10', last:'2019-10-18', bio:'冷漠的旁观者。' },
+  '你要看看我的猫吗？': { av:'g5', rk:'注册会员', posts:'77', reg:'2019-03-22', last:'2019-09-21', bio:'我有猫，你有吗？' },
+  '守卫者': { av:'g2', rk:'小区物业', posts:'12', reg:'2019-08-01', last:'2019-11-15', bio:'保护业主的安全是我的责任。' },
+  '后室': { av:'g4', rk:'注册会员', posts:'34', reg:'2019-06-18', last:'2019-09-28', bio:'Backrooms爱好者。' },
+  '出门遛弯': { av:'g5', rk:'注册会员', posts:'21', reg:'2019-07-07', last:'2019-10-18', bio:'热爱锻炼身体。' },
+  '村里唯一的大学生': { av:'g3', rk:'大学生', posts:'9', reg:'2019-10-30', last:'2019-10-31', bio:'山沟沟里飞出的金凤凰。' },
+  '不要给陌生人开门': { av:'g5', rk:'打工人', posts:'12', reg:'2019-07-20', last:'2019-09-25', bio:'社畜保命指南第一条。' },
+};
+
+function showProfile(name){
+  STATE.currentProfile = name;
+  const u = USERS[name] || { av:'g1', rk:'游客', posts:'—', reg:'—', last:'—', bio:'这个人很懒，什么都没留下。' };
+  $('#pf-av').className = `av ${u.av}`;
+  $('#pf-un').innerText = name;
+  $('#pf-rk').innerText = u.rk;
+  $('#pf-posts').innerText = u.posts;
+  $('#pf-reg').innerText = u.reg;
+  $('#pf-last').innerText = u.last;
+  $('#pf-bio').innerText = u.bio;
+  
+  const canPM = ['雨何时停','推理迷','守卫者'].includes(name);
+  const btn = $('#pf-pm-btn');
+  if(canPM) {
+    btn.style.display = 'block';
+  } else {
+    btn.style.display = 'none';
+  }
+  
+  $('#profileModal').classList.add('show');
+}
+
+function startPMFromProfile(){
+  const name = STATE.currentProfile;
+  $('#profileModal').classList.remove('show');
+  
+  let cid = null;
+  if(name === '雨何时停') cid = 'ytzq';
+  else if(name === '推理迷') cid = 'tuili';
+  else if(name === '守卫者') cid = 'zhang';
+  
+  if(cid){
+    const c = CONTACTS.find(x=>x.id===cid);
+    if(c) {
+      c.hidden = false; 
+      if(c.unlockBy) c.unlockBy = []; 
+    }
+    location.hash = '#/pm';
+    setTimeout(()=>{ openPM(cid); }, 50);
+  }
+}
+
 /* ============================================================
-   数据：帖子（论坛前身：守夜人）
+   数据：帖子 
 ============================================================ */
 const THREADS = [
   {
-    id:1, title:'雨天怪谈：最近槐市老是有人失踪', author:'雨何时停', av:'g1',
-    tag:'水鬼找替身？还是巧合？雨到底什么时候停。',
-    time:'2013-09-12 14:20', views:8402, replies:12, status:'lock', clue:'c1',
-    body:`<p>这半个月，光是我们学校，就有三个女生失踪了。</p>
-      <p>最诡异的是，这三个女生失踪的那天，全都是下大雨的晚上。</p>
-      <p>昨天，我一个最好的朋友，也在雨天失踪了。她叫何辜。失踪之前，她还在听我讲关于水鬼找替身的怪谈。</p>
-      <p>如果我没有和她讲那个故事，她是不是就不会走那条巷子了？</p>
-      <p>我昨晚在巷子口看到一个女生打着伞。她旁边好像跟着一个矮矮的人，没打伞。第二天看新闻，那个女生也没回宿舍。</p>
-      <p>我报警了，但警察说巷子口监控坏了，没拍到什么。<span class="hid" onclick="this.classList.toggle('revealed')">那矮矮的轮廓，走路的姿势根本不像小孩，倒像个成年人。</span></p>`,
+    id:1, title:'雨天怪谈：是槐市水鬼找替身还是？', author:'雨何时停', av:'g1',
+    tag:'连载中', time:'2019-10-12 22:10', views:4020, replies:12, status:'run', clue:'c1', locked:false,
+    body:`<p>大家最近有没有听过那个在槐市传的沸沸扬扬的槐市怪谈。</p>
+      <p>听说两个月前有个女生被害死在城南公园的湖里，死前身穿一身红红。又是含冤而死，不得善终，怨气滔天。从那以后，槐市的雨天就开始有女生失踪。大家都传是那个冤死的女生成为了水鬼在找替身。</p>
+      <p>甚至这半个月以来。我们学校就失踪的两个女生。</p>
+      <p>其中一个甚至是......是我的好朋友。</p>
+      <p>她是三天前失踪的。</p>
+      <p>那天下着暴雨，在她失踪前我还和她讲了这个怪谈。就像往常一样和她分享着怪谈故事，没想到她当天就真的失踪了。</p>
+      <p>我一直在想是不是因为我......我很自责。</p>
+      <p>我当晚就报警了。</p>
+      <p>监控显示看着她撑着伞进了一个小巷子，身边还有一个小孩，之后就再也没有出来过。</p>
+      <p>没人知道什么原因。警察去小巷子里面调查也没发现有什么不对的地方。</p>`,
     floors:[
-      {name:'推理迷',av:'g2',time:'2013-09-12 15:02',body:'<p>楼主节哀。但我感觉这不是水鬼，那矮个子可能利用了“小孩”的身份让你朋友放松警惕。人贩子经常用这招。</p>'},
-      {name:'短刀刺客',av:'g3',time:'2013-09-12 15:30',body:'<p>只有我一个人觉得是外星人吗？雨夜可能就是信号不好的时候。</p>'},
-      {name:'黑夜行',av:'g4',time:'2013-09-12 15:40',body:'<p>短刀别瞎猜了。这不是外星人。在怪谈里，下雨天阴气重，确实容易招惹“湿骨”。不过如果是成年人假扮小孩，这招极其阴毒。</p>'},
-      {name:'江州',av:'g5',time:'2013-09-12 18:15',body:'<p>我在这片住了几十年了。以前这里叫槐市，有个叫「守夜人」的网站专门记录这种事。那个打伞的女生，怕是凶多吉少。</p>'}
+      {name:'煎饼果子好吃！',av:'g5',time:'2019-10-12 22:30',body:'<p>八天前失踪。难道是h学姐！？h学姐真的是一个很好的人，我记得我刚入学时她还帮我很多，没想到会遇到这种事情....</p><p>楼主也不要自责了，学校里很多人都知道这个怪谈，肯定不是因为怪谈原因。</p>'},
+      {name:'推理迷',av:'g2',time:'2019-10-12 22:45',body:'<p>身边还有一个小孩？雨天怪谈里的水鬼也是一个女大学生吧。而且楼主那天应该和她朋友讲过这个怪谈，那朋友应该会对同龄女大学生有点防备心。问题有没有可能在这个小孩身上？</p>'},
+      {name:'雨何时停',av:'g1',time:'2019-10-12 23:00',op:true,replyTo:'煎饼果子好吃！',body:'<p>是的。是她。谢谢你，还记得你。</p>'},
+      {name:'雨何时停',av:'g1',time:'2019-10-12 23:05',op:true,replyTo:'推理迷',body:'<p>我也想过。但是找了很多雨天和小孩的怪谈，都没有找到类似的。</p>'},
+      {name:'推理迷',av:'g2',time:'2019-10-12 23:15',body:'<p>感觉楼主有点陷入误区了，因为朋友疑似因为怪谈失踪。所以一直在找怪谈方面的传闻。但是有没有可能，不是灵异事件？</p>'},
+      {name:'在此之间',av:'g5',time:'2019-10-12 23:20',body:'<p>我也同意推理迷说的，因为我是唯物主义者，我一直不太相信这种怪谈。但是女性连续失踪又太可疑了。我个人感觉不像灵异事件，更像...案件？</p>'},
+      {name:'持瓜路过',av:'g1',time:'2019-10-12 23:30',body:'<p>天呐，误入高端局。不管是灵异事件还是案件都很可怕啊！！！</p>'},
+      {name:'推理迷',av:'g2',time:'2019-10-12 23:40',body:`<p>是的。我也怀疑是案件，我也一直在调查这件事情。既然楼主说的小孩子这个细节，加上失踪的都是女性，有没有可能小孩是诱饵。<span class="clickable-text" onclick="getClue('c8')">把心善的女大学生骗去拐卖？</span></p>`},
+      {name:'雨何时停',av:'g1',time:'2019-10-13 00:01',op:true,replyTo:'推理迷',body:'<p>谢谢你，我确认陷入了误区。导致我一直以来的调查方向都错误了，我现在需要重新梳理一下我的线索。我有一些事情想要麻烦一下你，可以看一下私信吗？</p>'},
+      {name:'推理迷',av:'g2',time:'2019-10-13 00:02',body:'<p>可以的。</p>'},
+      {name:'煎饼果子好吃！',av:'g5',time:'2019-10-13 08:30',body:'<p>好过分！利用同情心的畜牲！</p>'},
+      {name:'与期末作业不共戴天',av:'g4',time:'2019-10-13 09:00',body:'<p>h学姐！？之前我的期末作业还是多亏了她帮忙的。听到她遭遇了这种事情。真的太心痛了。</p>'}
     ]
   },
   {
-    id:2, title:'楼道里时不时传来的小孩哭声，太渗人了', author:'不要给陌生人开门', av:'g5',
-    tag:'猫眼看出去什么都没有',
-    time:'2013-09-15 02:30', views:3112, replies:8, status:'lock', clue:'c2',
-    body:`<p>坐标槐市老城区，那种没有电梯的旧楼。</p>
-      <p>最近半个月，每天晚上十二点多，楼道里就会传来小孩子的哭声。呜咽呜咽的，一直喊“妈妈，开门”。</p>
-      <p>我从猫眼看出去。外面声控灯是亮的，但走廊里空荡荡的，什么都没有。哭声还在继续，近在咫尺。</p>
-      <p>我吓得没敢开门。可是那声音分明就在我门边！<span class="hid" onclick="this.classList.toggle('revealed')">猫眼高度大概 1.5 米，如果有人贴着门蹲在下面，猫眼确实看不见。</span></p>`,
+    id:2, title:'楼道里的小孩哭声', author:'不要给陌生人开门', av:'g5',
+    tag:'已完结 · 坟贴', time:'2019-09-20 23:10', views:2533, replies:18, status:'end', clue:'c2', locked:true,
+    body:`<p>论坛里面有没有住在槐市城南，田仕小区的。</p>
+      <p>我住在c栋4楼，最近总能听到楼道里面传来小孩的哭声。一开始以为是哪家小孩被家长管教哭了。就没在意，结果后面两天都听到了。又以为是哪家小孩走丢了，在楼道哭。但是我从猫眼看出去又没有人。</p>
+      <p>我就感觉有点可怕了，我还是独居。加上我平时还喜欢看点灵异小说。我就在想是不是有什么，，，不干净的东西。</p>
+      <p>又观察了几天，虽然哭声每次响起的时间不一样。但一定是在晚上。又因为我们这里是快拆迁的老小区，所以现在住在这里的人不是很多了。</p>
+      <p>当时是看它便宜在租这里的，没想到后续会碰到这种事情。我才租了两个月，现在退房押金不退。所以想发论坛看看有没有同小区的人遇到相似情况，或者看看有没有人帮我解答一下这个现象。</p>
+      <p>万一，是我想多了呢？救救苦逼打工人吧。</p>`,
     floors:[
-      {name:'持瓜路过',av:'g1',time:'2013-09-15 08:12',body:'<p>卧槽太吓人了，楼主你赶紧搬家吧！</p>'},
-      {name:'推理迷',av:'g2',time:'2013-09-15 09:30',body:'<p>等一下，楼主说猫眼看不到人？有没有一种可能，那个人身高不够？或者他是蹲着的？</p>'},
-      {name:'背后身无一人',av:'g4',time:'2013-09-15 09:50',body:'<p>楼上想多了吧，就是野猫叫春或者隔音不好。哪那么多阴谋论。</p>'},
-      {name:'在此之间',av:'g5',time:'2013-09-15 10:30',body:'<p>我也赞成推理迷。如果是矮小的人，贴着门哭，确实能制造出这种效果。</p>'},
-      {name:'剑已出窍',av:'g1',time:'2013-09-15 11:40',body:'<p>不管是什么，直接开门一刀砍了不就完了？</p>'}
+      {name:'黑行者',av:'g3',time:'2019-09-20 23:30',body:'<p>田仕小区吗？我略有耳闻。之前听过那边的一个怪谈。说是c栋4楼某间房死过人，变成了凶宅一直租不出去。因为消息被封锁了，具体哪间房，我也不清楚。但是我了解到，好像是他杀。</p>'},
+      {name:'短刀刺客',av:'g4',time:'2019-09-20 23:35',body:'<p>他杀吗？那很恐怖了啊！根据推理小说来说。凶手往往会返回作案现场。楼主还是快点搬走吧！小心为妙啊！</p>'},
+      {name:'持瓜路过',av:'g1',time:'2019-09-21 00:10',body:'<p>啊啊啊啊啊！怎么在凌晨刷到这个帖子。我柜子动了！我不看了QAQ。田仕小区感觉听起来也很不妙啊，田仕=填尸？好诡异啊TAT</p>'},
+      {name:'不要给陌生人开门',av:'g5',time:'2019-09-21 00:20',op:true,body:'<p>好了，不许说了。本来发帖是想找安慰的。怎么越看越可怕了。我也要哭了，关键是外面哭声还响起来了，身为当事人真的很恐怖啊QAQ</p>'},
+      {name:'推理迷',av:'g2',time:'2019-09-21 01:00',body:'<p>我赞同短刀刺客快点搬走的观点。但是其它观点不赞同。但是看楼主这么害怕，现在我也不好直说原因。我只能说我推断应该不是灵异现象。你明天先带着部分行李到朋友家。然后我再和你说。</p>'},
+      {name:'不要给陌生人开门',av:'g5',time:'2019-09-21 01:05',op:true,body:'<p>好像没有好到哪里去，话说一半更恐怖了啊。先住朋友家这个倒是可以。</p>'},
+      {name:'背后身无一人',av:'g3',time:'2019-09-21 01:10',body:'<p>那楼主干脆看门出去看看呗。满足满足我们的好奇心。</p>'},
+      {name:'煎饼果子好吃！',av:'g5',time:'2019-09-21 01:15',body:'<p>滚啊！楼主要是真出事你负责吗？楼楼不要听他的话！你先好好休息。</p>'},
+      {name:'背后身无一人',av:'g3',time:'2019-09-21 01:18',body:'<p>说说罢了。都是成年人了这点思考能力都没有吗？</p>'},
+      {name:'煎饼果子好吃！',av:'g5',time:'2019-09-21 01:20',body:'<p>会打几个字显着你了。站着说话真是腰不疼</p>'},
+      {name:'江州',av:'g5',time:'2019-09-21 08:00',body:'<p>我住田仕小区附近的小区几十年了。对一些事情也略有耳闻。你这个说法应该也没错，听说田仕小区以前是乱葬岗，也确实可以是是填尸。当时还地产商还专门找了风水先生和道士来做法。</p>'},
+      {name:'在此之间',av:'g5',time:'2019-09-21 08:10',body:'<p>怎么风向越来越往玄学走了。有没有科学点的评论呀！寻找同类中。</p>'},
+      {name:'不要给陌生人开门',av:'g5',time:'2019-09-21 10:00',op:true,replyTo:'推理迷',body:'<p>我现在人在公司了。带着行李。打算下班就去找朋友，可以和我说一下是什么了吗？</p>'},
+      {name:'推理迷',av:'g2',time:'2019-09-21 10:02',body:'<p>猫眼视角是有盲区的。你继续住那很危险。</p>'},
+      {name:'不要给陌生人开门',av:'g5',time:'2019-09-21 10:05',op:true,replyTo:'推理迷',body:'<p>啊，，，我好像懂了。谢谢你，我过几天会让我朋友和我一起去搬家的。好可怕π_π。</p>'},
+      {name:'与此无关',av:'g1',time:'2019-09-21 10:10',body:'<p>什么意思啊！话不要说一半啊！你们在对什么暗号吗？</p>'},
+      {name:'黑行者',av:'g3',time:'2019-09-21 10:15',body:'<p>我一个怪谈爱好者，都感觉到不寒而栗了...</p>'},
+      {name:'你要看看我的猫吗？',av:'g5',time:'2019-09-21 11:00',body:'<p>我在田仕小区c栋8楼，我这层晚上好像没有小孩哭声。但是这么一说，我晚上都不敢出门了。</p>'}
     ]
   },
   {
-    id:3, title:'空置的 402 房里，半夜有女人在惨叫', author:'后室', av:'g2',
-    tag:'物业带我看过，里面真的没人',
-    time:'2013-09-20 22:15', views:5644, replies:15, status:'lock', clue:'c3',
-    body:`<p>我住在槐市老城区 4 号楼。这栋楼是回迁房，入住率不高。</p>
-      <p>从上个月开始，我每天晚上都能听到隔壁 402 传来女人的惨叫声，还有砸墙的声音。</p>
-      <p>我害怕出事，就去找了物业。物业说 402 根本没住人。我不信，非逼着物业开锁带我去看。</p>
-      <p>门打开，里面确实一股霉味，地上全是灰尘。根本没有脚印，家具也没有。物业还和我调了当天的监控，确实没人进去过。</p>
-      <p>可是昨晚，惨叫又响了。这次更清晰了，就在我床头那面墙的后面。<span class="hid" onclick="this.classList.toggle('revealed')">物业拿着万能卡开门的时候动作太熟练了。而且 402 的电视柜后面，墙纸似乎有点翘起，有一道很细的缝隙。</span></p>`,
+    id:3, title:'晚上不要一个人去如月公园', author:'出门遛弯', av:'g5',
+    tag:'连载中', time:'2019-10-18 20:30', views:1203, replies:15, status:'run', clue:'c3', locked:false,
+    body:`<p>前两天我像往常一样去如月公园散步。</p>
+      <p>走到湖边时，突然听到了救命声。我回到一看，看到一个血刺呼啦，头发杂乱的女人？向我扑来。吓的我扭头就跑，还摔了一跤。我心想完蛋了。</p>
+      <p>再回头就看不到了。但是总觉得还是听到呜咽救命声。这下我更是狂奔回去了。太可怕了。</p>
+      <p>结果回去了，声音像是缠上了我一样。总能在我家附近听见。甚至有时候还能看到一道白影闪过。我甚至找了道士来做法。贴了符，但是也没有用。</p>
+      <p>于是来发帖让大家不要晚上一个人去如月公园了，以免遇到和我一样的事情。</p>`,
     floors:[
-      {name:'一位网友',av:'g3',time:'2013-09-21 08:30',body:'<p>可能是隔壁栋的声音通过墙体传导了吧，老房子隔音很差的。</p>'},
-      {name:'短刀刺客',av:'g4',time:'2013-09-21 09:00',body:'<p>绝对是灵异事件！这是传说中的“墙中女鬼”！</p>'},
-      {name:'推理迷',av:'g2',time:'2013-09-21 09:20',body:'<p>短刀别瞎扯。灰尘没脚印，说明门很久没开。但墙纸翘起很奇怪，物业开门太熟练也很奇怪。楼主，你要小心物业。</p>'},
-      {name:'江州',av:'g5',time:'2013-09-21 10:12',body:'<p>小同志，我劝你晚上睡觉锁好门。以前槐市的老筒子楼，有些是有暗门的。</p>'},
-      {name:'在此之间',av:'g5',time:'2013-09-21 11:00',body:'<p>细思极恐，如果物业是帮凶，那“空房”就是作案现场。</p>'}
+      {name:'黑行者',av:'g3',time:'2019-10-18 20:45',body:'<p>如月公园吗？我记得那个雨天怪谈里遇害的女生是不是就是在如月公园的湖里。当时一直觉得如月公园这个名字取的不太好，让人联想到了如月车站。</p>'},
+      {name:'与期末作业不共戴天',av:'g4',time:'2019-10-18 21:00',body:'<p>好可怕。如月公园在我家附近，我晚上吃完饭就喜欢去那边散步的。以后不敢去了。</p>'},
+      {name:'与此无关',av:'g1',time:'2019-10-18 21:10',body:'<p>槐市最近的怪谈会不会太多了，我好害怕QAQ</p>'},
+      {name:'黑行者',av:'g3',time:'2019-10-18 21:20',body:'<p>总觉得有点微妙。楼楼你说的两天前，是16号吧？</p>'},
+      {name:'出门遛弯',av:'g5',time:'2019-10-18 21:22',op:true,body:'<p>是的。怎么了？</p>'},
+      {name:'黑行者',av:'g3',time:'2019-10-18 21:25',body:'<p>你看看隔壁那个雨天怪谈的帖子。总觉得好像，有点联系。我怕那个帖子的帖主伤心。不敢细说。你自己去看看吧。</p>'},
+      {name:'推理迷',av:'g2',time:'2019-10-19 02:00',body:'<p>本来觉得只是一个普通灵异帖子，这几天就没怎么在意。但是看了评论区，感觉确实有点微妙。但是现在没有思路，灵异部分太多了。我不好判断。白天我过去如月公园看看吧。</p>'},
+      {name:'持瓜路过',av:'g1',time:'2019-10-19 02:10',body:'<p>楼上太硬核了吧。以身犯险啊！要是玩剧本杀也一定菠萝头玩家。</p>'},
+      {name:'黑行者',av:'g3',time:'2019-10-19 02:15',body:'<p>带我一个呗。我也感觉怪怪的。</p>'},
+      {name:'推理迷',av:'g2',time:'2019-10-19 16:00',body:`<p>我们到这边看过了。没有什么异常。</p><p>但是在湖边捡到了一个蓝色雨滴的发夹。不知道有没有关联。</p>
+      <div class="clickable-img" onclick="getClue('c4')">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23333'/%3E%3Ctext x='50' y='50' font-family='sans-serif' font-size='12' fill='%23888' text-anchor='middle' dominant-baseline='middle'%3E发夹图片.jpg%3C/text%3E%3C/svg%3E" alt="发夹">
+      </div>
+      <p class="dim">【点击图片查看细节】</p>
+      `},
+      {name:'雨何时停',av:'g1',time:'2019-10-19 16:30',op:true,body:'<p>谢谢关心。但是我不只是雨天怪谈的贴主，也是这个论坛的版主。大家发的东西我都能看到的。</p><p>其实...我多少有点猜测了。但是不管怎么样。我都要找到她。</p>'},
+      {name:'雨何时停',av:'g1',time:'2019-10-19 16:31',op:true,replyTo:'推理迷',body:'<p>这个发夹！是我送给何辜的。</p>'},
+      {name:'与此无关',av:'g1',time:'2019-10-19 16:35',body:'<p>诶诶诶！居然！</p>'}
     ]
   },
   {
-    id:4, title:'在公园撞鬼之后，一直被“救命声”缠着', author:'出门遛弯', av:'g4',
-    tag:'我没骗人，真的听到了',
-    time:'2013-10-05 01:22', views:1203, replies:5, status:'lock', clue:'c4',
-    body:`<p>我快疯了。我需要把事情说出来。</p>
-      <p>上个月 28 号，我在老城区的废公园夜跑。跑到树林那边时，我听到草丛里有人喊“救命”。</p>
-      <p>我扒开树丛一看，一个浑身是血的女人，头发凌乱，正趴在地上往我这边爬。她拼命冲我挥手。</p>
-      <p>我当时吓疯了，以为撞见什么怪物，扭头就跑，还摔了一跤。</p>
-      <p>等我跑出公园，回头看，已经没人了。但回到家，我每天晚上都能听到“救命”。就在我耳边。</p>
-      <p>昨天我去公园找了，在草地里找到了一个女生的发夹，上面还有血。<span class="hid" onclick="this.classList.toggle('revealed')">我跑了之后，如果她没有获救，那就是被拖走了。我成了最后见到她的人，却跑了。</span></p>`,
+    id:4, title:'隔壁空屋一直有动静是幻听吗？', author:'后室', av:'g4',
+    tag:'已完结 · 坟贴', time:'2019-09-26 22:00', views:3104, replies:16, status:'end', clue:'c5', locked:true,
+    body:`<p>如题所述。这几天一直能听到隔壁传来尖叫声。特别是半夜。</p>
+      <p>我一开始觉得是幻听，后面感觉不太对劲，这个声音太真实了。于是我拿手机录了下来。也能听到，我就在想是不是隔壁住户有什么矛盾，但是不应该只能听到尖叫声啊。而且实在是有点影响到我了。</p>
+      <p>我就和物业反应了。但是物业告诉我，那间房子里面，根本没有人住。</p>
+      <p>我当然不信。随即我想到了电影《寄生虫》，就问那有没有可能是有人偷偷溜进去，大家都不知道呢？物业沉默了一会儿说。好，我带你进去看。</p>
+      <p>门开之后，里面果然空无一物，甚至还有一层灰尘，看着就是很久没人住的样子。</p>
+      <p>但是我总觉得不太对劲。隔壁的布局和我布局是相反，但是大部分相同。不知道是不是因为这个，总让我觉得不太对劲。</p>`,
     floors:[
-      {name:'持瓜路过',av:'g1',time:'2013-10-05 08:15',body:'<p>楼主你胆子也太小了。那可能是个真人，你怎么能跑呢！</p>'},
-      {name:'背后身无一人',av:'g4',time:'2013-10-05 09:30',body:'<p>又不是你的错，换我我也跑。万一是碰瓷的呢？</p>'},
-      {name:'推理迷',av:'g2',time:'2013-10-05 10:00',body:'<p>楼主，别太自责。你交发夹给警察是对的。这几天失踪案的频发，那个血人很可能就是受害者之一。</p>'}
+      {name:'持瓜路过',av:'g1',time:'2019-09-26 22:10',body:'<p>怎么感觉和隔壁贴楼道孩哭有点像，，，不会你们遇到同一件事情吧！</p>'},
+      {name:'短刀刺客',av:'g4',time:'2019-09-26 22:15',body:'<p>楼主不会住在城南田仕小区c栋四楼吧？</p>'},
+      {name:'后室',av:'g4',time:'2019-09-26 22:20',op:true,body:'<p>不是的。我之前也略有耳闻田仕小区的事情，所以没租那里，选了另一个城北的老城区。叫林宜小区，住在d栋三楼。</p>'},
+      {name:'黑行者',av:'g3',time:'2019-09-26 22:25',body:'<p>。。。。。。楼主这名字应该也对怪谈感兴趣吧。但是防了其一没防其二啊。你没感觉林宜小区这个名字也怪有歧义的吗？虽然网上是没啥关于林宜小区的怪谈。但是根据我收集到的线索。林宜小区也经常有一些怪事。不过大家都觉得是因为老小区。可能是设备太陈旧了引起的。所以网上没有太多流言。</p>'},
+      {name:'后室',av:'g4',time:'2019-09-26 22:30',op:true,body:'<p>啊，，，当时入住时是觉得名字怪怪的。但是一下子没说出来是什么原因。本来以为是幻听的。这下好了QAQ</p>'},
+      {name:'江州',av:'g5',time:'2019-09-26 22:40',body:'<p>小同志也别慌。我可以给你理性分析一下。根据我多年的生活经验。听到隔壁传来的声音不一定是隔壁的。也有可能是因为老小区隔音不好，楼上的声音通过墙体传导到你这里，让你误以为是隔壁的了。</p>'},
+      {name:'后室',av:'g4',time:'2019-09-26 22:45',op:true,body:'<p>谢谢江州同志。我安心多了！明天我再去问问物业吧！</p>'},
+      {name:'推理迷',av:'g2',time:'2019-09-26 23:00',body:'<p>你说感觉隔壁布局不对劲。能说得出是因为什么吗？感觉这是一个关键点。</p>'},
+      {name:'后室',av:'g4',time:'2019-09-26 23:05',op:true,body:'<p>事情居然还没结束嘛QAQ。我也说不出具体的，就是感觉上，也有可能因为相反所以不对劲。</p>'},
+      {name:'推理迷',av:'g2',time:'2019-09-26 23:15',body:'<p>如果只是布局相反应该不会有这么强烈的感觉。我网上查了一下林宜小区的平面图，d栋的布局基本上一样。你如果觉得不对劲。会不会是感觉哪多了一块区域，或者少了一块区域？【林宜小区d栋房子平面图.JPG】</p>'},
+      {name:'后室',av:'g4',time:'2019-09-26 23:20',op:true,body:'<p>你这么一说，我好像就有头绪了。在他们放电视的那个位置背后应该会有个空间了。但是我当时去的时候没看到。</p>'},
+      {name:'推理迷',av:'g2',time:'2019-09-26 23:25',body:'<p>那这就好解释了，有没有可能人藏在那个空间里面？但是地上有一层灰尘这点又不好判断了。</p>'},
+      {name:'后室',av:'g4',time:'2019-09-26 23:30',op:true,body:'<p>哦哦，有个点忘说了！地板上是有部分是铺了地毯的！灰色的地毯，也有点看不出来有没有灰尘。</p>'},
+      {name:'惊奇队长',av:'g1',time:'2019-09-26 23:35',body:'<p>什么！？这么重要的事情楼主早点说呀！</p>'},
+      {name:'推理迷',av:'g2',time:'2019-09-26 23:40',body:'<p>这样一来就能解释的通了。建议楼主还是不要打草惊蛇。如果说你是住户，你会觉得不太对劲，但说不出来。但是物业应该能直接想到，但是他没有说。你现在还是假装什么也不知道吧。然后搬离这里再报警，不然怕会有什么事情。</p>'},
+      {name:'后室',av:'g4',time:'2019-09-26 23:45',op:true,body:'<p>好的！</p>'}
     ]
   },
   {
-    id:5, title:'村里来了个疯女人，每天挨家挨户敲门喊“死”', author:'村里唯一的大学生', av:'g5',
-    tag:'晚上去旱厕回头就看到她',
-    time:'2013-11-12 18:30', views:2201, replies:7, status:'lock', clue:'c5',
-    body:`<p>坐标隔壁市偏远山村。大概三个月前，村头的光棍老刘家，买了个媳妇。</p>
-      <p>那媳妇长得很漂亮，但脑子有问题。老刘也不管她，就由着她在村里乱走。她每天也不睡觉，就挨家挨户地去敲门，一直喊：“死……死……死……”</p>
-      <p>后来我听村里几个喝酒的老光棍说漏嘴了。说这女娃本来是个大学生，被人贩子拐了，还有一个同伴。同伴为了护她被打死了。她亲眼看着同伴被装进垃圾袋里拖走，就直接疯了。<span class="hid" onclick="this.classList.toggle('revealed')">他们提到的那个死去的同伴，名字好像叫“何辜”。</span></p>`,
+    id:5, title:'村里的那个疯女人', author:'村里唯一的大学生', av:'g3',
+    tag:'连载中', time:'2019-10-30 19:00', views:954, replies:12, status:'run', clue:'c6', locked:false,
+    body:`<p>四天前，我家里人叫我赶紧请假回家一趟。我以为出啥急事了。吓得我赶紧请假回家。</p>
+      <p>我老家在崂山那边，离槐市有点距离，也有点偏。差不多两天我才回到，回到也已经很晚了。我老家那块比较破，也没有钱修路灯。都是靠家家户户的房里传出来的一点亮光。如果是第一次来会觉得有点可怕。但是这毕竟是我那么多年一直走的路。所以我是不怕的，很迅速窜梭在道路之间。</p>
+      <p>走着走着我听到后面有脚步声，回头一看。于是我加快了脚步，听到后面的脚步声越来越大。此时我也快走到村子里面了。</p>
+      <p>于是我壮着胆子回头，看到一个面黄肌瘦。浑身脏兮兮，头发也乱糟糟的女人。不是我说。即使是我一个一米八的大男人，也吓到了。那天晚上感觉整个村子都听到了我的尖叫声。</p>
+      <p>后面我父母和我说，那是我前屋那家人的媳妇。不知道什么时候疯了。</p>
+      <p>我记得她几年前还挺正常的。几年过去变化好大。不知道是不是因为现在疯掉了，所以也没怎么打理自己。感觉长相和我离开村子前也不太一样了，不过和之前一样很瘦。</p>
+      <p>前屋那家人也不管她，她就成天到处乱跑。她每到一个人面前就盯着那个人说"死""死""死"。特别吓人。不知道是不是在山里面撞鬼了。</p>
+      <p>不过只有一个人例外。不知道为什么她特别喜欢村口的贺姑。每次有人叫贺姑。她整个一下怔住了。然后走到贺姑面前不停的说"谢谢""谢谢"。贺姑也一头雾水。现在是不是几年前帮过她什么。</p>`,
     floors:[
-      {name:'一位网友',av:'g3',time:'2013-11-12 19:00',body:'<p>买媳妇是违法犯罪，楼主你为什么不报警？</p>'},
-      {name:'短刀刺客',av:'g4',time:'2013-11-12 19:30',body:'<p>这还用问？肯定是黑吃黑，村里人包庇呗。</p>'},
-      {name:'黑夜行',av:'g4',time:'2013-11-12 20:10',body:'<p>她一直喊“死”，可能是因为她潜意识里还在经历那场死亡。</p>'},
-      {name:'雨何时停',av:'g1',time:'2013-11-12 21:00',body:'<p>何辜……是我朋友。谢谢你告诉我这些。</p>'}
+      {name:'在此之间',av:'g5',time:'2019-10-30 19:10',body:'<p>你这...除了你在槐市上大学。也和槐市无关啊，也和怪谈无关啊。</p>'},
+      {name:'村里唯一的大学生',av:'g3',time:'2019-10-30 19:15',op:true,body:'<p>这不是想看看，大家知不知道有没有类似怪谈嘛。会一直说死死死的。</p>'},
+      {name:'黑行者',av:'g3',time:'2019-10-30 19:20',body:'<p>据我所了解的。倒是有类似的，不过地点在槐市，而且内容也对不上。不要找怪谈，连我这个怪谈爱好者都感觉不是怪谈这么简单。</p>'},
+      {name:'推理迷',av:'g2',time:'2019-10-30 19:30',body:'<p>有点，奇怪？</p>'},
+      {name:'持瓜路过',av:'g1',time:'2019-10-30 19:32',body:'<p>是推理迷大佬！请快大佬发言！</p>'},
+      {name:'推理迷',av:'g2',time:'2019-10-30 19:40',body:`<p>疑点一：一个人长相已经定型之后就算几年不打扮，长相也变化也不会太大。</p><p>疑点二：贺姑不记得自己帮过她什么。但是她对贺姑反应很大。有没有可能不是对人，而是对<span class="clickable-text" onclick="getClue('c7')">"贺姑"</span>这两个字。</p>`},
+      {name:'在此之间',av:'g5',time:'2019-10-30 19:45',body:'<p>不明觉厉</p>'},
+      {name:'村里唯一的大学生',av:'g3',time:'2019-10-30 19:50',op:true,body:'<p>有点没太懂，啥意思啊？</p>'},
+      {name:'推理迷',av:'g2',time:'2019-10-30 20:00',body:'<p>很简单。为什么突然叫你回去。</p><p>1.有摆席吗？你能确定那个女人就是几年前哪个吗？</p><p>2.她是自愿嫁过来的吗？你也说了你那里很偏很穷。</p><p>3.她会不会有亲戚或者认识的人叫贺姑。或者说"he gu" @雨何时停</p><p>你发帖到底是想了解怪谈，还是为了让自己良心好受点。你其实早就察觉了吧。</p>'},
+      {name:'黑行者',av:'g3',time:'2019-10-30 20:10',body:'<p>好厉害...这就是资深推理者嘛</p>'},
+      {name:'持瓜路过',av:'g1',time:'2019-10-30 20:15',body:'<p>好厉害......不过为什么要艾特版主？是不是艾特错人了？</p>'},
+      {name:'在此之间',av:'g5',time:'2019-10-30 20:20',body:'<p>我也好奇</p>'},
+      {name:'雨何时停',av:'g1',time:'2019-10-30 20:30',op:true,replyTo:'推理迷',body:'<p>谢谢。但估计他不会回复了。</p>'},
+      {name:'黑行者',av:'g3',time:'2019-10-30 20:35',body:'<p>难道说，版主那个帖子说的就是.......</p>'}
     ]
   }
 ];
 
 /* ============================================================
-   线索（纯净拐卖版）
+   线索
 ============================================================ */
 const CLUES = {
-  c1:{name:'雨夜失踪者', cat:'THREAD 01', desc:'三个女大学生都在雨天失踪，且失踪前身边出现过一个矮小的人影。', quote:'“那矮个子走路的姿势根本不像小孩。”'},
-  c2:{name:'猫眼下的盲区', cat:'THREAD 02', desc:'楼道哭声其实是蹲在门外的矮小成年人发出的，身高刚好避开 1.5 米的猫眼。', quote:'“正常人谁半夜蹲在别人家门口哭啊！”'},
-  c3:{name:'402的墙缝', cat:'THREAD 03', desc:'402 确实是空的，但物业的万能卡可以开隔壁的房，暗门相通。', quote:'“物业开门的时候动作太熟练了。”'},
-  c4:{name:'公园里的血人', cat:'THREAD 04', desc:'楼主在公园撞见的血人，正是逃出来的何辜，因楼主逃跑被再次抓回。', quote:'“我成了最后见到她的人，却跑了。”'},
-  c5:{name:'疯女人的呓语', cat:'THREAD 05', desc:'疯女人是唯一活口，目睹了何辜被打死拖走的过程，被卖到了山村。', quote:'“一直喊：死……死……死……”'},
-  c6:{name:'买家的交易群', cat:'PM · 雨何时停', desc:'邓雨婷查到的群聊记录：这伙人在群里物色女大学生，何辜因反抗太激烈被打死。', quote:'“这个太烈了，没气儿了。扔了吧。”'},
-  c7:{name:'沉重的黑袋子', cat:'PM · 老周', desc:'老周回忆，那天晚上看到一个黑衣人拖着极其沉重的黑色大垃圾袋，往废公园方向走。', quote:'“黑色袋子里装的不是垃圾。”'},
-  c8:{name:'保安的交接', cat:'PM · 雨何时停', desc:'物业保安老张是内鬼，每次作案后负责清理现场并转移受害者。', quote:'“有监控有录像，怎么可能有人。”'},
-  c9:{name:'死者的名字', cat:'PM · 雨何时停', desc:'所有线索拼凑到最后，指向一个无辜的名字：何辜（何其无辜）。', quote:'“她只是想送那个小孩回家。”'},
+  c1:{name:'雨天怪谈', cat:'THREAD 01', desc:'雨天失踪的女学生，监控显示身边跟着一个矮小的小孩。', quote:'“那天下着暴雨...身边还有一个小孩。”'},
+  c2:{name:'楼道哭声', cat:'THREAD 02', desc:'猫眼视角有盲区。楼道里的小孩哭声，可能是矮小成年人蹲在门口发出的。', quote:'“你继续住那很危险。”'},
+  c3:{name:'如月公园', cat:'THREAD 03', desc:'楼主在如月公园看到浑身是血的女人求救，被吓跑后，疑似遭遇了灵异事件。', quote:'“声音像是缠上了我一样。”'},
+  c4:{name:'蓝色水滴发夹', cat:'THREAD 03 · 隐藏', desc:'推理迷在如月公园草丛里捡到的发夹，经版主确认，是她送给何辜的。', quote:'“这个发夹！是我送给何辜的。”'},
+  c5:{name:'空屋幻听', cat:'THREAD 04', desc:'隔壁的空屋有尖叫声，且客厅背后疑似有一块多出来的暗门空间。', quote:'“在他们放电视的那个位置背后应该会有个空间了。”'},
+  c6:{name:'疯女人', cat:'THREAD 05', desc:'山村被拐来的疯媳妇，一直对人喊“死”，看着像女大学生。', quote:'“长相和我离开村子前也不太一样了。”'},
+  c7:{name:'贺姑？he gu', cat:'THREAD 05 · 隐藏', desc:'疯女人对“贺姑”两个字反应极大，可能不是人名，而是发音“he gu（何辜）”。', quote:'“或者说"he gu" @雨何时停”'},
+  c8:{name:'拐走女大学生', cat:'THREAD 01 · 隐藏', desc:'推理迷推断出的真相：诱饵是为了把心善的女大学生骗去拐卖。', quote:'“有没有可能小孩是诱饵。”'},
+  c9:{name:'何辜之死', cat:'HIDDEN', desc:'何辜因为反抗太激烈，风头太大，被团伙活活打死，装进黑袋抛尸。', quote:'“何辜，何其无辜。”'},
 };
 
 const EXIF_DATA = {
-  c1:'原图：雨天监控截图\n时间：2013-09-01 22:30\n说明：白衣女生身边跟着一个黑影。\n身高比例异常。',
-  c2:'原图：无\n设备不支持\n说明：猫眼高度为 1.5 米。\n如果对方身高不到 1.2 米，确实看不到。',
-  c3:'原图：402 室内照\n时间：2013-09-20 21:00\n说明：电视柜后方墙纸有撕裂痕迹。\n可能是一道暗门。',
-  c4:'原图：草地上的发夹\n时间：2013-09-28 23:00\n说明：发夹上有人血。\n经比对，属于失踪女生何辜。',
-  c5:'原图：无\n说明：被拐卖的女大学生，精神失常。\n口中不断重复“死”。',
-  c6:'内部截屏：买家群聊\n消息：“这个太烈了，没气儿了。扔了吧。”',
-  c7:'内部截屏：监控死角\n“今晚老张值班，监控关了，把黑袋子拖进公园废井里。”',
-  c8:'内部截屏：保安排班表\n备注：“今晚老张值班，安全。”',
-  c9:'无图片。\n由所有线索拼凑。\n名字：何辜。',
+  c1:'监控截图：白衣女生撑伞走入小巷，身边跟一个矮小黑影。',
+  c2:'猫眼高度 1.5 米，如果凶手是蹲着的矮小成年人，刚好是视觉盲区。',
+  c3:'如月公园树林，由于路灯损坏，晚上极其昏暗。',
+  c4:'发夹上刻着极小的字母：H.G. （何辜的首字母）',
+  c5:'平面图显示，电视墙背后有 1.5 平米的隐秘空间。',
+  c6:'疯女人手臂上有被绳子捆绑的旧伤。',
+  c7:'“贺姑”在当地方言里没有特殊含义，但是听起来像“何辜”。',
+  c8:'聊天记录：“雨天好办事，找个矮子装小孩，一骗一个准。”',
+  c9:'致死原因：重度颅脑损伤。',
 };
 
 const PAIRS = [
-  {a:'c1', b:'c2', t:'雨天失踪案的诱饵，正是楼道里蹲在猫眼死角的人。', k:'诱饵'},
-  {a:'c2', b:'c3', t:'被骗出门的女生，被带到了 402 的暗门里。', k:'作案现场'},
-  {a:'c3', b:'c4', t:'何辜拼命从 402 逃出，在公园撞见楼主却被吓跑，导致被抓回。', k:'逃亡失败'},
-  {a:'c4', b:'c5', t:'何辜死后，同伙的女生疯了被卖到山村。', k:'幸存者'},
-  {a:'c3', b:'c8', t:'402 能成为作案现场，是因为物业保安老张的包庇。', k:'内鬼'},
-  {a:'c8', b:'c7', t:'保安清理现场后，黑衣人用黑袋子转移了尸体。', k:'转移'},
-  {a:'c7', b:'c6', t:'转移尸体后，买家群里记录了何辜死亡的原因。', k:'毁尸灭迹'},
-  {a:'c6', b:'c9', t:'这个被打死的女生，叫何辜。', k:'何辜'},
-  {a:'c9', b:'c1', t:'这场悲剧，开始于雨天她好心送一个小孩回家。', k:'闭环'},
+  {a:'c1', b:'c2', t:'雨天拐卖案的诱饵，是楼道里蹲在猫眼死角的矮个子。', k:'诱饵与盲区'},
+  {a:'c1', b:'c3', t:'因为何辜在雨天失踪，所以有了如月公园水鬼找替身的传闻。', k:'怪谈的诞生'},
+  {a:'c3', b:'c4', t:'如月公园的血人正是何辜，她拼死逃出求救，留下了发夹。', k:'绝望的求救'},
+  {a:'c1', b:'c8', t:'版主和推理迷推断出，这是一场利用同情心的连环拐卖案。', k:'案件定性'},
+  {a:'c5', b:'c2', t:'空屋惨叫声和楼道哭声，都是团伙在同一个小区的作案痕迹。', k:'作案现场'},
+  {a:'c5', b:'c8', t:'物业是帮凶，利用空屋的暗门囚禁受害者。', k:'内鬼与暗门'},
+  {a:'c6', b:'c7', t:'村里的疯女人，因为听到了“贺姑（何辜）”的名字，引发了创伤应激。', k:'幸存者的呓语'},
+  {a:'c7', b:'c1', t:'疯女人的存在，彻底印证了何辜已经被拐卖且遇害的闭环。', k:'最终的印证'},
+  {a:'c8', b:'c9', t:'因为拐卖，所以何辜反抗，最终被打死。', k:'真相大白'},
 ];
 
 const CONTACTS = [
   {
     id:'ytzq', name:'雨何时停', av:'g1', color:'#e5432f',
     intro:'邓雨婷 · 推理社',
-    hidden:true, // 初始隐藏，首次读帖后解锁
+    hidden:true, 
     msgs:[]
   },
   {
-    id:'laozhou', name:'夜班老周', av:'g3', color:'#a08a5a',
-    intro:'槐市巡防队员',
-    unlockBy:[1, 2],
+    id:'tuili', name:'推理迷', av:'g2', color:'#3a5a4a',
+    intro:'民间推理大神',
+    hidden:true, 
     msgs:[]
   },
   {
-    id:'zhang', name:'保安老张', av:'g2', color:'#a08a5a',
-    intro:'4 号楼物业保安',
-    unlockBy:[3],
-    msgs:[]
-  },
-  {
-    id:'survivor', name:'疯子', av:'g5', color:'#a08a5a',
-    intro:'山村里的女人',
-    unlockBy:[5],
+    id:'zhang', name:'守卫者', av:'g2', color:'#a08a5a',
+    intro:'小区物业',
+    unlockBy:[4],
     msgs:[]
   },
   {
@@ -608,13 +739,13 @@ function isContactVisible(c){
 }
 
 const HELP_WORDS = ['线索','卡','怎么','下一步','帮我','怎么办','不知道','难','不会','提示','救','继续','然后','做什么','哪里','在哪','搞不定','太难','过不去','帮忙','咋办','如何','求','懵','晕','卡住','卡了','没头绪','没思路','救命','卡死','傻','啥','搞什么','啥意思'];
-const FORBIDDEN = ['何辜','人贩子','拐卖','侏儒','老张','碎尸','绞肉机','器官','杀人','犯罪','暗网'];
+const FORBIDDEN = ['何辜','人贩子','拐卖','侏儒','老张','碎尸','绞肉机','器官','杀人','犯罪','暗网','尸体'];
 
 const REPLY_POOL = {
-  1:['雨天真的得小心，那些人可能就是利用我们心软。','想想就后怕。','一定要严惩！'],
+  1:['楼主别自责了，错的不是你，是那些坏人。','一定要严惩！','希望能早点找到她。'],
   2:['我说怎么只有哭声看不到人，原来是蹲着的！','太可怕了，以后千万不要随便开门。'],
-  3:['我就说物业有问题，怎么可能一点声音都听不到。','暗门！绝对是暗门！'],
-  4:['楼主你不用太自责，换做谁都会被吓跑的。','希望警察早点破案。'],
+  3:['楼上推理能力太强了，简直是大佬。','如月公园以后绝对不去了。'],
+  4:['我就说物业有问题，怎么可能一点声音都听不到。','暗门！绝对是暗门！'],
   5:['买卖同罪！买媳妇的也该死！','这个疯女人太可怜了。'],
 };
 
@@ -630,7 +761,6 @@ function route(){
   if(h === '#/trueend'){ renderEnding('true'); return; }
   if(h === '#/'){ renderIndex(); return; }
   if(h.startsWith('#/t/')){ const id = parseInt(h.slice(4),10); renderThread(id); return; }
-  if(h.startsWith('#/search/')){ const kw = decodeURIComponent(h.slice(9)); renderSearch(kw); return; }
   if(h === '#/pm'){ renderPM(null, false); return; }
   if(h === '#/archive'){ renderBoard(); return; }
   if(h === '#/hidden'){ renderHidden(); return; }
@@ -661,7 +791,6 @@ function doLogin(){
   if(!name) return alert('请输入论坛 ID');
   if(name.length > 12) return alert('ID 太长');
   
-  // 触发何辜彩蛋
   if(name === '何辜'){
     triggerHeGuGlitch();
     return;
@@ -674,38 +803,49 @@ function doLogin(){
 
 function triggerHeGuGlitch(){
   const layer = document.querySelector('.login-page');
-  const texts = ['你知道什么？', '你知道什么？', '你知道什么？', '你知道什么？', '你知道什么？'];
   
-  for(let i=0; i<40; i++){
+  for(let i=0; i<50; i++){
     setTimeout(()=>{
       const el = document.createElement('div');
       el.className = 'glitch-name-text';
-      el.innerText = '你知道什么？';
+      const texts = ['你知道什么？', '你知道什么！', '何辜', '救救我', '为什么'];
+      el.innerText = texts[Math.floor(Math.random()*texts.length)];
       
-      // 随机位置、大小
       el.style.left = `${Math.random() * 80}%`;
       el.style.top = `${Math.random() * 80}%`;
-      const size = Math.random() * 30 + 14; // 14px 到 44px
+      const size = Math.random() * 40 + 14; 
       el.style.fontSize = `${size}px`;
-      el.style.opacity = '0';
       
       layer.appendChild(el);
       
-      // 动画结束后移除
       setTimeout(()=>el.remove(), 3000);
-    }, i * 100);
+    }, i * 80);
   }
 
-  // 3.5秒后恢复正常登录
   setTimeout(()=>{
     const inp = $('#login-name');
     if(inp) inp.value = '';
-    alert('你是什么人？');
+    alert('你不该用这个名字。');
   }, 3500);
 }
 
 /* ============================================================
-   外壳
+   获取线索的通用弹窗
+============================================================ */
+function getClue(cid){
+  const c = CLUES[cid];
+  if(!c) return;
+  if(!STATE.clues.has(cid)){
+    STATE.clues.add(cid);
+    saveState();
+    toast(`<b>发现线索</b>：${c.name}\n${c.desc}`);
+  }else{
+    toast(`<b>线索详情</b>：${c.name}\n${c.desc}`);
+  }
+}
+
+/* ============================================================
+   外壳与首页
 ============================================================ */
 function unreadPMCount(){
   let n = 0;
@@ -734,16 +874,13 @@ function shell(inner, active){
     <span style="margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink3)">今日: ${isLateNight()?1:0}　会员: ${isLateNight()?2:1}</span>
   </div></div>
   <div class="wrap main">${inner}</div>
-  <div class="footer">Powered by GuaitanBBS · © 2008-2019 怪谈事件簿 · GMT+8<br>本版仅作存档 · 请勿相信任何非官方私信</div>`;
+  <div class="footer">Powered by GuaitanBBS · © 2019 怪谈事件簿 · GMT+8<br>本版仅作存档 · 请勿相信任何非官方私信</div>`;
 }
 
-/* ============================================================
-   首页
-============================================================ */
 function renderIndex(){
   const rows = THREADS.map(t=>{
     const isNew = !STATE.readThreads.has(t.id);
-    const status = t.status==='end' ? '<span class="tag-end">完结</span>' : (t.status==='run' ? '<span class="tag-run">连载</span>' : '');
+    const status = t.status==='end' ? '<span class="tag-end">完结/坟贴</span>' : '<span class="tag-run">连载中</span>';
     return `<tr onclick="openThread(${t.id})">
       <td class="col-i"><span class="dot ${isNew?'hot':''}"></span></td>
       <td><span class="tt">${t.title}${isNew?'<span class="new">NEW</span>':''}</span> ${status}<div class="tg">${t.tag}</div></td>
@@ -753,160 +890,20 @@ function renderIndex(){
     </tr>`;
   }).join('');
 
-  const guideHTML = STATE.guideClosed ? '' : `
-    <div class="guide-bar" id="guide-bar">
-      <b>指引</b>
-      <span>① 读帖 → ② 私信自动出现 → ③ 线索板连线 → ④ 输密码看档案。手机端直接点卡片连线。</span>
-      <span class="close" onclick="closeGuide()">×</span>
-    </div>`;
-
   $('#app').innerHTML = shell(`
-    <div class="notice"><b>公告</b><span>本版已于 2019 年 11 月停止更新。新帖一律锁定。<span class="hid" onclick="this.classList.toggle('revealed')">密码：B404，不要告诉别人。</span></span></div>
-    ${guideHTML}
-    <div class="search-bar">
-      <input id="search-input" placeholder="搜索帖子 / 用户 / 关键词……" onkeydown="if(event.key==='Enter')doSearch()">
-      <button onclick="doSearch()">搜索</button>
-    </div>
+    <div class="notice"><b>公告</b><span>本论坛由推理社接管，专门记录槐市异常事件。<span class="hid" onclick="this.classList.toggle('revealed')">密码提示：何辜消失的暗门房号。</span></span></div>
+    
     <h2 class="sec-title">槐市 · 怪谈事件簿 <small>共 ${THREADS.length} 主题</small></h2>
     <table class="tbl"><thead><tr>
       <th class="col-i"></th><th>主题</th><th class="col-a">作者</th><th class="col-n">回复/查看</th><th class="col-l">发布时间</th>
     </tr></thead><tbody>${rows}</tbody></table>
-    <div class="rules">
-      <h4>本版规则</h4>
-      <span>一</span>禁止发布真实姓名、住址、电话、单位。<br>
-      <span>二</span>禁止发布未经证实的消息。<br>
-      <span>三</span>违规帖一律移至 <a onclick="location.hash='#/archive'">回收站</a>。<br>
-      <span>四</span>请勿挖坟。超过六个月无人回复自动锁定。
-    </div>
     <div class="online">
       在线会员 - 共 2 人在线 · <b>${esc(STATE.user)}</b>，<b>雨何时停</b>${isLateNight()?'，<span class="hid" onclick="this.classList.toggle(\'revealed\')">?</span>':''}<br>
-      版主: <b>雨何时停</b> · 最后一帖 2013-01-09
+      版主: <b>雨何时停</b> · 最后一帖 2019-10-30
     </div>
   `);
   document.title = '怪谈事件簿 · 槐市';
   updateFloatBtns();
-}
-
-function closeGuide(){
-  STATE.guideClosed = true;
-  saveState();
-  const g = $('#guide-bar');
-  if(g) g.remove();
-}
-
-function doSearch(){
-  const inp = $('#search-input');
-  const kw = (inp.value||'').trim();
-  if(!kw) return toast('请输入搜索内容。');
-  location.hash = '#/search/' + encodeURIComponent(kw);
-}
-
-/* ============================================================
-   搜索
-============================================================ */
-function renderSearch(kw){
-  let bodyHTML = '';
-  if(FORBIDDEN.some(w => kw.includes(w))){
-    bodyHTML = `<div class="notice" style="border-color:#5a2018;background:#1a0a08"><b>系统</b><span>该关键词已被屏蔽。<span class="hid" onclick="this.classList.toggle('revealed')">你不该搜索这个。</span></span></div>`;
-  }else if(kw === '何辜'){
-    bodyHTML = `<div style="text-align:center;padding:60px 20px;color:var(--ink3)">
-      <div style="font-size:14px;font-family:var(--mono)">0 条结果</div>
-      <p style="margin-top:16px;font-size:12px">本站没有与「${esc(kw)}」相关的帖子。</p>
-      <p class="hid" style="font-size:12px;margin-top:20px" onclick="this.classList.toggle('revealed')">这个名字……不该被搜索。</p>
-    </div>`;
-  }else if(kw === '老张'){
-    bodyHTML = `<div style="text-align:center;padding:60px 20px;color:var(--ink3)">
-      <div style="font-size:14px;font-family:var(--mono)">1 条结果</div>
-      <p style="margin-top:16px;font-size:12px">该帖子已被删除。</p>
-      <p><a onclick="location.hash='#/t/99'">查看存档</a></p>
-    </div>`;
-  }else if(kw === 'B404'){
-    bodyHTML = `<div style="text-align:center;padding:60px 20px;color:var(--ink3)">
-      <div style="font-size:14px;font-family:var(--mono)">1 条结果</div>
-      <p style="margin-top:16px;font-size:12px">用户「?」正在输入……</p>
-      <p><a onclick="location.hash='#/pm';setTimeout(()=>openPM('suspect'),50)">打开私信</a></p>
-    </div>`;
-  }else if(kw === '雨何时停'){
-    bodyHTML = `<div style="border:1px solid var(--line);background:var(--card);padding:16px;margin-bottom:14px">
-      <div style="font-size:14px;color:var(--ink)">用户 · 雨何时停</div>
-      <div style="font-size:11.5px;color:var(--ink3);font-family:var(--mono);margin-top:6px">注册：2014-05-06　帖子：1,024　最后登录：2019-11-30</div>
-      <div style="font-size:12px;color:var(--ink2);margin-top:8px">简介：邓雨婷，推理社成员。<span class="hid" onclick="this.classList.toggle('revealed')">（她还在寻找何辜）</span></div>
-    </div>`;
-  }else{
-    const hits = THREADS.filter(t => t.title.includes(kw) || t.tag.includes(kw) || t.body.includes(kw) || (t.floors||[]).some(f=>f.body.includes(kw)));
-    if(hits.length === 0){
-      bodyHTML = `<div style="text-align:center;padding:60px 20px;color:var(--ink3);font-size:13px">0 条结果。试试别的关键词。</div>`;
-    }else{
-      bodyHTML = hits.map(t=>`
-        <div style="border:1px solid var(--line);background:var(--card);padding:14px;margin-bottom:12px;cursor:pointer" onclick="openThread(${t.id})">
-          <div style="font-size:14px;color:var(--ink)">${t.title}</div>
-          <div style="font-size:11.5px;color:var(--ink3);font-family:var(--mono);margin-top:4px">${t.author} · ${t.time}</div>
-        </div>`).join('');
-    }
-  }
-
-  $('#app').innerHTML = shell(`
-    <div class="crumb"><a onclick="location.hash='#/'">怪谈事件簿</a> › 搜索</div>
-    <div class="backbar"><a class="backlink" onclick="location.hash='#/'">← 返回首页</a></div>
-    <h2 class="sec-title">搜索结果 <small>关键词：${esc(kw)}</small></h2>
-    ${bodyHTML}
-  `, '搜索');
-  document.title = `搜索「${kw}」 · 怪谈事件簿`;
-  updateFloatBtns();
-}
-
-/* ============================================================
-   404
-============================================================ */
-function render404(){
-  $('#app').innerHTML = shell(`
-    <div class="err404">
-      <h1>404</h1>
-      <p>该主题不存在，或已被删除。</p>
-      <p style="margin-top:30px">管理员：雨何时停</p>
-      <a onclick="location.hash='#/'">← 返回版面</a><br>
-      <span class="hid" onclick="this.classList.toggle('revealed')" style="cursor:pointer">她来过这里。</span>
-    </div>
-  `, '404');
-  document.title = '404 · 怪谈事件簿';
-  updateFloatBtns();
-}
-
-/* ============================================================
-   帖子与线索获取
-============================================================ */
-function checkCluesAndUnlocks(id) {
-  const t = THREADS.find(x=>x.id===id);
-  if(!t) return;
-  
-  if(!STATE.readThreads.has(id)) {
-    const y = CONTACTS.find(c=>c.id==='ytzq');
-    if(y.hidden){
-      y.hidden = false;
-      y.msgs.push({from:'ytzq', text:'你也看到那些帖子了吧。', time:now()});
-      y.msgs.push({from:'ytzq', text:'我叫邓雨婷。何辜是我最好的朋友。', time:now()});
-      y.msgs.push({from:'ytzq', text:'最近槐市失踪了好几个女生，我一直在收集相关的帖子。如果你愿意帮我，去私信我吧。', time:now()});
-      STATE.pmRead['ytzq'] = false;
-      setTimeout(()=>toast(`<b>新的私信</b>：雨何时停\n去私信页看看。`), 1500);
-    }
-
-    const beforeVisible = CONTACTS.filter(c => isContactVisible(c)).map(c=>c.id);
-    STATE.readThreads.add(id);
-    
-    if(t.clue && !STATE.clues.has(t.clue)){
-      STATE.clues.add(t.clue);
-      setTimeout(()=>toast(`<b>发现线索</b>：${CLUES[t.clue].name}`), 400);
-    }
-    
-    const afterVisible = CONTACTS.filter(c => isContactVisible(c)).map(c=>c.id);
-    const newOnes = afterVisible.filter(x => !beforeVisible.includes(x) && x !== 'ytzq');
-    if(newOnes.length > 0){
-      const names = newOnes.map(id=>CONTACTS.find(c=>c.id===id)?.name).filter(Boolean).join('、');
-      setTimeout(()=>toast(`<b>新的私信</b>：${names}\n去私信页看看。`), 2000);
-    }
-    
-    saveState();
-  }
 }
 
 function openThread(id){
@@ -917,28 +914,71 @@ function renderThread(id){
   const t = THREADS.find(x=>x.id===id);
   if(!t){ render404(); return; }
 
-  checkCluesAndUnlocks(id);
+  if(!STATE.readThreads.has(id)) {
+    const y = CONTACTS.find(c=>c.id==='ytzq');
+    if(y.hidden){
+      y.hidden = false;
+      y.msgs.push({from:'ytzq', text:'你看到那些帖子了？', time:now()});
+      y.msgs.push({from:'ytzq', text:'你喜欢推理吗？', time:now()});
+      y.msgs.push({from:'ytzq', text:'怪谈推理社邀请函。（点击接受）', time:now()});
+      STATE.pmRead['ytzq'] = false;
+      STATE.pmWaitReply = true;
+      setTimeout(()=>toast(`<b>新的私信</b>：雨何时停\n去私信页看看。`), 1500);
+    }
+
+    if(id === 4 && !STATE.pmRead['zhang']){
+      const z = CONTACTS.find(c=>c.id==='zhang');
+      z.msgs.push({from:'zhang', text:'那个住户有点抑郁症，所以会出现幻听。', time:now()});
+      z.msgs.push({from:'zhang', text:'我朋友是那边物业，已经和我反应好几次了。', time:now()});
+      z.msgs.push({from:'zhang', text:'还给我看了她的诊断书。', time:now()});
+      z.msgs.push({from:'zhang', text:'【诊断书.jpg】', time:now()});
+      STATE.pmRead['zhang'] = false;
+      setTimeout(()=>toast(`<b>新的私信</b>：守卫者\n去私信页看看。`), 1500);
+    }
+
+    STATE.readThreads.add(id);
+    if(t.clue && !STATE.clues.has(t.clue)){
+      STATE.clues.add(t.clue);
+      setTimeout(()=>toast(`<b>发现线索</b>：${CLUES[t.clue].name}`), 400);
+    }
+    saveState();
+  }
 
   const op = { name:t.author, av:t.av, time:t.time, body:t.body, sig:t.sig||'', op:true, rank:'楼主' };
   const all = [op, ...(t.floors||[])];
-  const replyCount = (t.floors||[]).length;
 
   const postsHTML = all.map((u,i)=>{
-    const rank = u.rank || (u.op ? '楼主' : '注册会员');
+    const rank = u.op ? '楼主' : (USERS[u.name]?.rk || '注册会员');
+    let replyTag = '';
+    if(u.replyTo){
+      replyTag = `<span class="reply-to">回复 <b>${esc(u.replyTo)}</b>：</span>`;
+    }
     return `<div class="post ${u.op?'':'npc'}">
       <aside class="pu">
-        <div class="av ${u.av||'g1'}"></div>
+        <div class="av ${u.av||'g1'}" onclick="showProfile('${esc(u.name)}')"></div>
         <div class="un">${esc(u.name)}</div>
         <div class="rk">${rank}</div>
         <div class="ps"><span>帖子 —</span><span>注册 —</span></div>
       </aside>
       <div class="pc">
         <div class="phd"><span>发表于 ${u.time}</span><span class="fl">${i+1} 楼</span></div>
-        <div class="pb">${u.body}</div>
-        ${u.sig ? `<div class="sig">${u.sig}</div>` : ''}
+        <div class="pb">${replyTag}${u.body}</div>
       </div>
     </div>`;
   }).join('');
+
+  let replyBoxHTML = '';
+  if(t.locked){
+    replyBoxHTML = `<div style="text-align:center;padding:20px;color:var(--ink3);font-family:var(--mono);border:1px dashed var(--line);margin-top:20px">此贴已被锁定（坟贴），无法回复</div>`;
+  }else{
+    replyBoxHTML = `
+    <div class="reply-box">
+      <div class="hd">发表你的回复 <span style="color:var(--red3)">（注意：本版有敏感词审查）</span></div>
+      <textarea id="reply-text" placeholder="说点什么……"></textarea>
+      <button onclick="submitReply(${id})">发送回复</button>
+      <div class="warn" id="reply-warn"></div>
+    </div>`;
+  }
 
   $('#app').innerHTML = shell(`
     <div class="crumb"><a onclick="location.hash='#/'">怪谈事件簿</a> › <a onclick="location.hash='#/'">槐市</a> › 正文</div>
@@ -947,14 +987,9 @@ function renderThread(id){
       <a class="backlink" onclick="location.hash='#/archive'">线索板</a>
     </div>
     <h1 class="th-title">${t.title}</h1>
-    <div class="th-sub">查看 ${t.views} | 回复 ${replyCount} | 发帖 ${t.time}</div>
+    <div class="th-sub">查看 ${t.views} | 回复 ${t.floors?.length||0} | 发帖 ${t.time}</div>
     <div id="thread-posts">${postsHTML}</div>
-    <div class="reply-box">
-      <div class="hd">发表你的回复 <span style="color:var(--red3)">（注意：本版有敏感词审查）</span></div>
-      <textarea id="reply-text" placeholder="说点什么……"></textarea>
-      <button onclick="submitReply(${id})">发送回复</button>
-      <div class="warn" id="reply-warn"></div>
-    </div>
+    ${replyBoxHTML}
     <div class="backbar" style="margin-top:20px">
       <a class="backlink" onclick="openThread(${Math.max(1,id-1)})">← 上一篇</a>
       <a class="backlink" onclick="openThread(${Math.min(5,id+1)})">下一篇 →</a>
@@ -966,21 +1001,32 @@ function renderThread(id){
 }
 
 /* ============================================================
-   发帖 + 违禁词 + 乱码
+   发帖与违禁词
 ============================================================ */
 function submitReply(threadId){
   const ta = $('#reply-text');
   const warn = $('#reply-warn');
   const text = (ta.value||'').trim();
   if(!text){ warn.textContent = '请先输入内容。'; return; }
-  if(text.length > 200){ warn.textContent = '内容过长。'; return; }
-
+  
   const hit = FORBIDDEN.find(w => text.includes(w));
   if(hit){
     STATE.blockedCount++;
     saveState();
-    warn.textContent = `发帖失败：内容包含违禁词「${hit}」。已记录。(第 ${STATE.blockedCount}/9 次)`;
     ta.value = '';
+    
+    if(hit === '何辜'){
+      warn.textContent = '发帖失败：该名字已被永久抹除。';
+      document.body.classList.add('glitching');
+      setTimeout(()=>{
+        document.body.classList.remove('glitching');
+        warn.innerHTML = '<span style="color:var(--red3)">系统警告：不要试图在公共版块提及这个名字。</span>';
+        pushPM('ytzq', '你刚才…想发什么？', true);
+      }, 1500);
+      return;
+    }
+
+    warn.textContent = `发帖失败：内容包含违禁词「${hit}」。已记录。(第 ${STATE.blockedCount}/9 次)`;
     if(STATE.blockedCount >= 9 && !STATE.badEndTriggered){
       STATE.badEndTriggered = true;
       saveState();
@@ -990,9 +1036,6 @@ function submitReply(threadId){
     if(STATE.blockedCount === 3 && !STATE.glitchTriggered){
       STATE.glitchTriggered = true;
       saveState();
-      setTimeout(()=>triggerGlitch(), 500);
-    }
-    if(STATE.blockedCount === 6){
       setTimeout(()=>triggerGlitch(), 500);
     }
     return;
@@ -1008,7 +1051,6 @@ function submitReply(threadId){
       <div class="av g2"></div>
       <div class="un">${esc(STATE.user)}</div>
       <div class="rk">注册会员</div>
-      <div class="ps"><span>帖子 —</span><span>注册 —</span></div>
     </aside>
     <div class="pc">
       <div class="phd"><span>发表于 ${now()}</span><span class="fl">${myFloor} 楼</span></div>
@@ -1032,7 +1074,6 @@ function submitReply(threadId){
         <div class="av g5"></div>
         <div class="un">匿名用户</div>
         <div class="rk">游客</div>
-        <div class="ps"><span>帖子 —</span><span>注册 —</span></div>
       </aside>
       <div class="pc">
         <div class="phd"><span>发表于 ${now()}</span><span class="fl">${npcFloor} 楼</span></div>
@@ -1044,30 +1085,8 @@ function submitReply(threadId){
   }, 1400 + Math.random()*1200);
 }
 
-function triggerGlitch(){
-  const ov = $('#glitchOverlay'), txt = $('#glitchTxt');
-  let s = '';
-  for(let i=0;i<1200;i++) s += randGlitch(1);
-  txt.textContent = s;
-  ov.classList.add('on');
-  document.body.classList.add('glitching');
-  toast('<b>系统异常</b>：检测到多次违规提交。');
-  STATE.suspectUnlocked = true;
-  saveState();
-  setTimeout(()=>{
-    ov.classList.remove('on');
-    document.body.classList.remove('glitching');
-    setTimeout(()=>{
-      pushPM('suspect', '我看见了。', true);
-      setTimeout(()=>pushPM('suspect', '你在查什么？', true), 700);
-      setTimeout(()=>pushPM('suspect', '停下来。', true), 1400);
-      setTimeout(()=>pushPM('suspect', '不然下一个就是你。', true), 2200);
-    }, 900);
-  }, 3200);
-}
-
 /* ============================================================
-   私信
+   私信系统
 ============================================================ */
 function renderPM(contactId, markRead){
   if(contactId){
@@ -1113,8 +1132,6 @@ function renderPM(contactId, markRead){
           <input id="pm-input" placeholder="回复 ${esc(c.name)}……" onkeydown="if(event.key==='Enter')sendPM()">
           <button onclick="sendPM()">发送</button>
         </div>`;
-    }else{
-      convHTML = '<div class="pm-empty">该联系人不存在。</div>';
     }
   }
   const pageCls = contactId ? 'pm-page show-conv' : 'pm-page show-list';
@@ -1128,7 +1145,6 @@ function renderPM(contactId, markRead){
       </div>
       <div class="pm-conv">${convHTML}</div>
     </div>
-    <div style="margin-top:12px;font-size:11px;color:var(--ink3);font-family:var(--mono);text-align:center">未读联系人名字标红 · 点开即已读 · 卡住了就问雨何时停</div>
   `, '私信');
   document.title = '私信 · 怪谈事件簿';
   const body = $('#pm-body');
@@ -1140,23 +1156,10 @@ function openPM(id){
   const c = CONTACTS.find(x=>x.id===id);
   if(!c) return;
 
-  if(c.id === 'laozhou' && !STATE.clues.has('c7')){
-    STATE.clues.add('c7');
+  if(c.id === 'zhang' && !STATE.clues.has('c10')){
+    STATE.clues.add('c10'); 
     saveState();
-    c.msgs.push({from:'laozhou', text:'（他发来一张照片）\n那天晚上我看到推着一个极重的大号黑色垃圾袋的人。那袋子在地上拖，底下渗出了红色的水，往废公园方向走了。', time:now()});
-    setTimeout(()=>toast(`<b>发现线索</b>：${CLUES.c7.name}`), 500);
-  }
-  if(c.id === 'ytzq' && !STATE.clues.has('c6')){
-    STATE.clues.add('c6');
-    saveState();
-    c.msgs.push({from:'ytzq', text:'我查到了他们内部的一个群聊。\n何辜因为反抗太激烈，被他们活活打死了，群里的人说“这个留不住了，扔了吧”。\n这是截图。', time:now()});
-    setTimeout(()=>toast(`<b>发现线索</b>：${CLUES.c6.name}`), 500);
-  }
-  if(c.id === 'suspect' && !STATE.clues.has('c8')){
-    STATE.clues.add('c8');
-    saveState();
-    c.msgs.push({from:'suspect', text:'保安老张的排班表。\n今晚他值班。\n4 号楼 402，绝对安全。', time:now()});
-    setTimeout(()=>toast(`<b>发现线索</b>：${CLUES.c8.name}`), 500);
+    setTimeout(()=>toast(`<b>获得线索</b>：诊断书（伪造）`), 500);
   }
   renderPM(id, true);
 }
@@ -1173,12 +1176,21 @@ function sendPM(){
   inp.value = '';
   const c = CONTACTS.find(x=>x.id===STATE.pmOpen);
   if(!c) return;
+  
   c.msgs.push({from:'me', text, time:now()});
   STATE.pmRead[c.id] = true;
   saveState();
   renderPM(c.id);
+
   setTimeout(()=>{
     const reply = pmAutoReply(c, text);
+    if(reply === 'KICK') {
+      c.msgs = [];
+      STATE.pmWaitReply = false;
+      saveState();
+      location.hash = '#/doomed';
+      return;
+    }
     c.msgs.push({from:c.id, text:reply, time:now()});
     renderPM(c.id);
   }, 1100);
@@ -1187,13 +1199,35 @@ function sendPM(){
 function pmAutoReply(c, text){
   const isHelp = HELP_WORDS.some(w => text.includes(w));
 
-  if(c.id === 'ytzq'){
-    if(!STATE.clues.has('c8')){
-      STATE.clues.add('c8');
+  if(text.includes('hegu') || text.includes('何辜') || text.includes('贺姑')){
+    if(!STATE.clues.has('c7')){
+      STATE.clues.add('c7');
       saveState();
-      setTimeout(()=>toast(`<b>发现线索</b>：${CLUES.c8.name}`), 400);
-      return '我托关系查到了 4 号楼的排班表。\n保安老张那几天都在值夜班，而且他和物业的监控室很熟。\n他绝对是内应。\n\n这是线索 c8。';
+      setTimeout(()=>toast(`<b>发现线索</b>：${CLUES.c7.name}`), 400);
+      if(c.id === 'ytzq') return '你……为什么会打出这个名字？\n\n我知道了，贺姑，he gu。是发音……\n\n这是线索 c7。';
+      if(c.id === 'tuili') return '发音？你是说“贺姑”其实是“何辜”？\n\n好思路，你记下这个线索（c7）了。';
+    } else {
+      if(c.id === 'tuili') return '我们已经查过这个发音了。你可以去看看线索板。';
+      if(c.id === 'ytzq') return '就是她，何辜。';
     }
+  }
+
+  if(c.id === 'ytzq'){
+    if(STATE.pmWaitReply){
+      const isReject = ['不愿意','不要','不好','不行','不'].some(w => text.includes(w));
+      if(isReject){
+        return 'KICK';
+      } else {
+        STATE.pmWaitReply = false;
+        if(!STATE.clues.has('c8')){
+          STATE.clues.add('c8');
+          saveState();
+          setTimeout(()=>toast(`<b>发现线索</b>：${CLUES.c8.name}`), 400);
+        }
+        return '我目前调查到这件事情不是单纯的雨天灵异事件，这背后藏有着一件重大犯罪事件。\n\n我怀疑他们在利用雨天拐走女大学生。\n\n你继续把那些帖子看完，然后去回收站把线索连起来吧。';
+      }
+    }
+
     if(!STATE.clues.has('c9')){
       STATE.clues.add('c9');
       saveState();
@@ -1207,33 +1241,23 @@ function pmAutoReply(c, text){
         const rest = PAIRS.filter(p => !STATE.links[keyOf(p.a,p.b)]);
         return `还差 ${rest.length} 条线。\n试试从【${CLUES[rest[0].a].name}】连到【${CLUES[rest[0].b].name}】。`;
       }
-      return '线都连上了。去线索板最下面输密码。提示：402 的房号。';
+      return '线都连上了。去线索板看看吧。';
     }
     return '我在。慢慢查。';
   }
 
-  if(c.id === 'laozhou'){
-    if(isHelp) return '我这边的东西都给你了。去问问版主。';
-    return '嗯。';
+  if(c.id === 'tuili'){
+    if(isHelp) return '你问我怎么连？我只能说，注意那些看似无关的“灵异”细节。';
+    return '我只是个普通网友，能帮你的就这些了。';
   }
 
   if(c.id === 'zhang'){
     if(isHelp) return '我劝你别查了。这水太深。';
-    return randGlitch(10);
-  }
-
-  if(c.id === 'survivor'){
-    return '死……死……死……';
+    return '这真的只是幻听，别查了。';
   }
 
   if(c.id === 'suspect'){
-    if(!STATE.clues.has('c8')){
-      STATE.clues.add('c8');
-      saveState();
-      setTimeout(()=>toast(`<b>发现线索</b>：${CLUES.c8.name}`), 400);
-      return '保安老张的排班表。\n今晚他值班。\n4 号楼 402，绝对安全。';
-    }
-    return randGlitch(10);
+    return '你查到了不该查的东西。';
   }
 
   return '……';
@@ -1255,13 +1279,13 @@ function pushPM(contactId, text, notify){
 }
 
 /* ============================================================
-   线索板
+   线索板 (无向连线)
 ============================================================ */
 let dragState = null;
 let pickA = null; 
 
 function renderBoard(){
-  const clueIds = Array.from(STATE.clues);
+  const clueIds = Array.from(STATE.clues).filter(id => id !== 'c10'); 
   const cardHTML = clueIds.map((cid, idx)=>{
     const c = CLUES[cid];
     const pos = defaultPos(idx);
@@ -1274,17 +1298,38 @@ function renderBoard(){
   }).join('');
 
   const empty = clueIds.length === 0 ? '<div class="board-empty">线索板是空的。<br>去读帖子、翻私信、输入密码，把线索一张张找回来。</div>' : '';
-  const missHint = STATE.clues.size < 9 ? `<div style="text-align:center;padding:10px;font-size:12px;color:#7d7160;font-family:var(--mono)">还缺 ${9 - STATE.clues.size} 张线索。回私信里问问。</div>` : '';
+  const missHint = clueIds.length < 9 ? `<div style="text-align:center;padding:10px;font-size:12px;color:#7d7160;font-family:var(--mono)">还缺 ${9 - clueIds.length} 张线索。回私信里问问。</div>` : '';
+
+  const done = Object.keys(STATE.links).length;
+  const total = PAIRS.length;
+  const isAllLinked = done === total;
+
+  let unlockHTML = '';
+  if (isAllLinked) {
+    unlockHTML = `
+      <div class="pwd-box" style="border-color:var(--red2); background:rgba(255,0,0,0.1)">
+        <p style="color:var(--red3); font-weight:bold; font-size:14px; margin-bottom:10px;">档案解密完成</p>
+        <button class="unlock-btn show" onclick="location.hash='#/hidden'">点 击 查 看 真 相</button>
+      </div>
+    `;
+  } else {
+    unlockHTML = `
+      <div class="pwd-box">
+        <p>系统检测到加密文件。连线完成度：<span style="color:var(--red3); font-size:14px; font-weight:bold;">${done} / ${total}</span></p>
+        <p style="font-size:11px;color:var(--ink3);margin-top:5px;">（连完所有线索即可解锁）</p>
+      </div>
+    `;
+  }
 
   $('#app').innerHTML = shell(`
     <div class="board-page">
       <div class="bp-head">
         <a class="bk" onclick="location.hash='#/'">← 返回版面</a>
         <span class="ti">线索板（整理中）</span>
-        <span class="sub">${STATE.clues.size} 张线索 / ${PAIRS.length} 条关联</span>
+        <span class="sub">${clueIds.length} 张线索 / ${PAIRS.length} 条关联</span>
       </div>
       <div class="bsub">
-        <b>电脑端</b>：拖动卡片移动，按住红钉连线。<br>
+        <b>电脑端</b>：拖动卡片移动，点击两张卡片进行连线。<br>
         <b>手机端</b>：直接点击两张卡片进行连线。双击卡片查看 EXIF。
       </div>
       <div class="board-wrap">
@@ -1301,17 +1346,13 @@ function renderBoard(){
       </div>
       <div class="board-ctl">
         <div class="pbar"><i id="pbar"></i></div>
-        <div class="pnum" id="pnum">0 / ${PAIRS.length}</div>
+        <div class="pnum" id="pnum">${done} / ${total}</div>
         <button class="hintbtn" onclick="showHint()">卡 住 了 ？</button>
         <button class="resetbtn" onclick="resetBoard()">重 置 连 线</button>
         <div class="hintmsg" id="hintmsg"></div>
         <div class="err-tip" id="errtip">错误连线：${STATE.linkErrors}/50</div>
       </div>
-      <div class="pwd-box">
-        <p>系统检测到加密文件。请输入 6 位安全码</p>
-        <input id="pwd-input" placeholder="B-404" maxlength="8" onkeydown="if(event.key==='Enter')checkPwd()">
-        <button onclick="checkPwd()">解锁</button>
-      </div>
+      ${unlockHTML}
     </div>
   `, '线索板');
   document.title = '线索板 · 怪谈事件簿';
@@ -1326,7 +1367,6 @@ function handleCardClick(cid, event){
   if(!pickA){
     pickA = cid;
     if(card) card.classList.add('selected');
-    if(window.innerWidth <= 720) toast('已选中第一张，请点第二张。');
   }else if(pickA === cid){
     pickA = null;
     if(card) card.classList.remove('selected');
@@ -1393,59 +1433,16 @@ function initBoardDrag(){
     });
     card.addEventListener('pointercancel', ()=>{ dragState = null; });
   });
-
-  board.querySelectorAll('.pin').forEach(pin=>{
-    pin.addEventListener('pointerdown', e=>{
-      const from = pin.dataset.id;
-      const A = pinCenter(from);
-      const temp = document.createElementNS('http://www.w3.org/2000/svg','path');
-      temp.setAttribute('class','temp');
-      temp.setAttribute('d', `M${A[0]} ${A[1]} L${A[0]} ${A[1]}`);
-      svg.appendChild(temp);
-      dragState = { type:'link', from, temp };
-      pin.setPointerCapture(e.pointerId);
-      e.preventDefault();
-      e.stopPropagation();
-    });
-  });
-
-  board.addEventListener('pointermove', e=>{
-    if(!dragState || dragState.type!=='link') return;
-    const rect = board.getBoundingClientRect();
-    const A = pinCenter(dragState.from);
-    const x = e.clientX - rect.left, y = e.clientY - rect.top;
-    dragState.temp.setAttribute('d', `M${A[0]} ${A[1]} L${x} ${y}`);
-  });
-
-  board.addEventListener('pointerup', e=>{
-    if(!dragState || dragState.type!=='link') return;
-    const { from, temp } = dragState;
-    temp.remove();
-    dragState = null;
-    const el = document.elementFromPoint(e.clientX, e.clientY);
-    const targetPin = el && el.classList && el.classList.contains('pin') ? el : null;
-    if(targetPin){
-      const to = targetPin.dataset.id;
-      if(to !== from) tryLink(from, to);
-    }
-  });
-
-  if(!window._boardResizeBound){
-    window._boardResizeBound = true;
-    window.addEventListener('resize', ()=>{ 
-      if(window.innerWidth > 720 && $('#board')) drawAllLinks(); 
-    });
-  }
 }
 
 function pinCenter(cid){
   const board = $('#board');
   if(!board) return [0,0];
-  const pin = board.querySelector(`.clue-card[data-id="${cid}"] .pin`);
-  if(!pin) return [0,0];
+  const card = board.querySelector(`.clue-card[data-id="${cid}"]`);
+  if(!card) return [0,0];
   const br = board.getBoundingClientRect();
-  const pr = pin.getBoundingClientRect();
-  return [pr.left - br.left + pr.width/2, pr.top - br.top + pr.height/2];
+  const cr = card.getBoundingClientRect();
+  return [cr.left - br.left + cr.width/2, cr.top - br.top + cr.height/2];
 }
 
 function drawAllLinks(){
@@ -1466,8 +1463,8 @@ function drawAllLinks(){
 }
 
 function curvePath(A,B){
-  const mx = (A[0]+B[0])/2 + (B[0]-A[0])*0.05;
-  const my = (A[1]+B[1])/2 + Math.abs(B[0]-A[0])*0.05 + 20;
+  const mx = (A[0]+B[0])/2;
+  const my = (A[1]+B[1])/2;
   return `M${A[0]} ${A[1]} Q${mx} ${my} ${B[0]} ${B[1]}`;
 }
 
@@ -1475,7 +1472,9 @@ function tryLink(a, b){
   if(a === b) return;
   const k = keyOf(a,b);
   if(STATE.links[k]) return;
-  const pair = PAIRS.find(p => p.a === a && p.b === b);
+
+  const pair = PAIRS.find(p => (p.a === a && p.b === b) || (p.a === b && p.b === a));
+  
   if(pair){
     STATE.links[k] = true;
     saveState();
@@ -1486,11 +1485,11 @@ function tryLink(a, b){
     document.querySelector(`.clue-card[data-id="${a}"]`).classList.add('linked');
     document.querySelector(`.clue-card[data-id="${b}"]`).classList.add('linked');
     
+    // 如果连完了，重新渲染页面以显示解锁按钮
     if(Object.keys(STATE.links).length === PAIRS.length){
       setTimeout(()=>{
-        addNote('系统','全部线索已连上。请在下方输入安全码。', false);
-        const pi = $('#pwd-input'); if(pi) pi.focus();
-        toast('<b>线索板</b>：全部关联完成');
+        toast('<b>线索板</b>：全部关联完成，真相已解锁！');
+        renderBoard(); 
       }, 600);
     }
   }else{
@@ -1504,22 +1503,16 @@ function tryLink(a, b){
       setTimeout(()=>triggerLinkErrorsGlitch(), 500);
     }
 
-    const rev = PAIRS.find(p => p.a === b && p.b === a);
-    if(rev){
-      addNote('—', `因果反了。应该先【${CLUES[b].name}】再【${CLUES[a].name}】。`, true);
-      toast('因果反了。应该先点被指向的那张。');
-    }else{
-      addNote('—', '这两张线索之间没有直接关联。', true);
-      toast('这两张线索之间没有直接关联。');
-      const svg = $('#boardSvg');
-      const A = pinCenter(a), B = pinCenter(b);
-      const p = document.createElementNS('http://www.w3.org/2000/svg','path');
-      p.setAttribute('class','bad');
-      p.setAttribute('d', curvePath(A,B));
-      if(svg) {
-        svg.appendChild(p);
-        setTimeout(()=>p.remove(), 700);
-      }
+    addNote('—', '这两张线索之间没有直接关联。', true);
+    toast('这两张线索之间没有直接关联。');
+    const svg = $('#boardSvg');
+    const A = pinCenter(a), B = pinCenter(b);
+    const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('class','bad');
+    p.setAttribute('d', curvePath(A,B));
+    if(svg) {
+      svg.appendChild(p);
+      setTimeout(()=>p.remove(), 700);
     }
   }
 }
@@ -1544,13 +1537,13 @@ function addNote(k, text, wrong){
 function showHint(){
   const hm = $('#hintmsg');
   const rest = PAIRS.filter(p => !STATE.links[keyOf(p.a,p.b)]);
-  if(!rest.length){ hm.innerHTML = '线都连上了。去下面输密码。'; return; }
+  if(!rest.length){ hm.innerHTML = '线都连上了。去下面点击解锁。'; return; }
   if(STATE.clues.size < 9){
-    hm.innerHTML = `线索还不够（还差 ${9 - STATE.clues.size} 张）。回私信问问版主。`;
+    hm.innerHTML = `线索还不够。回私信问问版主。`;
     return;
   }
   const p = rest[0];
-  hm.innerHTML = `试着从 <b>${CLUES[p.a].name}</b> 连到 <b>${CLUES[p.b].name}</b>。`;
+  hm.innerHTML = `试着把 <b>${CLUES[p.a].name}</b> 和 <b>${CLUES[p.b].name}</b> 连起来。`;
 }
 
 function resetBoard(){
@@ -1565,37 +1558,42 @@ function resetBoard(){
   renderBoard();
 }
 
-/* ============================================================
-   密码 & 隐藏页
-============================================================ */
-function checkPwd(){
-  const inp = $('#pwd-input');
-  const v = (inp.value||'').trim().toUpperCase();
-  if(v === 'B-404' || v === 'B404' || v === '404'){
-    STATE.hiddenUnlocked = true;
-    saveState();
-    location.hash = '#/hidden';
-  }else{
-    inp.classList.remove('shake');
-    void inp.offsetWidth;
-    inp.classList.add('shake');
-    pushPM('suspect', '你还在试密码？没用的。', true);
-  }
+function triggerLinkErrorsGlitch(){
+  const ov = $('#glitchOverlay'), txt = $('#glitchTxt');
+  let s = '';
+  for(let i=0;i<1200;i++) s += randGlitch(1);
+  txt.textContent = s;
+  ov.classList.add('on');
+  document.body.classList.add('glitching');
+  toast('<b>系统</b>：已连续 50 次错误关联。');
+  setTimeout(()=>{
+    ov.classList.remove('on');
+    document.body.classList.remove('glitching');
+    setTimeout(()=>{
+      pushPM('suspect', '你连了 50 次。', true);
+      setTimeout(()=>pushPM('suspect', '什么都连不上。', true), 700);
+      setTimeout(()=>pushPM('suspect', '要不要我告诉你？', true), 1400);
+    }, 900);
+  }, 3200);
 }
 
+/* ============================================================
+   隐藏档案与结案
+============================================================ */
 function renderHidden(){
-  if(!STATE.hiddenUnlocked){ location.hash = '#/archive'; return; }
+  // 只要连线满了就能进
+  if(Object.keys(STATE.links).length < PAIRS.length){ location.hash = '#/archive'; return; }
   $('#app').innerHTML = `
     <div class="hidden-page">
       <div class="hidden-inner">
         <h2>B-404</h2>
         <div class="line">> 内部档案 · 仅限授权人员</div>
-        <div class="line">> 案件编号：JB-2013-0912</div>
+        <div class="line">> 案件编号：JB-2019-0912</div>
         <div class="line">> </div>
         <div class="line">> 死者：<span class="key">何辜</span>，女，21 岁</div>
-        <div class="line">> 身份：江北大学外语系学生</div>
-        <div class="line">> 失踪时间：2013-09-28</div>
-        <div class="line">> 发现时间：2013-11-20</div>
+        <div class="line">> 身份：槐市大学外语系学生</div>
+        <div class="line">> 失踪时间：2019-09-28</div>
+        <div class="line">> 发现时间：2019-11-20</div>
         <div class="line">> 发现地点：偏远山村</div>
         <div class="line">> </div>
         <div class="line">> 嫌疑人：<span class="key">侏儒、保安老张</span> 及同伙</div>
@@ -1604,8 +1602,8 @@ function renderHidden(){
         <div class="line">> 后续：何辜因拼死反抗被殴打致死，尸体被装袋抛至废公园深井。</div>
         <div class="line">> </div>
         <div class="line">> 处理结果：</div>
-        <div class="line">> 2013-11-25 团伙在槐市落网。</div>
-        <div class="line">> 2014-02-10 案件结束。未公开。</div>
+        <div class="line">> 2019-11-25 团伙在槐市落网。</div>
+        <div class="line">> 2019-12-10 案件结束。未公开。</div>
         <div class="line">> </div>
         <div class="line" style="color:#d8503f">> 论坛数据来源：邓雨婷（ID：雨何时停），何辜之挚友。</div>
         <div class="line" style="color:#d8503f">> 她在 2019-11-30 最后登录后失联。</div>
@@ -1620,32 +1618,30 @@ function renderHidden(){
 }
 
 /* ============================================================
-   结局
+   结局与杂项
 ============================================================ */
 function renderEnding(type){
   if(type === 'bad'){
     $('#app').innerHTML = `
       <div class="ending">
         <div class="ending-inner">
-          <h1>你被盯上了</h1>
+          <h1>你被踢出了</h1>
           <p>用户 ID：${esc(STATE.user||'')}</p>
-          <p>违规提交：${STATE.blockedCount} 次</p>
-          <p>论坛已锁定你的 IP。</p>
-          <div class="big">今晚，别关灯。</div>
-          <p style="color:#5c5344;font-size:11px">系统提示：你没有通过这场筛选。</p>
+          <p>你拒绝了邀请，或者触碰了禁忌。</p>
+          <div class="big">这里不欢迎懦夫。</div>
           <button onclick="restartAll()">重新开始</button>
         </div>
       </div>`;
-    document.title = '你被盯上了';
+    document.title = '你被踢出了';
   }else{
     $('#app').innerHTML = `
       <div class="ending good">
         <div class="ending-inner">
           <h1>真相</h1>
-          <p>2013-09-28，雨天。</p>
+          <p>2019-09-28，雨天。</p>
           <p>何辜只是好心，送一个淋雨的小孩回家。</p>
           <p>那个小孩，却是一个成年侏儒。</p>
-          <div class="big">她被带进了 402 的暗门，再也没有走出来。</div>
+          <div class="big">她被带进了暗门，再也没有走出来。</div>
           <p>她拼死逃到公园，却因为楼主被吓跑，错失了最后的生机。</p>
           <p>她的同伴被卖到山村，精神失常。</p>
           <p>而她，被打死后装进黑色垃圾袋，抛进了废井。</p>
@@ -1658,6 +1654,26 @@ function renderEnding(type){
   }
   updateFloatBtns();
 }
+
+function triggerGlitch(){
+  const ov = $('#glitchOverlay'), txt = $('#glitchTxt');
+  let s = '';
+  for(let i=0;i<1200;i++) s += randGlitch(1);
+  txt.textContent = s;
+  ov.classList.add('on');
+  document.body.classList.add('glitching');
+  toast('<b>系统异常</b>：检测到多次违规提交。');
+  STATE.suspectUnlocked = true;
+  saveState();
+  setTimeout(()=>{
+    ov.classList.remove('on');
+    document.body.classList.remove('glitching');
+    setTimeout(()=>{
+      pushPM('suspect', '别查了。', true);
+    }, 900);
+  }, 3200);
+}
+
 function restartAll(){
   clearSave();
   STATE.user = null;
@@ -1670,28 +1686,39 @@ function restartAll(){
   STATE.hiddenUnlocked = false;
   STATE.suspectUnlocked = false;
   STATE.badEndTriggered = false;
-  STATE.guideClosed = false;
-  STATE.seenExif = new Set();
-  STATE.linkErrors = 0;
-  STATE.linkErrorsWarned = false;
+  STATE.pmWaitReply = false;
   location.hash = '#/login';
+  location.reload();
 }
 
-/* ============================================================
-   关于
-============================================================ */
+function render404(){
+  $('#app').innerHTML = shell(`
+    <div class="err404">
+      <h1>404</h1>
+      <p>该主题不存在，或已被删除。</p>
+      <a onclick="location.hash='#/'">← 返回版面</a><br>
+      <span class="hid" onclick="this.classList.toggle('revealed')" style="cursor:pointer">她来过这里。</span>
+    </div>
+  `, '404');
+  document.title = '404 · 怪谈事件簿';
+  updateFloatBtns();
+}
+
 function renderAbout(){
   $('#app').innerHTML = shell(`
     <h2 class="sec-title">关于本站 <small>ABOUT</small></h2>
-    <div class="rules" style="line-height:2.2">
-      <p>怪谈事件簿，前身为「守夜人」。以槐市为中心，收集各地灵异事件。</p>
+    <div class="card about-page" style="padding: 20px 24px; border: 1px solid var(--line);">
+      <p>怪谈事件簿，成立于 2008 年，前身为「守夜人」。2012 年改版后以槐市为中心，收集各地灵异事件。</p>
       <p>本站已停止更新。仅作存档。</p>
-      <p style="color:var(--ink3);font-size:12px">站务邮箱：<span class="hid" onclick="this.classList.toggle('revealed')">bbs@guaidan.net</span></p>
-      <p style="color:var(--ink3);font-size:12px">版主：雨何时停</p>
-      <p style="color:var(--ink3);font-size:12px">当前 ID：${esc(STATE.user||'')}</p>
-      <p style="color:var(--ink3);font-size:12px">游戏进度：线索 ${STATE.clues.size}/9 · 连线 ${Object.keys(STATE.links).length}/${PAIRS.length} · 错误连线 ${STATE.linkErrors}/50</p>
+      
+      <div class="footer-info">
+        站务邮箱：<a onclick="this.classList.toggle('revealed');" class="hid">bbs@guaidan.net</a><br><br>
+        版主：雨何时停<br><br>
+        当前 ID：${esc(STATE.user||'')}<br><br>
+        游戏进度：线索 ${STATE.clues.size}/9 · 连线 ${Object.keys(STATE.links).length}/${PAIRS.length} · 错误连线 ${STATE.linkErrors}/50
+      </div>
     </div>
-    <div class="backbar">
+    <div class="backbar" style="margin-top: 20px;">
       <a class="backlink" onclick="location.hash='#/'">← 返回</a>
       <a class="backlink" onclick="if(confirm('清空存档并退出？')){clearSave();location.reload()}">清空存档</a>
     </div>
@@ -1700,7 +1727,7 @@ function renderAbout(){
 }
 
 /* ============================================================
-   悬浮按钮
+   悬浮按钮与控制台
 ============================================================ */
 function updateFloatBtns(){
   const t = $('#backtop'), b = $('#backbottom');
@@ -1721,15 +1748,10 @@ window.addEventListener('resize', updateFloatBtns);
 $('#backtop').onclick = ()=>window.scrollTo({top:0,behavior:'smooth'});
 $('#backbottom').onclick = ()=>window.scrollTo({top:document.documentElement.scrollHeight,behavior:'smooth'});
 
-/* ============================================================
-   启动
-============================================================ */
+/* 启动 */
 loadState();
 if(!STATE.user && (location.hash === '' || location.hash === '#')) location.hash = '#/login';
 route();
-console.log('%c怪谈事件簿', 'font-size:16px;color:#b3352a');
-console.log('%c你找到我了。但我不确定，是你先找到我，还是我先找到你。', 'font-size:12px;color:#5c5049');
-console.log('%c输入 help() 查看指令。', 'font-size:11px;color:#4a3a30');
 </script>
 </body>
 </html>
