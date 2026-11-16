@@ -126,6 +126,9 @@ h1.th-title{font-size:20px;margin:0 0 4px;letter-spacing:.03em;font-weight:600;l
 .reply-box button{margin-top:9px;background:var(--red);color:#fff;border:none;padding:7px 20px;cursor:pointer;font-family:var(--serif);font-size:14px;letter-spacing:.1em}
 .reply-box button:hover{background:var(--red2)}
 .reply-box .warn{color:var(--red3);font-size:12px;margin-top:8px;font-family:var(--mono)}
+.quick-reply{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;}
+.quick-reply button{background:#1a1210;border:1px solid #2a1a18;color:var(--ink2);font-size:12px;padding:4px 10px;cursor:pointer;margin:0;}
+.quick-reply button:hover{background:var(--red);color:#fff;}
 
 /* 私信页 */
 .pm-page{display:grid;grid-template-columns:220px 1fr;border:1px solid var(--line);background:var(--card);min-height:520px}
@@ -148,10 +151,13 @@ h1.th-title{font-size:20px;margin:0 0 4px;letter-spacing:.03em;font-weight:600;l
 .pm-msg.mine{flex-direction:row-reverse}
 .pm-msg.mine .who{text-align:left;color:var(--red2)}
 .pm-msg.mine .bub{background:#2a1210;border-color:#4a1a16}
-.pm-send{border-top:1px solid var(--line);padding:10px;display:flex;gap:8px}
+.pm-send{border-top:1px solid var(--line);padding:10px;display:flex;gap:8px;}
 .pm-send input{flex:1;background:#080606;border:1px solid #2a1a18;color:var(--ink);padding:8px 10px;font-family:var(--serif);font-size:13px;outline:none}
 .pm-send button{background:var(--red);color:#fff;border:none;padding:0 16px;cursor:pointer;font-family:var(--serif)}
 .pm-empty{padding:40px;text-align:center;color:var(--ink3);font-size:12px;line-height:2}
+.quick-pm{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+.quick-pm button{background:#2a1210;border:1px solid #4a1a16;color:var(--ink);font-size:12px;padding:5px 12px;cursor:pointer;border-radius:3px;}
+.quick-pm button:hover{background:var(--red);color:#fff;}
 
 /* 线索板 */
 .board-page{background:var(--bg2);margin:0 -16px;padding:20px 16px 70px;min-height:80vh}
@@ -199,13 +205,6 @@ h1.th-title{font-size:20px;margin:0 0 4px;letter-spacing:.03em;font-weight:600;l
 .hintmsg{width:100%;font-size:12px;color:#b9ac95;font-family:var(--mono);line-height:1.8;margin-top:2px}
 .hintmsg b{color:#d8695b;font-weight:400}
 .err-tip{font-family:var(--mono);font-size:10.5px;color:#7d6050;letter-spacing:.04em}
-
-/* 解锁按钮区 */
-.pwd-box{max-width:600px;margin:26px auto 0;padding:20px;border:1px dashed #4a1512;text-align:center; transition: all 0.3s;}
-.pwd-box p{color:#6f6459;font-size:12px;margin:0 0 12px;font-family:var(--mono)}
-.unlock-btn{display:none; width:100%; background:var(--red); color:#fff; border:none; padding:15px; font-size:18px; font-weight:bold; font-family:var(--serif); letter-spacing:5px; cursor:pointer; box-shadow:0 0 20px rgba(229,67,47,0.5); animation: pulse 2s infinite;}
-.unlock-btn.show{display:block;}
-@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
 
 /* 隐藏档案 */
 .hidden-page{background:#050303;min-height:100vh;padding:60px 20px;color:#8a7a6a}
@@ -691,16 +690,13 @@ const EXIF_DATA = {
   c9:'致死原因：重度颅脑损伤。',
 };
 
+// 【精简版】只保留 5 条最核心的连线
 const PAIRS = [
   {a:'c1', b:'c2', t:'雨天拐卖案的诱饵，是楼道里蹲在猫眼死角的矮个子。', k:'诱饵与盲区'},
-  {a:'c1', b:'c3', t:'因为何辜在雨天失踪，所以有了如月公园水鬼找替身的传闻。', k:'怪谈的诞生'},
-  {a:'c3', b:'c4', t:'如月公园的血人正是何辜，她拼死逃出求救，留下了发夹。', k:'绝望的求救'},
-  {a:'c1', b:'c8', t:'版主和推理迷推断出，这是一场利用同情心的连环拐卖案。', k:'案件定性'},
-  {a:'c5', b:'c2', t:'空屋惨叫声和楼道哭声，都是团伙在同一个小区的作案痕迹。', k:'作案现场'},
-  {a:'c5', b:'c8', t:'物业是帮凶，利用空屋的暗门囚禁受害者。', k:'内鬼与暗门'},
+  {a:'c2', b:'c5', t:'空屋惨叫声和楼道哭声，都是团伙在同一个小区的作案痕迹。', k:'作案现场'},
+  {a:'c5', b:'c8', t:'物业是帮凶，利用空屋的暗门囚禁受害者，进行拐卖。', k:'内鬼与暗门'},
   {a:'c6', b:'c7', t:'村里的疯女人，因为听到了“贺姑（何辜）”的名字，引发了创伤应激。', k:'幸存者的呓语'},
-  {a:'c7', b:'c1', t:'疯女人的存在，彻底印证了何辜已经被拐卖且遇害的闭环。', k:'最终的印证'},
-  {a:'c8', b:'c9', t:'因为拐卖，所以何辜反抗，最终被打死。', k:'真相大白'},
+  {a:'c8', b:'c9', t:'因为拐卖，所以何辜反抗，最终被打死。', k:'真相大白'}
 ];
 
 const CONTACTS = [
@@ -780,6 +776,7 @@ function renderLogin(){
         <div class="sub">guaitan.bbs.net · 槐市 · 需登录</div>
         <input id="login-name" placeholder="输入你的论坛 ID" maxlength="12" onkeydown="if(event.key==='Enter')doLogin()">
         <button onclick="doLogin()">进 入 论 坛</button>
+        <button onclick="quickLogin()" style="margin-top:10px; background:#1a1210; border-color:#332823; color:#8f8177;">游客一键登录（演示用）</button>
         <div class="tip">本论坛前身「守夜人」。<br>记录槐市的一切异常。<br><span class="hid" onclick="this.classList.toggle('revealed')">最好不要用真名。</span></div>
       </div>
     </div>`;
@@ -797,6 +794,12 @@ function doLogin(){
   }
 
   STATE.user = name;
+  saveState();
+  location.hash = '#/';
+}
+
+function quickLogin(){
+  STATE.user = '调查员';
   saveState();
   location.hash = '#/';
 }
@@ -971,10 +974,15 @@ function renderThread(id){
   if(t.locked){
     replyBoxHTML = `<div style="text-align:center;padding:20px;color:var(--ink3);font-family:var(--mono);border:1px dashed var(--line);margin-top:20px">此贴已被锁定（坟贴），无法回复</div>`;
   }else{
+    // 增加演示快捷回复按钮
     replyBoxHTML = `
     <div class="reply-box">
       <div class="hd">发表你的回复 <span style="color:var(--red3)">（注意：本版有敏感词审查）</span></div>
       <textarea id="reply-text" placeholder="说点什么……"></textarea>
+      <div class="quick-reply">
+        <button onclick="quickReplyThread(${id}, '太可怕了，希望能快点找到她。')">快捷：太可怕了</button>
+        <button onclick="quickReplyThread(${id}, '何辜')">快捷：测试敏感词（何辜）</button>
+      </div>
       <button onclick="submitReply(${id})">发送回复</button>
       <div class="warn" id="reply-warn"></div>
     </div>`;
@@ -998,6 +1006,12 @@ function renderThread(id){
   document.title = t.title + ' · 怪谈事件簿';
   window.scrollTo(0,0);
   updateFloatBtns();
+}
+
+function quickReplyThread(id, text){
+  const ta = $('#reply-text');
+  if(ta) ta.value = text;
+  submitReply(id);
 }
 
 /* ============================================================
@@ -1121,6 +1135,25 @@ function renderPM(contactId, markRead){
           <div class="bub">${esc(m.text)}</div>
         </div>`;
       }).join('') : '<div class="pm-empty">还没有对话。先发一条试试。</div>';
+      
+      // 快捷回复选项
+      let quickOpts = '';
+      if(c.id === 'ytzq'){
+        if(STATE.pmWaitReply){
+          quickOpts = `
+            <div class="quick-pm">
+              <button onclick="quickSendPM('我愿意加入推理社。')">我愿意加入</button>
+              <button onclick="quickSendPM('不愿意，太危险了。')">不愿意（被踢出）</button>
+            </div>`;
+        } else {
+          quickOpts = `
+            <div class="quick-pm">
+              <button onclick="quickSendPM('我卡住了，能给点提示吗？')">卡住了，求提示</button>
+              <button onclick="quickSendPM('何辜到底在哪？')">何辜到底在哪？</button>
+            </div>`;
+        }
+      }
+
       convHTML = `
         <div class="pm-conv-hd">
           <button class="pm-back-mobile" onclick="pmShowList()">≡ 返回</button>
@@ -1128,9 +1161,12 @@ function renderPM(contactId, markRead){
           <span style="font-size:11px;color:var(--ink3)">${c.intro}</span>
         </div>
         <div class="pm-body" id="pm-body">${msgs}</div>
-        <div class="pm-send">
-          <input id="pm-input" placeholder="回复 ${esc(c.name)}……" onkeydown="if(event.key==='Enter')sendPM()">
-          <button onclick="sendPM()">发送</button>
+        <div style="padding: 0 10px 10px; border-top: 1px solid var(--line);">
+          ${quickOpts}
+          <div class="pm-send" style="border:none; padding:0;">
+            <input id="pm-input" placeholder="回复 ${esc(c.name)}……" onkeydown="if(event.key==='Enter')sendPM()">
+            <button onclick="sendPM()">发送</button>
+          </div>
         </div>`;
     }
   }
@@ -1167,6 +1203,12 @@ function openPM(id){
 function pmShowList(){
   STATE.pmOpen = null; 
   renderPM(null, false);
+}
+
+function quickSendPM(text){
+  const inp = $('#pm-input');
+  if(inp) inp.value = text;
+  sendPM();
 }
 
 function sendPM(){
@@ -1241,7 +1283,7 @@ function pmAutoReply(c, text){
         const rest = PAIRS.filter(p => !STATE.links[keyOf(p.a,p.b)]);
         return `还差 ${rest.length} 条线。\n试试从【${CLUES[rest[0].a].name}】连到【${CLUES[rest[0].b].name}】。`;
       }
-      return '线都连上了。去线索板看看吧。';
+      return '线都连上了。自动跳转档案。';
     }
     return '我在。慢慢查。';
   }
@@ -1300,27 +1342,6 @@ function renderBoard(){
   const empty = clueIds.length === 0 ? '<div class="board-empty">线索板是空的。<br>去读帖子、翻私信、输入密码，把线索一张张找回来。</div>' : '';
   const missHint = clueIds.length < 9 ? `<div style="text-align:center;padding:10px;font-size:12px;color:#7d7160;font-family:var(--mono)">还缺 ${9 - clueIds.length} 张线索。回私信里问问。</div>` : '';
 
-  const done = Object.keys(STATE.links).length;
-  const total = PAIRS.length;
-  const isAllLinked = done === total;
-
-  let unlockHTML = '';
-  if (isAllLinked) {
-    unlockHTML = `
-      <div class="pwd-box" style="border-color:var(--red2); background:rgba(255,0,0,0.1)">
-        <p style="color:var(--red3); font-weight:bold; font-size:14px; margin-bottom:10px;">档案解密完成</p>
-        <button class="unlock-btn show" onclick="location.hash='#/hidden'">点 击 查 看 真 相</button>
-      </div>
-    `;
-  } else {
-    unlockHTML = `
-      <div class="pwd-box">
-        <p>系统检测到加密文件。连线完成度：<span style="color:var(--red3); font-size:14px; font-weight:bold;">${done} / ${total}</span></p>
-        <p style="font-size:11px;color:var(--ink3);margin-top:5px;">（连完所有线索即可解锁）</p>
-      </div>
-    `;
-  }
-
   $('#app').innerHTML = shell(`
     <div class="board-page">
       <div class="bp-head">
@@ -1346,13 +1367,12 @@ function renderBoard(){
       </div>
       <div class="board-ctl">
         <div class="pbar"><i id="pbar"></i></div>
-        <div class="pnum" id="pnum">${done} / ${total}</div>
+        <div class="pnum" id="pnum">0 / ${PAIRS.length}</div>
         <button class="hintbtn" onclick="showHint()">卡 住 了 ？</button>
         <button class="resetbtn" onclick="resetBoard()">重 置 连 线</button>
         <div class="hintmsg" id="hintmsg"></div>
         <div class="err-tip" id="errtip">错误连线：${STATE.linkErrors}/50</div>
       </div>
-      ${unlockHTML}
     </div>
   `, '线索板');
   document.title = '线索板 · 怪谈事件簿';
@@ -1485,11 +1505,16 @@ function tryLink(a, b){
     document.querySelector(`.clue-card[data-id="${a}"]`).classList.add('linked');
     document.querySelector(`.clue-card[data-id="${b}"]`).classList.add('linked');
     
-    // 如果连完了，重新渲染页面以显示解锁按钮
+    // 连完直接跳转结局，无需密码
     if(Object.keys(STATE.links).length === PAIRS.length){
       setTimeout(()=>{
-        toast('<b>线索板</b>：全部关联完成，真相已解锁！');
-        renderBoard(); 
+        addNote('系统','全部线索已连上。正在解锁档案...', false);
+        toast('<b>线索板</b>：全部关联完成');
+        setTimeout(()=>{
+          STATE.hiddenUnlocked = true;
+          saveState();
+          location.hash = '#/hidden';
+        }, 1200);
       }, 600);
     }
   }else{
@@ -1537,7 +1562,7 @@ function addNote(k, text, wrong){
 function showHint(){
   const hm = $('#hintmsg');
   const rest = PAIRS.filter(p => !STATE.links[keyOf(p.a,p.b)]);
-  if(!rest.length){ hm.innerHTML = '线都连上了。去下面点击解锁。'; return; }
+  if(!rest.length){ hm.innerHTML = '线都连上了。'; return; }
   if(STATE.clues.size < 9){
     hm.innerHTML = `线索还不够。回私信问问版主。`;
     return;
@@ -1578,11 +1603,10 @@ function triggerLinkErrorsGlitch(){
 }
 
 /* ============================================================
-   隐藏档案与结案
+   结案与隐藏页
 ============================================================ */
 function renderHidden(){
-  // 只要连线满了就能进
-  if(Object.keys(STATE.links).length < PAIRS.length){ location.hash = '#/archive'; return; }
+  if(!STATE.hiddenUnlocked){ location.hash = '#/archive'; return; }
   $('#app').innerHTML = `
     <div class="hidden-page">
       <div class="hidden-inner">
@@ -1617,9 +1641,6 @@ function renderHidden(){
   updateFloatBtns();
 }
 
-/* ============================================================
-   结局与杂项
-============================================================ */
 function renderEnding(type){
   if(type === 'bad'){
     $('#app').innerHTML = `
@@ -1726,9 +1747,6 @@ function renderAbout(){
   updateFloatBtns();
 }
 
-/* ============================================================
-   悬浮按钮与控制台
-============================================================ */
 function updateFloatBtns(){
   const t = $('#backtop'), b = $('#backbottom');
   if(!t || !b) return;
